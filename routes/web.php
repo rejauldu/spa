@@ -12,6 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::any('/{slug}', 'HomeController@index')->where('slug', '.*');
 
-Route::resource('blogs', 'BlogController');
-Route::any('/{slug?}', 'HomeController@index');
+
