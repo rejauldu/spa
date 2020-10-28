@@ -12,7 +12,7 @@
             <layout></layout>
         </div>
         <script src="{{ mix('js/manifest.js') }}"></script>
-        <script src="{{ mix('js/vendor.js') }}"></script>
+        <script src="{{ mix('js/vendor.js') }}?{{ time() }}"></script>
         <script src="{{ mix('js/app.js') }}?{{ time() }}"></script>
         <script src="{{ asset('js/theme.js') }}"></script>
     </body>

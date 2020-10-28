@@ -1,8 +1,8 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-import BootstrapVue from 'bootstrap-vue'
-Vue.use(BootstrapVue)
+import {LayoutPlugin} from 'bootstrap-vue/src/components/layout'
+Vue.use(LayoutPlugin)
 import router from './router'
 import store from './store'
 
