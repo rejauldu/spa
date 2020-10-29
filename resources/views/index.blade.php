@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#4ebac3">
         <link href="{{ mix('css/app.css') }}?{{ time() }}" rel="stylesheet" />
-        <link href="{{ asset('css/theme.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/theme.css') }}?{{ time() }}" rel="stylesheet" />
         <title>Laravel</title>
     </head>
     <body>
