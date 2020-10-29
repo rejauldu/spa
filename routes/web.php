@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {
+Route::middleware('cache.headers:public;max_age=3600;etag')->group(function () {
 	Route::any('/{slug}', 'HomeController@index')->where('slug', '.*');
 });
 
