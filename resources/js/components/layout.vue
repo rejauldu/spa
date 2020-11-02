@@ -85,7 +85,6 @@
 								</router-link>
 							</b-col>
 						</b-row>
-						</div>
 					</b-col>
 				</b-row>
 			</b-container>
