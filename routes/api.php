@@ -18,8 +18,19 @@ Route::post('/login', function (Request $request) {
     	'email'=>'required',
     	'password'=>'required'
     ]);
-    auth()->attempt($request->only('email', 'password'));
-	return auth()->user();
+    if ($request->wantsJson()) {   //add Accept: application/json in request
+        auth()->attempt($request->only('email', 'password'));
+        $user = auth()->user();
+        if($user) {
+            return $user;
+        }
+        return response()->json(['error'=>'Email or Password does not match'], 401);
+    } else {
+        return response()->json(['error'=>'Bad Request'], 400);
+    }
+});
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
