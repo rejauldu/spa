@@ -46,6 +46,8 @@
     </div>
 </template>
 <script>
+import store from "../../store";
+
 export default {
     data() {
         return {
@@ -59,12 +61,14 @@ export default {
     },
     methods: {
         login: function() {
+            store.dispatch("changeLoading", true);
             axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.post('/api/register', this.form)
                 .then(function (response) {
                     console.log(error);
                 })
                 .catch(function (error) {
+                    store.dispatch("changeLoading", false);
                     console.log(error);
                 });
             });

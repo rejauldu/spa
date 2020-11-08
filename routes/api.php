@@ -24,9 +24,9 @@ Route::post('/login', function (Request $request) {
         if($user) {
             return $user;
         }
-        return response()->json(['error'=>'Email or Password does not match'], 401);
+        return response()->json(['error'=>'Email or Password does not match'], 200);
     } else {
-        return response()->json(['error'=>'Bad Request'], 400);
+        return response()->json(['error'=>'Bad Request'], 200);
     }
 });
 Route::post('/logout', function (Request $request) {

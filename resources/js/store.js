@@ -5,19 +5,23 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		isLoggedin: false,
+		isLoggedin: JSON.parse(localStorage.isLoggedin) || false,
 		user: {},
         isError: false,
         errorMessage: '',
         isSuccess: false,
-        successMessage: ''
+        successMessage: '',
+        loading: false
 	},
 	getters: {
-        isLoggedin: (state, getters) => {
+        isLoggedin: (state) => {
             return state.isLoggedin;
         },
-        user: (state, getters) => {
+        user: (state) => {
             return state.user;
+        },
+        isLoading: (state) => {
+            return state.loading;
         }
 	},
 	actions: {
@@ -29,20 +33,40 @@ export default new Vuex.Store({
         },
         setUser(context, data) {
 		    context.commit("setUser", data);
+        },
+        changeLogin(context, data) {
+            context.commit("changeLogin", data);
+        },
+        changeLoading(context, data) {
+            context.commit("changeLoading", data);
         }
 	},
 	mutations: {
 	    setUser(state, data) {
 	        state.isLoggedin = true;
+	        localStorage.isLoggedin = "1";
 	        state.user = data;
+            state.loading = false;
         },
         login(state, data) {
 	        state.isLoggedin = true;
+            localStorage.isLoggedin = "1";
 	        state.user = data;
+	        state.loading = false;
         },
         logout(state) {
             state.isLoggedin = false;
+            localStorage.isLoggedin = "0";
             state.user = {};
+            state.loading = false;
+        },
+        changeLogin(state, data) {
+            state.isLoggedin = JSON.parse(data);
+            localStorage.isLoggedin = JSON.parse(data);
+            state.loading = false;
+        },
+        changeLoading(state, data) {
+            state.loading = data;
         }
 	}
 });

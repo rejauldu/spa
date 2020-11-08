@@ -137,6 +137,23 @@
                 </b-row>
             </b-container>
         </b-row>
+        <b-row v-if="$store.getters.isLoading" class="w-100 vh overflow-hidden bg-dark-transparent position-fixed top-0 left-0 right-0 z-index">
+            <i class="position-center text-white">
+                <svg class="r-spin" height="100" xmlns="http://www.w3.org/2000/svg" width="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                    <path fill="currentColor" d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50"></path>
+                </svg>
+            </i>
+            <i class="position-center text-white">
+                <svg viewBox="0 0 535.5 535.5" width="32px">
+                    <g id="lock">
+                        <path fill="currentColor" d="M420.75,178.5h-25.5v-51c0-71.4-56.1-127.5-127.5-127.5c-71.4,0-127.5,56.1-127.5,127.5v51h-25.5c-28.05,0-51,22.95-51,51
+							v255c0,28.05,22.95,51,51,51h306c28.05,0,51-22.95,51-51v-255C471.75,201.45,448.8,178.5,420.75,178.5z M267.75,408
+							c-28.05,0-51-22.95-51-51s22.95-51,51-51s51,22.95,51,51S295.8,408,267.75,408z M346.8,178.5H188.7v-51
+							c0-43.35,35.7-79.05,79.05-79.05c43.35,0,79.05,35.7,79.05,79.05V178.5z"/>
+                    </g>
+                </svg>
+            </i>
+        </b-row>
     </b-container>
 </template>
 <script>
@@ -150,20 +167,24 @@ export default {
                 .then(function (response) {
                     if (response && response.data) {
                         store.dispatch("setUser", response.data);
-                        router.push({ name: 'dashboard'});
+                    } else {
+                        store.dispatch("changeLogin", "0");
                     }
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    store.dispatch("changeLogin", "0");
                 });
         },
         logout: function () {
+            store.dispatch("changeLoading", true);
             axios.post('/api/logout')
                 .then(function (response) {
                     store.dispatch("logout");
                     router.push({ name: 'login'});
                 })
                 .catch(function (error) {
+                    store.dispatch("changeLogin", "1");
+                    store.dispatch("changeLoading", false);
                 });
         }
     },

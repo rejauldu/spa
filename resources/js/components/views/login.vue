@@ -61,6 +61,7 @@ export default {
     },
     methods: {
         login: function() {
+            store.dispatch("changeLoading", true);
             axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.post('/api/login', this.form)
                 .then(function (response) {
@@ -68,6 +69,7 @@ export default {
                     router.push({ name: 'dashboard'});
                 })
                 .catch(function (error) {
+                    store.dispatch("changeLoading", false);
                     console.log(error);
                 });
             });
