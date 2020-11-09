@@ -138,9 +138,9 @@
             </b-container>
         </b-row>
         <b-row v-if="$store.getters.isLoading"
-               class="w-100 vh overflow-hidden bg-dark-transparent position-fixed top-0 left-0 right-0 z-index">
+               class="vh overflow-hidden bg-dark-transparent position-fixed top-0 left-0 right-0 z-index">
             <i class="position-center text-white r-spin">
-                <svg class="r-spin" height="100" xmlns="http://www.w3.org/2000/svg" width="200px" viewBox="0 0 100 100"
+                <svg height="100" xmlns="http://www.w3.org/2000/svg" width="200px" viewBox="0 0 100 100"
                      preserveAspectRatio="xMidYMid">
                     <path fill="currentColor" d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50"></path>
                 </svg>
