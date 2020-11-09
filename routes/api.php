@@ -32,6 +32,8 @@ Route::post('/login', function (Request $request) {
 Route::post('/logout', function (Request $request) {
     Auth::logout();
 });
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/user', function (Request $request) {
+    if(auth('sanctum')->check()) {
+        return auth('sanctum')->user();
+    }
 });

@@ -24,66 +24,6 @@ function setInputFilter(textbox, inputFilter) {
         });
     });
 }
-/* Ajax uploader */
-/* this is the id of the form */
-/*
-$(".ajax-upload").submit(function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    var form = $(this);
-    if (form.find('.list'))
-        form.find('.list').fadeIn(100).css("width", "0px");
-    var data = new FormData();
-    var fields = form.serializeArray();
-    $.each(fields, function (i, field) {
-        data.append(field.name, field.value);
-    });
-    $.each(form.find('[type="file"]'), function (i, file_field) {
-        data.append(file_field.getAttribute("name"), file_field.files[0]);
-    });
-    var url = form.attr('action');
-    $.ajax({
-        url: url,
-        data: data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: 'POST',
-        xhr: function () {
-            var xhr = new window.XMLHttpRequest();
-            xhr.upload.addEventListener("progress", function (evt) {
-                if (evt.lengthComputable) {
-                    var percentComplete = evt.loaded / evt.total;
-                    if (form.find('.list')) {
-                        form.find('.list').fadeIn(100).css({"width": 100 * percentComplete + '%',
-                            "text-align": "center",
-                            "color": "#000"
-                        }).html(Math.floor(100 * percentComplete) + '%');
-                    }
-                }
-            }, false);
-            xhr.addEventListener("progress", function (evt) {
-                if (evt.lengthComputable) {
-                    var percentComplete = evt.loaded / evt.total;
-                }
-            }, false);
-            return xhr;
-        },
-        success: function (data2) {
-            if (form.find('.list')) {
-                form.find('.list').css({
-                    "width": "100%"
-                }).html("Upload Complete!");
-            }
-            $('#success-modal').modal('show');
-        },
-        error: function (data2) {
-            $('#error-modal').modal('show');
-        }
-    });
-    return false;
-});
-*/
 /* Display photo after selecting */
 function displayPhotoOnSelect(input, id = 'display-photo-on-select') {
     if (input.files && input.files[0]) {
@@ -229,28 +169,6 @@ function locationAjaxCall(item, child) {
             }
         });
 })();
-(function() {
-    setTimeout(function(){ setParentsHeight(); }, 0);
-})();
-function setParentsHeight() {
-    var elements = document.getElementsByClassName("h-parent");
-    for(let i = 0; i<elements.length; i++) {
-        elements[i].style.height = elements[i].parentElement.offsetHeight+'px';
-    }
-    
-}
-/*sticky-top event */
-(function() {
-    /* get the sticky element */
-    window.observer = new IntersectionObserver(
-        ([e]) => {
-            e.target.classList.toggle('stuck', e.intersectionRatio < 1);
-        },
-        {
-            threshold: [1]
-        }
-        );
-})();
 /* Multi handle slider starts */
 (function() {
     multiHandleSlider();
@@ -261,9 +179,9 @@ function multiHandleSlider() {
         return false;
     var handle1Clicked = false;
     var handle2Clicked = false;
-    
+
     var slide = slides[0];
-    
+
     for(let i=0; i<slides.length; i++) {
         slides[i].setAttribute("data-handle-1-position", updateHandle1(slides[i]));
         slides[i].setAttribute("data-handle-2-position", updateHandle2(slides[i]));
@@ -287,7 +205,7 @@ function multiHandleSlider() {
     document.addEventListener('mousemove', event => {
         event = getMouseEvent(event);
         var left = slide.getBoundingClientRect().left;
-        
+
         var position = event.pageX-left-10;
         if(handle1Clicked) {
             updateHandle1(slide, position);
@@ -299,7 +217,7 @@ function multiHandleSlider() {
         event = getMouseEvent(event);
         var x = event.changedTouches[0].pageX;
         var left = slide.getBoundingClientRect().left;
-        
+
         var position = x-left-10;
         if(handle1Clicked) {
             updateHandle1(slide, position);
@@ -343,7 +261,7 @@ function updateHandle1(slide, position = null) {
     let highlight = slide.querySelector(".highlight");
     let min = log(slide.getAttribute("data-min"), logarithm);
     let max = log(slide.getAttribute("data-max"), logarithm);
-    
+
     let onchange = slide.getAttribute("data-onchange");
     let handle2Position = slide.getAttribute("data-handle-2-position");
     let range = max-min;
@@ -354,7 +272,7 @@ function updateHandle1(slide, position = null) {
     }
     position = position<0?0:position;
     let value = round(position/unit, logarithm);
-    
+
     let handle1Position = position;
     let minimum = slide.querySelector(".minimum");
     handle1Position = handle1Position>width-handle2Position?width-handle2Position:handle1Position;
@@ -377,7 +295,7 @@ function updateHandle2(slide, position = null) {
     let highlight = slide.querySelector(".highlight");
     let min = log(slide.getAttribute("data-min"), logarithm);
     let max = log(slide.getAttribute("data-max"), logarithm);
-    
+
     let onchange = slide.getAttribute("data-onchange");
     let handle1Position = slide.getAttribute("data-handle-1-position");
     let range = max-min;
@@ -387,13 +305,13 @@ function updateHandle2(slide, position = null) {
         position = (handle_2 - min) * unit;
     position = position>width?width:position;
     let value = round((width-position)/unit, logarithm); /* value from reverse side */
-    
+
     let handle2Position = value*unit;
     let maximum = slide.querySelector(".maximum");
     handle2Position = handle2Position>width-handle1Position?width-handle1Position:handle2Position;
     handle2.style.transform = "translate(-"+handle2Position+"px, 0)";
     highlight.style.width = width-handle1Position-handle2Position+2+"px";
-    
+
     if(maximum)
         maximum.value = Math.round(alog(range-handle2Position/unit+min, logarithm));
     if(onchange)
@@ -422,22 +340,6 @@ function alog(value, logarithm = false) {
     return value;
 }
 /* Multi handle slider ends */
-/*Number formatting */
-function integerWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-}
-function integerWithCommasIndian(x) {
-    x=x.toString();
-    var lastThree = x.substring(x.length-3);
-    var otherNumbers = x.substring(0,x.length-3);
-    if(otherNumbers != '')
-        lastThree = ',' + lastThree;
-    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-    return res;
-}
 /*Fade out element */
 (function() {
     fadeOut();
@@ -450,15 +352,79 @@ function fadeOut() {
             item.addEventListener('transitionend', () => { item.style.opacity = '1'; item.remove();});
         });
 }
-/*Togglable left menu */
-(function() {
+
+(function () {
     leftMenu();
 })();
+
 function leftMenu() {
-    var left_menu_toggle=document.getElementById("left-menu-toggle");
-    var left_menu=document.getElementById("left-menu");
-    if(left_menu_toggle && left_menu)
-        left_menu_toggle.addEventListener("click", function() {
+    var left_menu_toggle = document.getElementById("left-menu-toggle");
+    var left_menu = document.getElementById("left-menu");
+    if (left_menu_toggle && left_menu)
+        left_menu_toggle.addEventListener("click", function () {
             left_menu.classList.toggle("left-menu-collapse");
         });
+}
+
+/* sticky-bottom */
+(function () {
+    var bottom = document.getElementById("sticky-bottom");
+    if(bottom)
+        stuckBottom(bottom);
+    var top = document.getElementsByClassName('sticky-top d-none');
+    if(top && top[0])
+        stuckTop(top[0]);
+})();
+function stuckBottom(e) {
+    var y = 0;
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    if(hasClass(e, 'vh-0'))
+        y = 0;
+    else if(hasClass(e, 'vh-0-2'))
+        y=vh*0.2;
+    else if(hasClass(e, 'vh-0-5'))
+        y=vh*0.5;
+    else if(hasClass(e, 'vh-1'))
+        y=vh;
+    else if(hasClass(e, 'vh-2'))
+        y=vh*2;
+    window.addEventListener( 'scroll', function() {
+        if( window.scrollY > y) {
+            e.classList.add( 'stuck-bottom' );
+        } else {
+            e.classList.remove( 'stuck-bottom' );
+        }
+    });
+}
+function stuckTop(e) {
+    var temp = e;
+    e.classList.remove('d-none');
+    var h = 0;
+    setTimeout(function() {
+        h = temp.offsetTop;
+        temp.classList.add( 'd-none' );
+        window.addEventListener( 'scroll', function() {
+            if( window.scrollY >= h) {
+                e.classList.remove( 'd-none' );
+            } else {
+                e.classList.add( 'd-none' );
+            }
+        });
+    }, 0);
+}
+function hasClass(element, className) {
+    return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
+}
+/*Number formatting */
+function integerWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function integerWithCommasIndian(x) {
+    x=x.toString();
+    var lastThree = x.substring(x.length-3);
+    var otherNumbers = x.substring(0,x.length-3);
+    if(otherNumbers != '')
+        lastThree = ',' + lastThree;
+    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    return res;
 }

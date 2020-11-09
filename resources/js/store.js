@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		isLoggedin: JSON.parse(localStorage.isLoggedin) || false,
+		isLoggedin: JSON.parse(sessionStorage.isLoggedin || "false"),
 		user: {},
         isError: false,
         errorMessage: '',
@@ -44,25 +44,25 @@ export default new Vuex.Store({
 	mutations: {
 	    setUser(state, data) {
 	        state.isLoggedin = true;
-	        localStorage.isLoggedin = "1";
+	        sessionStorage.isLoggedin = "1";
 	        state.user = data;
             state.loading = false;
         },
         login(state, data) {
 	        state.isLoggedin = true;
-            localStorage.isLoggedin = "1";
+            sessionStorage.isLoggedin = "1";
 	        state.user = data;
 	        state.loading = false;
         },
         logout(state) {
             state.isLoggedin = false;
-            localStorage.isLoggedin = "0";
+            sessionStorage.isLoggedin = "0";
             state.user = {};
             state.loading = false;
         },
         changeLogin(state, data) {
             state.isLoggedin = JSON.parse(data);
-            localStorage.isLoggedin = JSON.parse(data);
+            sessionStorage.isLoggedin = JSON.parse(data);
             state.loading = false;
         },
         changeLoading(state, data) {

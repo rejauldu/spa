@@ -70,7 +70,6 @@ export default {
                 })
                 .catch(function (error) {
                     store.dispatch("changeLoading", false);
-                    console.log(error);
                 });
             });
         }
