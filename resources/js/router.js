@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
 import auth from './middleware/auth'
+import verified from './middleware/verified'
+import notVerified from './middleware/not-verified'
 import guest from './middleware/guest'
 import middlewarePipeline from './middleware/middlewarePipeline'
 
@@ -12,6 +14,7 @@ import login from './components/views/login'
 import register from './components/views/register'
 import products from './components/views/products'
 import dashboard from './components/views/dashboard'
+import verify from './components/views/verify'
 import notFound from './components/views/not-found'
 
 const routes = [
@@ -25,7 +28,7 @@ const routes = [
 		path:'/register', name:'register', component: register, meta: { middleware: [ guest ] }
 	},
     {
-        path:'/dashboard', name:'dashboard', component: dashboard, meta: { middleware: [ auth ] }
+        path:'/dashboard', name:'dashboard', component: dashboard, meta: { middleware: [ auth, verified ] }
     },
 	{
 		path:'/offers', component: products,
@@ -51,6 +54,9 @@ const routes = [
 	{
 		path:'/about-us', component: products,
 	},
+    {
+        path:'/verify', name:'verify', component: verify, meta: { middleware: [ auth, notVerified ] }
+    },
 	{
 		path:'/terms-of-services', component: products,
 	},
