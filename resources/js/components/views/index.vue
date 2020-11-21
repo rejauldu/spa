@@ -29,7 +29,7 @@
                     <p class="text-center font-11 mt-2 text-black">Harry Potter<sup><small>TM</small></sup></p>
                 </router-link>
                 <router-link to="/technique" class="width-80 d-inline-block mx-3">
-                    <img class="" src="assets/home/new.webp" alt="Card image">
+                    <img class="" src="assets/home/technique.webp" alt="Card image">
                     <p class="text-center font-11 mt-2 text-black">Technique<sup><small>TM</small></sup></p>
                 </router-link>
                 <router-link to="/learn-more" class="width-80 d-inline-block mx-3">
@@ -46,6 +46,64 @@
                 </router-link>
             </div>
 		</b-row>
+        <b-row class="py-5">
+            <swiper ref="swiper" :options="swiperOptions">
+                <swiper-slide>
+                    <div class="card w-100">
+                        <div class="card-img-top size-11">
+                            <img class="" src="/assets/products/image1.webp" alt="Card image">
+                        </div>
+
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe</h4>
+                            <p class="card-text">Some example text.</p>
+                            <a href="#" class="btn btn-primary">See Profile</a>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="card w-100">
+                        <div class="card-img-top size-11">
+                            <img class="" src="/assets/products/image2.webp" alt="Card image">
+                        </div>
+
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe</h4>
+                            <p class="card-text">Some example text.</p>
+                            <a href="#" class="btn btn-primary">See Profile</a>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="card w-100">
+                        <div class="card-img-top size-11">
+                            <img class="" src="/assets/products/image3.webp" alt="Card image">
+                        </div>
+
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe</h4>
+                            <p class="card-text">Some example text.</p>
+                            <a href="#" class="btn btn-primary">See Profile</a>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <swiper-slide>
+                    <div class="card w-100">
+                        <div class="card-img-top size-11">
+                            <img class="" src="/assets/products/image4.webp" alt="Card image">
+                        </div>
+
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe</h4>
+                            <p class="card-text">Some example text.</p>
+                            <a href="#" class="btn btn-primary">See Profile</a>
+                        </div>
+                    </div>
+                </swiper-slide>
+                <div class="swiper-button-prev" slot="button-prev"></div>
+                <div class="swiper-button-next" slot="button-next"></div>
+            </swiper>
+        </b-row>
 	</b-container>
 </template>
 <script>
@@ -62,13 +120,45 @@ export default {
     data() {
         return {
             swiperOptions: {
-                effect: 'flip',
+                spaceBetween: 20,
+                direction: 'horizontal',
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                on: {
+                    resize: () => {
+                        this.$refs.swiper.$swiper.changeDirection(
+                            window.innerWidth <= 960
+                                ? 'vertical'
+                                : 'horizontal'
+                        )
+                    }
+                },
                 grabCursor: true,
                 autoplay: {
                     delay: 2500,
                     disableOnInteraction: false
                 },
                 loop:true,
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 40
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    },
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 10
+                    }
+                }
             }
         }
     }
@@ -78,17 +168,5 @@ export default {
 .bg-home {
     background-color: #c8d7e6;
 }
-.swiper {
-    width: 100%;
-    margin:2rem;
-}
-.swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: bold;
-    font-size:20px;
-    background-color: transparent;
-}
+
 </style>

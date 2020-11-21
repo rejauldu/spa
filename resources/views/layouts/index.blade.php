@@ -43,7 +43,7 @@
 	<!-- All packages style -->
 	<link href="{{ asset('css/frontend/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
-	
+
 	@yield('style')
 </head>
 <body>
@@ -77,7 +77,7 @@
                     <div class="input-group">
                             @csrf
                             <input type="email" name="email" class="form-control" placeholder="email@example.com">
-                        
+
                         <div class="input-group-append">
                             <button class="btn btn-success" type="submit">{{ __('Go') }}</button>
                         </div>

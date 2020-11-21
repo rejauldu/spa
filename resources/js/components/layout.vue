@@ -65,40 +65,30 @@
                 <b-row>
                     <router-view></router-view>
                 </b-row>
-                <b-row class="text-center border">
-                    <b-col cols="12" md="4">
-                        <div class="list-group">
-                            <router-link to="/register" class="list-group-item border-0 py-1 bg-transparent text-theme">
-                                Sign-up
-                            </router-link>
-                            <router-link to="/about-us" class="list-group-item border-0 py-1 bg-transparent text-theme">
-                                About Us
-                            </router-link>
-                            <router-link to="/terms-of-services"
-                                         class="list-group-item border-0 py-1 bg-transparent text-theme">Terms of
-                                Services
-                            </router-link>
-                        </div>
+                <b-row class="text-center border bg-theme p-5 border-0 text-white text-justify">
+                    <b-col cols="6" md="4" lg="2">
+                        <div class="text-center"><img src="assets/layout/footer1.webp" /></div>
+                        <div class="text-justify">FREE delivery with orders over $35! All year round</div>
                     </b-col>
-                    <b-col cols="12" md="4">
-                        <div class="list-group">
-                            <router-link to="tel:8801924974960" class="list-group-item border-0 py-1 bg-transparent text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="14"><path fill="currentColor" d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z"></path></svg>
-                                01924974960
-                            </router-link>
-                            <router-link to="mailto:rejauldu@gmail.com" class="list-group-item border-0 py-1 bg-transparent text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="14"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
-                                rejauldu@gmail.com
-                            </router-link>
-                        </div>
+                    <b-col cols="6" md="4" lg="2">
+                        <div class="text-center"><img src="assets/layout/footer2.webp" /></div>
+                        <div class="text-justify">Earn points on every purchase and benefit from members-only promotions</div>
                     </b-col>
-                    <b-col cols="12" md="4">
-                        <b-row>
-                            <b-col cols="12" xl="6" class="text-xl-right py-1 py-xl-3">
-                            </b-col>
-                            <b-col cols="12" xl="6" class="text-xl-left py-1 py-xl-3">
-                            </b-col>
-                        </b-row>
+                    <b-col cols="6" md="4" lg="2">
+                        <div class="text-center"><img src="assets/layout/footer3.webp" /></div>
+                        <div class="text-justify">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
+                    </b-col>
+                    <b-col cols="6" md="4" lg="2">
+                        <div class="text-center"><img src="assets/layout/footer1.webp" /></div>
+                        <div class="text-justify">FREE delivery with orders over $35! All year round</div>
+                    </b-col>
+                    <b-col cols="6" md="4" lg="2">
+                        <div class="text-center"><img src="assets/layout/footer2.webp" /></div>
+                        <div class="text-justify">Earn points on every purchase and benefit from members-only promotions</div>
+                    </b-col>
+                    <b-col cols="6" md="4" lg="2">
+                        <div class="text-center"><img src="assets/layout/footer3.webp" /></div>
+                        <div class="text-justify">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
                     </b-col>
                 </b-row>
                 <b-row class="bg-dark-transparent text-white py-4">
@@ -106,7 +96,7 @@
                         <b-row>
                             <b-col cols="12" lg="6" class="py-3">
                                 <b-row>
-                                    <b-col cols="4" sm="2" md="1" lg="3" xl="2" class="pr-0"><img src="assets/home/support.webp"  class="w-100"></b-col>
+                                    <b-col cols="4" sm="2" md="1" lg="3" xl="2" class="pr-0"><img src="assets/layout/support.webp"  class="w-100"></b-col>
                                     <b-col cols="8" sm="10" md="11" lg="9" xl="10">
                                         <h5>NEED SUPPORT? CONTACT US</h5>
                                         <div>Our dedicated ONBIPONI<sup><small>®</small></sup> experts are here to help</div>
