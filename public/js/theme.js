@@ -1,7 +1,7 @@
 /*Number input should take only number. mozilla fix */
 (function () {
     var selectors = document.querySelectorAll('input[type="number"]');
-    for (i = 0; i < selectors.length; i++) {
+    for (let i = 0; i < selectors.length; i++) {
         setInputFilter(selectors[i], function (value) {
             return /^\d*\.?\d*$/.test(value); /* Allow digits and '.' only, using a RegExp */
         });

@@ -1,10 +1,4 @@
 /*!
-  * vue-router v3.4.9
-  * (c) 2020 Evan You
-  * @license MIT
-  */
-
-/*!
  * Splide.js
  * Version  : 2.4.14
  * License  : MIT

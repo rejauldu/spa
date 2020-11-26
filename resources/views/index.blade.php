@@ -21,9 +21,7 @@
         <div id="app">
             <layout></layout>
         </div>
-        <script src="{{ mix('js/manifest.js') }}" crossorigin="anonymous" defer></script>
-        <script src="{{ mix('js/vendor.js') }}?{{ time() }}" crossorigin="anonymous" defer></script>
-        <script src="{{ mix('js/app.js') }}?{{ time() }}" crossorigin="anonymous" defer></script>
-        <script src="{{ asset('js/theme.js') }}?{{ time() }}" crossorigin="anonymous" defer></script>
+
+        <script src="{{ asset('js/app.js') }}?{{ time() }}" crossorigin="anonymous" defer></script>
     </body>
 </html>
