@@ -1,19 +1,31 @@
 <template>
 	<b-container fluid>
-            <b-row class="bg-home text-center" :class="{'bg-home-img': $store.state.width>=768}">
-                <b-container fluid :class="{'size-31': $store.state.width>=768}">
-                    <b-row class="size-child">
-                        <div class="d-none d-lg-block col-12 col-lg-1"></div>
-                        <div class="col-12 col-md-6 col-lg-5 col-xl-4">
-                            <div class="w-100"  :class="{'position-center-v': $store.state.width>=768, 'my-4': $store.state.width<768}">
-                                <h1 class="display-5">Trim the tree</h1>
-                                <p>Get into the spirit with new Santa with new Reindeer mini-build ornaments</p>
-                                <a href="#" class="btn btn-dark">Continue shopping <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24"><path stroke="currentColor" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg></a>
-                            </div>
+        <b-row id="top-carousel" class="alert-theme">
+            <b-col cols="12" xl="2" class="d-none d-xl-block"></b-col>
+            <b-col cols="12" xl="8" class="text-center height-30 line-height-30">
+                <splide :options="topCarousel">
+                    <splide-slide>
+                        <img src="assets/top-carousel/free-delivery.png" class="height-30" />
+                        <span>Hurry! Black Friday offers last 11/27-11/30.</span>
+                        <a href="#" class="btn-link">Shop Now</a>
+                    </splide-slide>
+                </splide>
+            </b-col>
+        </b-row>
+        <b-row class="bg-home text-center" :class="{'bg-home-img': $store.state.width>=768}">
+            <b-container fluid :class="{'size-31': $store.state.width>=768}">
+                <b-row class="size-child">
+                    <div class="d-none d-lg-block col-12 col-lg-1"></div>
+                    <div class="col-12 col-md-6 col-lg-5 col-xl-4">
+                        <div class="w-100"  :class="{'position-center-v': $store.state.width>=768, 'my-4': $store.state.width<768}">
+                            <h1 class="display-5">Trim the tree</h1>
+                            <p>Get into the spirit with new Santa with new Reindeer mini-build ornaments</p>
+                            <a href="#" class="btn btn-dark">Continue shopping <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24"><path stroke="currentColor" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg></a>
                         </div>
-                    </b-row>
-                </b-container>
-            </b-row>
+                    </div>
+                </b-row>
+            </b-container>
+        </b-row>
 		<b-row>
             <div class="mx-auto mt-4">
                 <router-link to="/new" class="width-80 d-inline-block mx-2 mx-sm-3">
@@ -137,6 +149,16 @@ export default {
     },
     data() {
         return {
+            topCarousel: {
+                type   : 'loop',
+                perPage: 1,
+                rewind : true,
+                focus  : 'center',
+                width  : "100%",
+                gap    : '1rem',
+                lazyLoad: 'nearby',
+                pagination: false,
+            },
             splideOptions: {
                 type   : 'loop',
                 perPage: 4,
@@ -172,6 +194,11 @@ export default {
     }
 }
 </script>
+<style>
+#top-carousel .splide__arrow {
+    background: transparent;
+}
+</style>
 <style scoped>
 .bg-home {
     background: #c8d7e6;

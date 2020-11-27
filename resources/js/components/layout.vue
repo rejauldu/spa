@@ -49,14 +49,116 @@
                     <div class="display-6 p-3">
                         <router-link to="/offers" class="logo">Offers</router-link>
                     </div>
-                    <div class="list-group list-group-flush">
-                        <router-link to="/nctb" class="list-group-item list-group-item-action">NCTB</router-link>
-                        <router-link to="/job" class="list-group-item list-group-item-action">Job</router-link>
-                        <router-link to="/literature" class="list-group-item list-group-item-action">Literature
+                    <div class="list-group list-group-flush" role="tablist">
+                        <router-link to="/templates" class="list-group-item list-group-item-action py-1 border-0" role="tab">
+                            <div v-b-toggle.templates>
+                                <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 32l34.9 395.8L191.5 480l157.6-52.2L384 32H0zm308.2 127.9H124.4l4.1 49.4h175.6l-13.6 148.4-97.9 27v.3h-1.1l-98.7-27.3-6-75.8h47.7L138 320l53.5 14.5 53.7-14.5 6-62.2H84.3L71.5 112.2h241.1l-4.4 47.7z"></path></svg>
+                                HTML Templates
+                                <span class="when-opened">-</span>
+                                <span class="when-closed">+</span>
+                            </div>
+                            <b-collapse id="templates">
+                                <div class="card-body p-0">
+                                    <div class="list-group list-group-flush">
+                                        <router-link to="/ecommerce" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Ecommerce</router-link>
+                                        <router-link to="/restaurant" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Restaurant</router-link>
+                                        <router-link to="/academic" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Academic</router-link>
+                                        <router-link to="/profile" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Profile</router-link>
+                                        <router-link to="/other" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Other</router-link>
+                                    </div>
+                                </div>
+                            </b-collapse>
                         </router-link>
-                        <router-link to="/higher-study" class="list-group-item list-group-item-action">Higher Study
+                        <router-link to="/app" class="list-group-item list-group-item-action py-1 border-0">
+                            <div v-b-toggle.apps>
+                                <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"></path></svg>
+                                Mobile App
+                                <span class="when-opened">-</span>
+                                <span class="when-closed">+</span>
+                            </div>
+                            <b-collapse id="apps">
+                                <div class="card-body p-0">
+                                    <div class="list-group list-group-flush">
+                                        <router-link to="/android" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Android</router-link>
+                                        <router-link to="/apple" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Apple</router-link>
+                                    </div>
+                                </div>
+                            </b-collapse>
                         </router-link>
-                        <router-link to="/academic" class="list-group-item list-group-item-action">Academic
+                        <router-link to="/web-development" class="list-group-item list-group-item-action py-1 border-0">
+                            <div v-b-toggle.web-development>
+                                <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"></path></svg>
+                                Web development
+                                <span class="when-opened">-</span>
+                                <span class="when-closed">+</span>
+                            </div>
+                            <b-collapse id="web-development">
+                                <div class="card-body p-0">
+                                    <div class="list-group list-group-flush">
+                                        <router-link to="/laravel" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Laravel</router-link>
+                                        <router-link to="/nodejs" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">NodeJs</router-link>
+                                        <router-link to="/bootstrap" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Bootstrap</router-link>
+                                        <router-link to="/vuejs" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">VueJs</router-link>
+                                        <router-link to="/react" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">React</router-link>
+                                    </div>
+                                </div>
+                            </b-collapse>
+                        </router-link>
+                        <router-link to="/server" class="list-group-item list-group-item-action py-1 border-0">
+                            <div v-b-toggle.server>
+                                <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path></svg>
+                                Server Management
+                                <span class="when-opened">-</span>
+                                <span class="when-closed">+</span>
+                            </div>
+                            <b-collapse id="server">
+                                <div class="card-body p-0">
+                                    <div class="list-group list-group-flush">
+                                        <router-link to="/nginx" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Nginx</router-link>
+                                        <router-link to="/apache" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Apache</router-link>
+                                    </div>
+                                </div>
+                            </b-collapse>
+                        </router-link>
+                        <router-link to="/speed-up" class="list-group-item list-group-item-action py-1 border-0">
+                            <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M288 32C128.94 32 0 160.94 0 320c0 52.8 14.25 102.26 39.06 144.8 5.61 9.62 16.3 15.2 27.44 15.2h443c11.14 0 21.83-5.58 27.44-15.2C561.75 422.26 576 372.8 576 320c0-159.06-128.94-288-288-288zm0 64c14.71 0 26.58 10.13 30.32 23.65-1.11 2.26-2.64 4.23-3.45 6.67l-9.22 27.67c-5.13 3.49-10.97 6.01-17.64 6.01-17.67 0-32-14.33-32-32S270.33 96 288 96zM96 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm48-160c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm246.77-72.41l-61.33 184C343.13 347.33 352 364.54 352 384c0 11.72-3.38 22.55-8.88 32H232.88c-5.5-9.45-8.88-20.28-8.88-32 0-33.94 26.5-61.43 59.9-63.59l61.34-184.01c4.17-12.56 17.73-19.45 30.36-15.17 12.57 4.19 19.35 17.79 15.17 30.36zm14.66 57.2l15.52-46.55c3.47-1.29 7.13-2.23 11.05-2.23 17.67 0 32 14.33 32 32s-14.33 32-32 32c-11.38-.01-20.89-6.28-26.57-15.22zM480 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z"></path></svg>
+                            Speed Up
+                        </router-link>
+                        <router-link to="/ecommerce" class="list-group-item list-group-item-action py-1 border-0">
+                            <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg>
+                            Ecommerce
+                        </router-link>
+                        <router-link to="/bug-fixing" class="list-group-item list-group-item-action py-1 border-0">
+                            <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z"></path></svg>
+                            Bug fixing
+                        </router-link>
+                        <router-link to="/wordpress" class="list-group-item list-group-item-action py-1 border-0">
+                            <div v-b-toggle.wordpress>
+                                <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M61.7 169.4l101.5 278C92.2 413 43.3 340.2 43.3 256c0-30.9 6.6-60.1 18.4-86.6zm337.9 75.9c0-26.3-9.4-44.5-17.5-58.7-10.8-17.5-20.9-32.4-20.9-49.9 0-19.6 14.8-37.8 35.7-37.8.9 0 1.8.1 2.8.2-37.9-34.7-88.3-55.9-143.7-55.9-74.3 0-139.7 38.1-177.8 95.9 5 .2 9.7.3 13.7.3 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l77.5 230.4L249.8 247l-33.1-90.8c-11.5-.7-22.3-2-22.3-2-11.5-.7-10.1-18.2 1.3-17.5 0 0 35.1 2.7 56 2.7 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l76.9 228.7 21.2-70.9c9-29.4 16-50.5 16-68.7zm-139.9 29.3l-63.8 185.5c19.1 5.6 39.2 8.7 60.1 8.7 24.8 0 48.5-4.3 70.6-12.1-.6-.9-1.1-1.9-1.5-2.9l-65.4-179.2zm183-120.7c.9 6.8 1.4 14 1.4 21.9 0 21.6-4 45.8-16.2 76.2l-65 187.9C426.2 403 468.7 334.5 468.7 256c0-37-9.4-71.8-26-102.1zM504 256c0 136.8-111.3 248-248 248C119.2 504 8 392.7 8 256 8 119.2 119.2 8 256 8c136.7 0 248 111.2 248 248zm-11.4 0c0-130.5-106.2-236.6-236.6-236.6C125.5 19.4 19.4 125.5 19.4 256S125.6 492.6 256 492.6c130.5 0 236.6-106.1 236.6-236.6z"></path></svg>
+                                WordPress
+                                <span class="when-opened">-</span>
+                                <span class="when-closed">+</span>
+                            </div>
+                            <b-collapse id="wordpress">
+                                <div class="card-body p-0">
+                                    <div class="list-group list-group-flush">
+                                        <router-link to="/theme" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Theme Development</router-link>
+                                        <router-link to="/plugin" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Plugin Development</router-link>
+                                        <router-link to="/divi-theme" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Divi theme</router-link>
+                                        <router-link to="/woocommerce" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Woocommerce</router-link>
+                                        <router-link to="/shopify" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Shopify</router-link>
+                                        <router-link to="/elementor" class="list-group-item list-group-item-action py-1 border-0 bg-transparent">Elementor</router-link>
+                                    </div>
+                                </div>
+                            </b-collapse>
+                        </router-link>
+                        <router-link to="/payment" class="list-group-item list-group-item-action py-1 border-0">
+                            <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M0 432c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V256H0v176zm192-68c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-40zm-128 0c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM576 80v48H0V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48z"></path></svg>
+                            Payment Solution
+                        </router-link>
+                        <router-link to="/graphic-design" class="list-group-item list-group-item-action py-1 border-0">
+                            <svg width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"></path></svg>
+                            Graphic Design
                         </router-link>
                     </div>
                 </div>
@@ -91,7 +193,7 @@
                         <div class="text-justify">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
                     </b-col>
                 </b-row>
-                <b-row class="bg-dark-transparent text-white py-4">
+                <b-row class="bg-dark text-white py-4">
                     <b-col cols="12" lg="9">
                         <b-row>
                             <b-col cols="12" lg="6" class="py-3">
@@ -189,3 +291,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+.when-opened, .when-closed {
+    float:right;
+}
+.collapsed > .when-opened, :not(.collapsed) > .when-closed {
+    display: none;
+}
+</style>
