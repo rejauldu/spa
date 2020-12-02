@@ -11,7 +11,7 @@ import router from './router'
 import store from './store'
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'https://spa.onbiponi.com'
+axios.defaults.baseURL = 'http://spa'
 
 Vue.component('layout', require('./components/layout.vue').default);
 

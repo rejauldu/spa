@@ -41,7 +41,7 @@ Route::post('/login', function (Request $request) {
     ]);
     if ($request->wantsJson()) {
         auth()->attempt($request->only('email', 'password'));
-        $user = auth()->user();
+        $user = auth('sanctum')->user();
         if($user) {
             if($user->email_verified_at) {
                 $user->status_code = 200;
@@ -93,12 +93,12 @@ Route::post('/resend/email', function (Request $request) {
     if(auth('sanctum')->check()) {
         $user = auth('sanctum')->user();
         if(!$user->email_verified_at) {
-            $user->sendEmailVerificationNotification();
+            //$user->sendEmailVerificationNotification();
             $user->status_code = 201;
             return $user;
         }
         $response = Response::json([
-            "message" => "the email was verified",
+            "message" => "The email was verified",
             "status_code" => 200
         ]);
         return $response;
@@ -110,6 +110,8 @@ Route::post('/resend/email', function (Request $request) {
         return $response;
     }
 });
+
+Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::post('/logout', function (Request $request) {
     Auth::logout();
 });

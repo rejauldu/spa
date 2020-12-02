@@ -169,27 +169,27 @@
                 </b-row>
                 <b-row class="text-center border bg-theme p-5 border-0 text-white text-justify">
                     <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="assets/layout/footer1.webp" /></div>
+                        <div class="text-center"><img src="/assets/layout/footer1.webp" /></div>
                         <div class="text-justify">FREE delivery with orders over $35! All year round</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="assets/layout/footer2.webp" /></div>
+                        <div class="text-center"><img src="/assets/layout/footer2.webp" /></div>
                         <div class="text-justify">Earn points on every purchase and benefit from members-only promotions</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="assets/layout/footer3.webp" /></div>
+                        <div class="text-center"><img src="/assets/layout/footer3.webp" /></div>
                         <div class="text-justify">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="assets/layout/footer1.webp" /></div>
+                        <div class="text-center"><img src="/assets/layout/footer1.webp" /></div>
                         <div class="text-justify">FREE delivery with orders over $35! All year round</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="assets/layout/footer2.webp" /></div>
+                        <div class="text-center"><img src="/assets/layout/footer2.webp" /></div>
                         <div class="text-justify">Earn points on every purchase and benefit from members-only promotions</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="assets/layout/footer3.webp" /></div>
+                        <div class="text-center"><img src="/assets/layout/footer3.webp" /></div>
                         <div class="text-justify">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
                     </b-col>
                 </b-row>
@@ -198,7 +198,7 @@
                         <b-row>
                             <b-col cols="12" lg="6" class="py-3">
                                 <b-row>
-                                    <b-col cols="4" sm="2" md="1" lg="3" xl="2" class="pr-0"><img src="assets/layout/support.webp"  class="w-100"></b-col>
+                                    <b-col cols="4" sm="2" md="1" lg="3" xl="2" class="pr-0"><img src="/assets/layout/support.webp"  class="w-100"></b-col>
                                     <b-col cols="8" sm="10" md="11" lg="9" xl="10">
                                         <h5>NEED SUPPORT? CONTACT US</h5>
                                         <div>Our dedicated ONBIPONI<sup><small>®</small></sup> experts are here to help</div>

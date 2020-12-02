@@ -1,19 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.common')
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+    <div class="row justify-content-center @computer my-5 @endcomputer">
+        <div class="col-md-8 @computer my-5 @endcomputer">
+            <div class="card @computer my-5 @endcomputer">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form class="d-inline" method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -66,8 +64,25 @@
                         </div>
                     </form>
                 </div>
+                <div class="card-footer">
+					<div class="row">
+						<div class="col-6">
+							<a class="btn btn-block btn-social btn-facebook text-light" id="facebook-login" href="{{ route('social.callback', 'facebook') }}">
+								<span class="fa fa-facebook"></span> Login with Facebook
+							</a>
+						</div>
+						<div class="col-6">
+							<a class="btn btn-block btn-social btn-google text-light" id="google-login"  href="{{ route('social.callback', 'google') }}">
+								<span class="fa fa-google"></span> Login with Google
+							</a>
+						</div>
+					</div>
+				</div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('style')
+<link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-social/bootstrap-social.css') }}" />
 @endsection

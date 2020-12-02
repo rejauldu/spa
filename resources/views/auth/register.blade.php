@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.common')
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+    <div class="row justify-content-center @computer my-5 @endcomputer">
+        <div class="col-md-8 @computer my-5 @endcomputer">
+            <div class="card @computer my-5 @endcomputer">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form class="d-inline" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -70,8 +70,25 @@
                         </div>
                     </form>
                 </div>
+                <div class="card-footer">
+					<div class="row">
+						<div class="col-6">
+							<a class="btn btn-block btn-social btn-facebook text-light" id="facebook-login" href="{{ route('social.callback', 'facebook') }}">
+								<span class="fa fa-facebook"></span> Login with Facebook
+							</a>
+						</div>
+						<div class="col-6">
+							<a class="btn btn-block btn-social btn-google text-light" id="google-login"  href="{{ route('social.callback', 'google') }}">
+								<span class="fa fa-google"></span> Login with Google
+							</a>
+						</div>
+					</div>
+				</div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('style')
+<link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-social/bootstrap-social.css') }}" />
 @endsection

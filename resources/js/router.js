@@ -10,11 +10,14 @@ import middlewarePipeline from './middleware/middlewarePipeline'
 Vue.use(Router)
 
 import index from './components/views/index'
-import login from './components/views/login'
-import register from './components/views/register'
+import login from './components/views/auth/login'
+import register from './components/views/auth/register'
+import passwordEmail from './components/views/auth/password/email'
+// import passwordConfirm from './components/views/auth/password/confirm'
+// import passwordReset from './components/views/auth/password/reset'
 import products from './components/views/products'
 import dashboard from './components/views/dashboard'
-import verify from './components/views/verify'
+import verify from './components/views/auth/verify'
 import notFound from './components/views/not-found'
 
 const routes = [
@@ -28,7 +31,10 @@ const routes = [
 		path:'/register', name:'register', component: register, meta: { middleware: [ guest ] }
 	},
     {
-        path:'/dashboard', name:'dashboard', component: dashboard, meta: { middleware: [ auth, verified ] }
+        path:'/password/reset', name:'password-email', component: passwordEmail, meta: { middleware: [ guest ] }
+    },
+    {
+        path:'/dashboard', name:'dashboard', component: dashboard, meta: { middleware: [ verified, auth] }
     },
 	{
 		path:'/offers', component: products,
@@ -55,7 +61,7 @@ const routes = [
 		path:'/about-us', component: products,
 	},
     {
-        path:'/verify', name:'verify', component: verify, meta: { middleware: [ auth, notVerified ] }
+        path:'/verify', name:'verify', component: verify, meta: { middleware: [ notVerified, auth ] }
     },
 	{
 		path:'/terms-of-services', component: products,

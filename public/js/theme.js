@@ -126,49 +126,6 @@ function locationAjaxCall(item, child) {
         });
     });
 })();
-/* Vue cart */
-(function () {
-    if (!localStorage.getItem("cart")) {
-        localStorage.cart = '[]';
-    }
-    if (document.getElementById('cart'))
-        window.cart = new Vue({
-            el: '#cart',
-            data: {
-                products: JSON.parse(localStorage.cart)
-            },
-            methods: {
-                remove: function (id) {
-                    this.products = this.products.filter(function (el) {
-                        return el.id != id;
-                    });
-                }
-            },
-            computed: {
-                totalProduct: function () {
-                    var quantity_obj = {quantity: 0};
-                    if (this.products.length > 0) {
-                        quantity_obj = this.products.reduce(function (previousValue, currentValue) {
-                            return {
-                                "quantity": parseInt(previousValue.quantity) + parseInt(currentValue.quantity)
-                            };
-                        });
-                    }
-                    return quantity_obj.quantity;
-                }
-            },
-            watch: {
-                products: {
-                    handler: function (n, o) {
-                        localStorage.cart = JSON.stringify(n);
-                        if (app2)
-                            app2.products = n;
-                    },
-                    deep: true,
-                }
-            }
-        });
-})();
 /* Multi handle slider starts */
 (function() {
     multiHandleSlider();

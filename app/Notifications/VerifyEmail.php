@@ -17,8 +17,8 @@ class VerifyEmail extends VerifyEmailBase
      *
      * @return void
      */
-    protected $notification;
-
+	protected $notification;
+	
     public function __construct()
     {
         //$this->notification = $notification;
@@ -42,10 +42,10 @@ class VerifyEmail extends VerifyEmailBase
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-    {
-        return (new MailMessage)
-            ->subject('Verify Email Address')
-            ->markdown('emails.verify-email', ['verification_url' => $this->verificationUrl($notifiable)]);
+    {	
+		return (new MailMessage)
+			->subject('Verify Email Address')
+			->markdown('emails.notifications.verify-email', ['verification_url' => $this->verificationUrl($notifiable)]);
     }
 
     /**
