@@ -2,12 +2,13 @@
 	<b-container fluid>
         <b-row id="top-carousel" class="alert-theme">
             <b-col cols="12" xl="2" class="d-none d-xl-block"></b-col>
-            <b-col cols="12" xl="8" class="text-center height-30 line-height-30">
+            <b-col cols="12" xl="8" class="text-center height-30 line-height-30 nowrap">
                 <splide :options="topCarousel">
                     <splide-slide>
-                        <img src="assets/top-carousel/free-delivery.png" class="height-30" />
-                        <span>Hurry! Black Friday offers last 11/27-11/30.</span>
-                        <a href="#" class="btn-link">Shop Now</a>
+                        <img src="assets/top-carousel/free-delivery.png" class="height-30 vertical-center" />
+                        <span class="excerpt width-150 vertical-center d-inline-block d-md-none">Hurry! Black Friday offers last 11/27-11/30.</span>
+                        <span class="vertical-center d-none d-md-inline-block">Hurry! Black Friday offers last 11/27-11/30.</span>
+                        <a href="#" class="btn-link vertical-center">Shop Now</a>
                     </splide-slide>
                 </splide>
             </b-col>
@@ -27,7 +28,7 @@
             </b-container>
         </b-row>
 		<b-row>
-            <div class="mx-auto mt-4">
+            <div class="mx-auto mt-4 text-center">
                 <router-link to="/new" class="width-80 d-inline-block mx-2 mx-sm-3">
                     <img class="" src="assets/home/new.webp" alt="Card image"><br/>
                     <p class="text-center font-11 mt-2 text-black">New</p>
@@ -53,78 +54,26 @@
                     <p class="text-center font-11 mt-2 text-black">Learn more</p>
                 </router-link>
                 <router-link to="/pick-a-brick" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/pick-a-brick.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">Pick a brick</p>
+                    <img class="" src="assets/home/promotion.webp" alt="Card image">
+                    <p class="text-center font-11 mt-2 text-black">Promotion</p>
                 </router-link>
                 <router-link to="/vip" class="width-80 d-inline-block mx-2 mx-sm-3">
                     <img class="" src="assets/home/vip.webp" alt="Card image">
                     <p class="text-center font-11 mt-2 text-black">VIP</p>
                 </router-link>
                 <router-link to="/technique" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/technique.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">Technique<sup><small>TM</small></sup></p>
+                    <img class="" src="assets/home/holiday.webp" alt="Card image">
+                    <p class="text-center font-11 mt-2 text-black">Holiday</p>
                 </router-link>
             </div>
 		</b-row>
         <b-row class="py-5">
             <splide :options="splideOptions">
-                <splide-slide>
+                <splide-slide v-for="slide in slides" :key="slide.src">
                     <div class="card w-100">
                         <div class="card-img-top size-11">
-                            <img class="" src="/assets/products/image1.webp" alt="Card image">
+                            <img :src="slide.src" alt="Card image">
                         </div>
-                        <div class="card-body text-center">
-                            <h4 class="card-title">John Doe</h4>
-                            <p class="card-text">Some example text.</p>
-                            <a href="#" class="btn btn-primary">See Profile</a>
-                        </div>
-                    </div>
-                </splide-slide>
-                <splide-slide>
-                    <div class="card w-100">
-                        <div class="card-img-top size-11">
-                            <img class="" src="/assets/products/image2.webp" alt="Card image">
-                        </div>
-
-                        <div class="card-body text-center">
-                            <h4 class="card-title">John Doe</h4>
-                            <p class="card-text">Some example text.</p>
-                            <a href="#" class="btn btn-primary">See Profile</a>
-                        </div>
-                    </div>
-                </splide-slide>
-                <splide-slide>
-                    <div class="card w-100">
-                        <div class="card-img-top size-11">
-                            <img class="" src="/assets/products/image3.webp" alt="Card image">
-                        </div>
-
-                        <div class="card-body text-center">
-                            <h4 class="card-title">John Doe</h4>
-                            <p class="card-text">Some example text.</p>
-                            <a href="#" class="btn btn-primary">See Profile</a>
-                        </div>
-                    </div>
-                </splide-slide>
-                <splide-slide>
-                    <div class="card w-100">
-                        <div class="card-img-top size-11">
-                            <img class="" src="/assets/products/image1.webp" alt="Card image">
-                        </div>
-
-                        <div class="card-body text-center">
-                            <h4 class="card-title">John Doe</h4>
-                            <p class="card-text">Some example text.</p>
-                            <a href="#" class="btn btn-primary">See Profile</a>
-                        </div>
-                    </div>
-                </splide-slide>
-                <splide-slide>
-                    <div class="card w-100">
-                        <div class="card-img-top size-11">
-                            <img class="" src="/assets/products/image4.webp" alt="Card image">
-                        </div>
-
                         <div class="card-body text-center">
                             <h4 class="card-title">John Doe</h4>
                             <p class="card-text">Some example text.</p>
@@ -189,7 +138,8 @@ export default {
                         gap    : '1rem',
                     },
                 }
-            }
+            },
+            slides: [{src:'/assets/products/image1.webp'}, {src:'/assets/products/image2.webp'}, {src:'/assets/products/image3.webp'}, {src:'/assets/products/image4.webp'}],
         }
     }
 }

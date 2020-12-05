@@ -13,11 +13,11 @@ import index from './components/views/index'
 import login from './components/views/auth/login'
 import register from './components/views/auth/register'
 import passwordEmail from './components/views/auth/password/email'
-// import passwordConfirm from './components/views/auth/password/confirm'
-// import passwordReset from './components/views/auth/password/reset'
 import products from './components/views/products'
+import product from './components/views/product'
 import dashboard from './components/views/dashboard'
 import verify from './components/views/auth/verify'
+import contactUs from './components/views/contact-us'
 import notFound from './components/views/not-found'
 
 const routes = [
@@ -37,7 +37,7 @@ const routes = [
         path:'/dashboard', name:'dashboard', component: dashboard, meta: { middleware: [ verified, auth] }
     },
 	{
-		path:'/offers', component: products,
+		path:'/offers', component: product,
 	},
 	{
 		path:'/nctb', component: products,
@@ -66,6 +66,9 @@ const routes = [
 	{
 		path:'/terms-of-services', component: products,
 	},
+    {
+        path:'/contact-us', component: contactUs,
+    },
 	{
 		path:'*', component: notFound,
 	}

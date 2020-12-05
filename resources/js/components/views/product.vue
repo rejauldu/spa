@@ -1,0 +1,92 @@
+<template>
+    <b-container fluid>
+        <b-row class="py-5">
+            <b-col cols="12" md="4" xl="6">
+                <splide :options="primaryOptions" ref="primary">
+                    <splide-slide v-for="slide in slides" :key="slide.src">
+                        <img :src="slide.src" alt="slide.alt" class="w-100">
+                    </splide-slide>
+                </splide>
+                <splide :options="secondaryOptions" ref="secondary">
+                    <splide-slide v-for="slide in slides" :key="slide.src">
+                        <div class="card w-100">
+                            <div class="card-img-top size-11">
+                                <img class="" :src="slide.src" alt="Card image">
+                            </div>
+                        </div>
+                    </splide-slide>
+                </splide>
+            </b-col>
+            <b-col cols="12" md="8" xl="6">
+                <h2>Product title</h2>
+                <div class="d-flex alert alert-primary align-items-stretch">
+                    <div class="d-flex align-items-center"><img src="/assets/home/offers.webp" class="w-100" /></div>
+                    <div class="flex-grow-1 px-3">
+                        <p>FREE exclusive Ice Skating Rink with purchases over $150.*</p>
+                        <router-link to="/offers" class="btn btn-link">Learn more</router-link>
+                    </div>
+                </div>
+            </b-col>
+
+        </b-row>
+    </b-container>
+</template>
+
+<script>
+
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+
+export default {
+    name: 'carrousel',
+    components: {
+        Splide,
+        SplideSlide,
+    },
+    data() {
+        return {
+            primaryOptions: {
+                type      : 'loop',
+                perPage   : 1,
+                perMove   : 1,
+                width  : "100%",
+                gap       : '1rem',
+                pagination: false,
+                arrows     : false,
+
+            },
+            secondaryOptions: {
+                type   : 'loop',
+                perPage: 4,
+                rewind : true,
+                focus  : 'center',
+                width  : "100%",
+                gap    : '1rem',
+                lazyLoad: 'nearby',
+                autoplay: true,
+                interval: 3000,
+                pauseOnHover: false,
+                pagination: false,
+                cover : true,
+                isNavigation: true,
+                arrows     : false,
+                breakpoints: {
+                    '576': {
+                        perPage: 4,
+                        gap    : '1rem',
+                    },
+                    '340': {
+                        perPage: 3,
+                        gap    : '1rem',
+                    },
+                }
+            },
+            slides: [{src:'/assets/products/image1.webp'}, {src:'/assets/products/image2.webp'}, {src:'/assets/products/image3.webp'}, {src:'/assets/products/image4.webp'}],
+            count : 0,
+        }
+    },
+    mounted() {
+        this.$refs.primary.sync( this.$refs.secondary.splide );
+    },
+}
+</script>
