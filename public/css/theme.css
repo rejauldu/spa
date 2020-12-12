@@ -284,6 +284,12 @@ table.dataTable thead .sorting_desc_disabled:before {
 .bg-deep-light {
     background: #EBEBEB !important;
 }
+.border-deep-light {
+    border-color:#EEE !important;
+}
+.border-light-secondary {
+    border-color:#CCC !important;
+}
 .text-facebook {
     color: #3b5998 !important;
 }
@@ -1229,22 +1235,7 @@ ul.bullet>li {
 }
 /* Bootstrap tooltip overrrite */
 .tooltip-inner {
-    background-color: #EDD;
-    color:#300;
-    text-align:justify;
-    padding: 0.75rem;
-}
-.tooltip.bs-tooltip-right .arrow:before {
-    border-right-color: #EDD !important;
-}
-.tooltip.bs-tooltip-left .arrow:before {
-    border-left-color: #EDD !important;
-}
-.tooltip.bs-tooltip-bottom .arrow:before {
-    border-bottom-color: #EDD !important;
-}
-.tooltip.bs-tooltip-top .arrow:before {
-    border-top-color: #EDD !important;
+    box-shadow: 0 0 3px #CCC;
 }
 /* Zoom on hover */
 .zoom-hover, .zoom-hover-1, .zoom-hover-2, .zoom-hover-3, .zoom-hover-4, .zoom-hover-5, .zoom-hover-1-n, .zoom-target, .zoom-target-1, .zoom-target-2, .zoom-target-3, .zoom-target-4, .zoom-target-5, .zoom-target-1-n {

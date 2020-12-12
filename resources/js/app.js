@@ -8,6 +8,10 @@ import {CollapsePlugin} from 'bootstrap-vue/src/components/collapse'
 Vue.use(CollapsePlugin)
 import {ModalPlugin} from 'bootstrap-vue/src/components/modal'
 Vue.use(ModalPlugin)
+import {ToastPlugin} from 'bootstrap-vue/src/components/toast'
+Vue.use(ToastPlugin)
+import {TooltipPlugin} from 'bootstrap-vue/src/components/tooltip'
+Vue.use(TooltipPlugin)
 
 import router from './router'
 import store from './store'

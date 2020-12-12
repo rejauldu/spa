@@ -1,7 +1,7 @@
 <template>
     <b-container fluid>
         <b-row class="py-5">
-            <b-col cols="12" md="4" xl="6">
+            <b-col cols="12" md="5" xl="6">
                 <splide :options="primaryOptions" ref="primary">
                     <splide-slide v-for="slide in slides" :key="slide.src">
                         <img :src="slide.src" alt="slide.alt" class="w-100">
@@ -17,14 +17,29 @@
                     </splide-slide>
                 </splide>
             </b-col>
-            <b-col cols="12" md="8" xl="6">
+            <b-col cols="12" md="7" xl="6">
                 <h2>Product title</h2>
+                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in tortor sit amet lorem aliquam faucibus. Cras congue risus nunc, vitae gravida leo auctor ut. Suspendisse ornare mi ac libero pulvinar, et mattis mauris molestie. Suspendisse at hendrerit elit. Nunc metus sapien, auctor ut aliquam id, pellentesque eget ante.</p>
                 <div class="d-flex alert alert-primary align-items-stretch">
                     <div class="d-flex align-items-center"><img src="/assets/home/offers.webp" class="w-100" /></div>
                     <div class="flex-grow-1 px-3">
-                        <p>FREE exclusive Ice Skating Rink with purchases over $150.*</p>
+                        <div>FREE exclusive Ice Skating Rink with purchases over BDT 150.*</div>
                         <router-link to="/offers" class="btn btn-link">Learn more</router-link>
                     </div>
+                </div>
+                <p class="display-6">Price: BDT 50</p>
+                <div class="input-group mb-3 d-flex justify-content-center">
+                    <div class="input-group-prepend cursor-pointer">
+                        <span class="input-group-text bg-light">-</span>
+                    </div>
+                    <input type="text" value="1" class="width-50 text-center border-light display-6"/>
+                    <div class="input-group-append cursor-pointer">
+                        <span class="input-group-text bg-light">+</span>
+                    </div>
+                </div>
+                <hr/>
+                <div class="text-center">
+                    <button class="btn btn-theme px-5" @click.prevent="$bvToast.show('added-to-bag')">Add to Bag</button>
                 </div>
             </b-col>
 

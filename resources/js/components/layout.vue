@@ -211,27 +211,27 @@
                 <b-row class="text-center border bg-theme p-5 border-0 text-white text-justify">
                     <b-col cols="6" md="4" lg="2">
                         <div class="text-center"><img src="/assets/layout/footer1.webp" /></div>
-                        <div class="text-justify">FREE delivery with orders over $35! All year round</div>
+                        <div class="text-justify excerpt">FREE delivery with orders over $35! All year round</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
                         <div class="text-center"><img src="/assets/layout/footer2.webp" /></div>
-                        <div class="text-justify">Earn points on every purchase and benefit from members-only promotions</div>
+                        <div class="text-justify excerpt">Earn points on every purchase and benefit from members-only promotions</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
                         <div class="text-center"><img src="/assets/layout/footer3.webp" /></div>
-                        <div class="text-justify">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
+                        <div class="text-justify excerpt">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
                         <div class="text-center"><img src="/assets/layout/footer1.webp" /></div>
-                        <div class="text-justify">FREE delivery with orders over $35! All year round</div>
+                        <div class="text-justify excerpt">FREE delivery with orders over $35! All year round</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
                         <div class="text-center"><img src="/assets/layout/footer2.webp" /></div>
-                        <div class="text-justify">Earn points on every purchase and benefit from members-only promotions</div>
+                        <div class="text-justify excerpt">Earn points on every purchase and benefit from members-only promotions</div>
                     </b-col>
                     <b-col cols="6" md="4" lg="2">
                         <div class="text-center"><img src="/assets/layout/footer3.webp" /></div>
-                        <div class="text-justify">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
+                        <div class="text-justify excerpt">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
                     </b-col>
                 </b-row>
                 <b-row class="bg-dark text-white py-4">
@@ -291,14 +291,21 @@
                 </svg>
             </i>
         </b-row>
-        <div class="d-flex flex-column align-content-stretch position-center-v position-fixed right-0 z-index-999 width-70 bg-white shadow-all rounded overflow-hidden cursor-pointer hover-opacity-8">
+        <router-link to="/cart" class="d-flex flex-column align-content-stretch position-center-v position-fixed right-0 z-index-999 width-60 bg-white shadow-all rounded overflow-hidden cursor-pointer hover-opacity-8 text-decoration-none">
             <div class="bg-dark text-center py-1">
                 <img src="/assets/layout/cart.png" class="width-40" />
             </div>
-            <div class="text-center py-2">
-                Cart items
+            <div class="text-center py-2 alert-light">
+                3 items
             </div>
-        </div>
+        </router-link>
+        <b-toast id="added-to-bag" variant="warning" solid>
+            <div class="border border-danger d-flex justify-content-center align-items-center position-fixed left-0 top-0 right-0 z-index-9999 w-100 alert-warning shadow-lg">
+                <div><img src="/assets/images/bag.png" class="width-30"/></div>
+                <div class="px-4">Product added to bag</div>
+            </div>
+        </b-toast>
+
     </b-container>
 </template>
 <script>
@@ -368,8 +375,7 @@ export default {
         overflow-y: auto;
     }
 }
-</style>
-<style scoped>
+
 .when-opened, .when-closed {
     float:right;
     width: 14px;
@@ -386,6 +392,12 @@ export default {
 }
 .when-opened:before {
     content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path d='M100 100 l100 -100 l5 5 l-105 105 l-105 -105 l5 -5 z' /></svg>");
+    display: inline-block;
+    width:14px;
+    height:14px;
+}
+.fa.fa-info-circle:before {
+    content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='gray' d='M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z'></path></svg>");
     display: inline-block;
     width:14px;
     height:14px;

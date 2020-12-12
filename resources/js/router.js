@@ -15,6 +15,8 @@ import register from './components/views/auth/register'
 import passwordEmail from './components/views/auth/password/email'
 import products from './components/views/products'
 import product from './components/views/product'
+import cart from './components/views/cart'
+import checkout from './components/views/checkout'
 import dashboard from './components/views/dashboard'
 import verify from './components/views/auth/verify'
 import contactUs from './components/views/contact-us'
@@ -37,23 +39,20 @@ const routes = [
         path:'/dashboard', name:'dashboard', component: dashboard, meta: { middleware: [ verified, auth] }
     },
 	{
-		path:'/offers', component: product,
+		path:'/offers', component: products,
 	},
 	{
-		path:'/nctb', component: products,
+		path:'/product', component: product,
 	},
-	{
-		path:'/job', component: products,
-	},
-	{
-		path:'/literature', component: products,
-	},
-	{
-		path:'/higher-study', component: products,
-	},
-	{
-		path:'/academic', component: products,
-	},
+    {
+        path:'/products', component: products,
+    },
+    {
+        path:'/cart', component: cart,
+    },
+    {
+        path:'/checkout', component: checkout,
+    },
 	{
 		path:'/search', component: products,
 	},

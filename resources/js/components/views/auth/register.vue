@@ -1,49 +1,61 @@
 <template>
-    <div class="bg-theme-light w-100">
+    <div class="bg-light w-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-9 col-lg-7 col-xl-5 vh-55">
                     <div class="position-center-v left-0 right-0">
-                        <div class="card">
-                            <div class="card-header bg-white border-0 text-center display-6 mt-2">Register</div>
+                        <div class="card bg-transparent border-white" style="border-width:5px;">
+                            <div class="card-header alert alert-theme border-0 text-center"><img src="/assets/logo-sm.png" width="50"><strong class="display-6">Register</strong></div>
                             <div class="card-body">
-                                <div class="alert alert-danger" v-if="error">
+                                <div class="alert alert-danger fade show" v-if="error">
                                     <span>{{ error }}</span>
                                 </div>
+                                <div class="text-center mb-3">
+                                    <img src="/assets/images/contact-us.jpg" class="width-80 height-80 rounded-circle"/>
+                                </div>
                                 <form @submit.prevent="register()">
-                                    <div class="form-group row">
-                                        <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-                                        <div class="col-md-6">
-                                            <input id="name" type="text" class="form-control focus-theme" v-model="form.name" required autocomplete="name" autofocus>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input id="name" type="text" class="form-control focus-theme" v-model="form.name" required autocomplete="name" autofocus placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">E-Mail Address</label>
+                                        <input id="email" type="email" class="form-control focus-theme" v-model="form.email" required autocomplete="email" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input id="password" type="password" class="form-control focus-theme" v-model="form.password" required autocomplete="new-password" placeholder="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password-confirm" class="form-label">Confirm Password</label>
+                                        <input id="password-confirm" type="password" class="form-control focus-theme" v-model="form.password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-                                        <div class="col-md-6">
-                                            <input id="email" type="email" class="form-control focus-theme" v-model="form.email" required autocomplete="email">
+                                        <div class="col-md-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input focus-theme" type="checkbox" name="remember" id="remember" checked="checked">
+                                                <label class="form-check-label" for="remember">
+                                                    <router-link to="/terms-services">I agree to the Terms of Services</router-link>
+                                                </label>
+                                            </div>
+                                            <div class="font-10 text-secondary text-justify">When you agree to the <router-link to="/terms-services">Terms and Conditions</router-link> you also consent to our use of your personal information to process and operate your OnBiponi® Account. To see how to control your personal data, please see our privacy policy.</div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                        <div class="col-md-6">
-                                            <input id="password" type="password" class="form-control focus-theme" v-model="form.password" required autocomplete="new-password">
-                                        </div>
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="btn btn-theme width-200">
+                                            Register
+                                        </button>
                                     </div>
-
-                                    <div class="form-group row">
-                                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-                                        <div class="col-md-6">
-                                            <input id="password-confirm" type="password" class="form-control focus-theme" v-model="form.password_confirmation" required autocomplete="new-password">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-theme">
-                                                Register
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <div class="d-flex"><hr class="flex-grow-1"/><span class="width-50 text-center display-6">Or</span><hr class="flex-grow-1"/></div>
                                 </form>
+                                <b-row>
+                                    <b-col cols="6"><a href="/auth/facebook" class="btn bg-facebook text-white w-100 excerpt"><i class="fa fa-facebook"></i> Register with facebook</a></b-col>
+                                    <b-col cols="6"><a href="/auth/google" class="btn bg-google text-white w-100 excerpt"><i class="fa fa-google"></i> Register with google</a></b-col>
+                                </b-row>
+                                <b-row class="flex-column mt-4">
+                                    <div class="text-center">Already have an OnBiponi<sup>®</sup> account?</div>
+                                    <router-link class="text-center text-theme" to="/login">Login</router-link>
+                                </b-row>
                             </div>
                         </div>
                     </div>

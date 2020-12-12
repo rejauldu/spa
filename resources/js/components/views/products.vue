@@ -1,13 +1,15 @@
 <template>
     <b-container fluid>
-        <b-row>
-            <b-col cols="12" sm="6" lg="3">
+        <b-row class="py-5">
+            <b-col cols="12" sm="6" md="4" lg="3" xl="2">
                 <div class="card">
-                    <svg viewBox="0 0 512 512" class="alert-light bg-transparent"><path fill="currentColor" d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"></path></svg>
-                    <div class="card-body">
+                    <div class="size-32">
+                        <img class="size-child" src="/assets/products/image1.webp" alt="Card image">
+                    </div>
+                    <div class="card-body text-center">
                         <h4 class="card-title">John Doe</h4>
-                        <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                        <a href="#" class="btn btn-theme stretched-link">See Profile</a>
+                        <p class="card-text">Some example text.</p>
+                        <router-link to="/product" class="btn btn-primary">View Product</router-link>
                     </div>
                 </div>
             </b-col>

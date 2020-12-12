@@ -106,6 +106,10 @@
       <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/vendor/fruitcake/laravel-cors" />
+      <path value="$PROJECT_DIR$/vendor/codezero/laravel-localizer" />
+      <path value="$PROJECT_DIR$/vendor/codezero/laravel-localized-routes" />
+      <path value="$PROJECT_DIR$/vendor/codezero/browser-locale" />
+      <path value="$PROJECT_DIR$/vendor/0.0.0/composer-include-files" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

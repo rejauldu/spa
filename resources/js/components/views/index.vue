@@ -77,7 +77,7 @@
                         <div class="card-body text-center">
                             <h4 class="card-title">John Doe</h4>
                             <p class="card-text">Some example text.</p>
-                            <a href="#" class="btn btn-primary">See Profile</a>
+                            <router-link to="/product" class="btn btn-theme">View detail</router-link>
                         </div>
                     </div>
                 </splide-slide>
