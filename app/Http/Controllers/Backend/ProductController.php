@@ -18,18 +18,18 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $q)
     {
         $categories = Category::all();
         $products = Product::with('category');
         if($request->category)
             $products->whereHas('category', function(Builder $q) use($request) {
-                $q->where('name', 'like', '%'.$request->category.'%'); 
+                $q->where('name', 'like', '%'.$request->category.'%');
             });
 		$products = $products->orderBy('id', 'desc')->paginate(12);
-		return view('frontend.products', compact('products', 'categories'));
+		return $products;
     }
-    
+
     /**
      * Display a listing of the resource for admin dashboard.
      *
@@ -51,7 +51,7 @@ class ProductController extends Controller
 		$dropdowns['colors'] = Color::all();
 		$dropdowns['sizes'] = Size::all();
 		$dropdowns['categories'] = Category::all();
-		
+
 		return view('backend.products.create', $dropdowns);
     }
 
@@ -97,7 +97,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-		return view('frontend.product', compact('product'));
+		return $product;
     }
 
     /**
@@ -109,13 +109,13 @@ class ProductController extends Controller
     public function edit($id)
     {
 		$dropdowns['categories'] = Category::all();
-        
+
 		$dropdowns['colors'] = Color::all();
 		$dropdowns['sizes'] = Size::all();
-		
+
 		$product = Product::where('id', $id)->first();
         $dropdowns['product'] = $product;
-		
+
 		return view('backend.products.create', $dropdowns);
     }
 
@@ -130,7 +130,7 @@ class ProductController extends Controller
     {
 		$data = $request->except('_token', '_method');
 // 		$data = $this->handleImage($request, $data);
-		
+
 		$product = Product::find($request->id);
 		$file = $request->file('picture');
 		if($file) {
@@ -185,7 +185,7 @@ class ProductController extends Controller
 			if(isset($request->img[$i])) {
 				$array = explode('/', $request->img[$i]);
 				$data[$name] = end($array);
-				
+
 			} else {
 				@unlink(public_path('images/360-view/') . $request->$name);
 				$data[$name] = null;

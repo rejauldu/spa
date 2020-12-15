@@ -18,8 +18,8 @@
                 </splide>
             </b-col>
             <b-col cols="12" md="7" xl="6">
-                <h2>Product title</h2>
-                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in tortor sit amet lorem aliquam faucibus. Cras congue risus nunc, vitae gravida leo auctor ut. Suspendisse ornare mi ac libero pulvinar, et mattis mauris molestie. Suspendisse at hendrerit elit. Nunc metus sapien, auctor ut aliquam id, pellentesque eget ante.</p>
+                <h2>{{ product.name }}</h2>
+                <p class="text-justify">{{ product.description || 'No description' }}</p>
                 <div class="d-flex alert alert-primary align-items-stretch">
                     <div class="d-flex align-items-center"><img src="/assets/home/offers.webp" class="w-100" /></div>
                     <div class="flex-grow-1 px-3">
@@ -98,9 +98,29 @@ export default {
             },
             slides: [{src:'/assets/products/image1.webp'}, {src:'/assets/products/image2.webp'}, {src:'/assets/products/image3.webp'}, {src:'/assets/products/image4.webp'}],
             count : 0,
+            product: {}
+        }
+    },
+    methods: {
+        updateProduct: function () {
+            var _this = this;
+            axios.get('/api'+this.$router.currentRoute.path)
+                .then(function (response) {
+                    if(response.data) {
+                        _this.product = response.data;
+                    }
+                })
+                .catch(function (error) {
+                    if (error.response && error.response.status == 400) {
+                        _this.error=error.response.data.message;
+                    } else {
+                        _this.error = "An error occurred. Check your internet connection."
+                    }
+                });
         }
     },
     mounted() {
+        this.updateProduct();
         this.$refs.primary.sync( this.$refs.secondary.splide );
     },
 }

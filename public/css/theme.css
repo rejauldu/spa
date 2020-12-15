@@ -355,19 +355,12 @@ table.dataTable thead .sorting_desc_disabled:before {
     box-shadow:0 0 5px #DDD;
 }
 
-.size-21 {
+.size-11, .size-21, .size-12, .size-32, .size-23, .size-53, .size-35, .size-13, .size-31, .size-25, .size-52 {
     position: relative;
     width: 100%;
     overflow: hidden;
 }
-
-.size-21:after {
-    content: "";
-    display: block;
-    padding-bottom: 50%
-}
-
-.size-21>img, .size-21>.size-child {
+.size-11>img, .size-11>.size-child, .size-21>img, .size-21>.size-child, .size-12>img, .size-12>.size-child, .size-32>img, .size-32>.size-child, .size-23>img, .size-23>.size-child, .size-53>img, .size-53>.size-child, .size-35>img, .size-35>.size-child, .size-13>img, .size-13>.size-child, .size-31>img, .size-31>.size-child, .size-25>img, .size-25>.size-child, .size-52>img, .size-52>.size-child {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -377,34 +370,15 @@ table.dataTable thead .sorting_desc_disabled:before {
     height: 100%;
     object-position: center;
 }
-
-.size-11 {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
 .size-11:after {
     content: "";
     display: block;
     padding-bottom: 100%
 }
-
-.size-11>img, .size-11>.size-child {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    object-position: center;
-}
-
-.size-12 {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
+.size-21:after {
+    content: "";
+    display: block;
+    padding-bottom: 50%
 }
 
 .size-12:after {
@@ -413,42 +387,10 @@ table.dataTable thead .sorting_desc_disabled:before {
     padding-bottom: 200%
 }
 
-.size-12>img, .size-12>.size-child {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    object-position: center;
-}
-.size-32 {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
 .size-32:after {
     content: "";
     display: block;
     padding-bottom: 75%;
-}
-
-.size-32>img, .size-32>.size-child {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    object-position: center;
-}
-.size-23 {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
 }
 
 .size-23:after {
@@ -457,42 +399,10 @@ table.dataTable thead .sorting_desc_disabled:before {
     padding-bottom: 150%;
 }
 
-.size-23>img, .size-23>.size-child {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    object-position: center;
-}
-.size-53 {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
 .size-53:after {
     content: "";
     display: block;
-    padding-bottom: 67%;
-}
-
-.size-53>img, .size-53>.size-child {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    object-position: center;
-}
-.size-35 {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
+    padding-bottom: 60%;
 }
 
 .size-35:after {
@@ -501,15 +411,27 @@ table.dataTable thead .sorting_desc_disabled:before {
     padding-bottom: 167%;
 }
 
-.size-35>img, .size-35>.size-child {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    object-position: center;
+.size-13:after {
+    content: "";
+    display: block;
+    padding-bottom: 300%;
+}
+
+.size-31:after {
+    content: "";
+    display: block;
+    padding-bottom: 33.3%;
+}
+.size-25:after {
+    content: "";
+    display: block;
+    padding-bottom: 300%;
+}
+
+.size-52:after {
+    content: "";
+    display: block;
+    padding-bottom: 33.3%;
 }
 
 .owl-heading {
@@ -874,7 +796,7 @@ table.dataTable thead .sorting_desc_disabled:before {
     height:calc(100vh - 54px) !important;
 }
 .vh-55 {
-    height:calc(100vh - 55px) !important;
+    min-height:calc(100vh - 55px) !important;
 }
 .vh-100 {
     height:calc(100vh - 100px) !important;
@@ -1501,6 +1423,20 @@ ul.bullet>li {
     100% {
         -webkit-transform: rotate(1turn);
         transform: rotate(1turn);
+    }
+}
+.r-spin-r {
+    -webkit-animation: r-spin-r 2s linear infinite;
+    animation: r-spin-r 2s linear infinite;
+}
+@-webkit-keyframes r-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(-1turn);
+        transform: rotate(-1turn);
     }
 }
 /*css two color background */

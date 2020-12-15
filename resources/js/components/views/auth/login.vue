@@ -1,9 +1,9 @@
 <template>
     <div class="bg-light w-100">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-9 col-lg-7 col-xl-5 vh-55">
-                    <div class="position-center-v left-0 right-0">
+            <div class="row justify-content-center align-items-center vh-55">
+                <div class="col-md-9 col-lg-7 col-xl-5">
+                    <div class="w-100">
                         <div class="card bg-transparent border-white" style="border-width:5px;">
                             <div class="card-header alert alert-theme border-0 text-center"><img src="/assets/logo-sm.png" width="50"><strong class="display-6">Login</strong></div>
                             <div class="card-body">

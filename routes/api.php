@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/user', function (Request $request) {
-    if(auth('sanctum')->check()) {
-        $user = auth('sanctum')->user();
+    if(auth()->check()) {
+        $user = auth()->user();
         if($user->email_verified_at) {
             $user->status_code = 200;
             return $user;
@@ -34,6 +34,8 @@ Route::get('/user', function (Request $request) {
         return $response;
     }
 });
+Route::get('/products/{query?}', 'Backend\ProductController@index');
+Route::get('/product/{id}', 'Backend\ProductController@show');
 Route::post('/login', function (Request $request) {
     $request->validate([
     	'email'=>'required',
@@ -41,7 +43,7 @@ Route::post('/login', function (Request $request) {
     ]);
     if ($request->wantsJson()) {
         auth()->attempt($request->only('email', 'password'));
-        $user = auth('sanctum')->user();
+        $user = auth()->user();
         if($user) {
             if($user->email_verified_at) {
                 $user->status_code = 200;
@@ -90,8 +92,8 @@ Route::post('/register', function (Request $request) {
     }
 });
 Route::post('/resend/email', function (Request $request) {
-    if(auth('sanctum')->check()) {
-        $user = auth('sanctum')->user();
+    if(auth()->check()) {
+        $user = auth()->user();
         if(!$user->email_verified_at) {
             //$user->sendEmailVerificationNotification();
             $user->status_code = 201;
@@ -110,7 +112,15 @@ Route::post('/resend/email', function (Request $request) {
         return $response;
     }
 });
-
+Route::get('/get-locations', function (Request $request) {
+    $divisions = \App\Locations\Division::all();
+    $regions = \App\Locations\Region::all();
+    $response = Response::json([
+        "divisions" => $divisions,
+        "regions" => $regions
+    ]);
+    return $response;
+});
 Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::post('/logout', function (Request $request) {
     Auth::logout();

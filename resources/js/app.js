@@ -16,6 +16,7 @@ Vue.use(TooltipPlugin)
 import router from './router'
 import store from './store'
 
+axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://spa'
 

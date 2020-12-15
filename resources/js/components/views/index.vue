@@ -8,7 +8,7 @@
                         <img src="assets/top-carousel/free-delivery.png" class="height-30 vertical-center" />
                         <span class="excerpt width-150 vertical-center d-inline-block d-md-none">Hurry! Black Friday offers last 11/27-11/30.</span>
                         <span class="vertical-center d-none d-md-inline-block">Hurry! Black Friday offers last 11/27-11/30.</span>
-                        <a href="#" class="btn-link vertical-center">Shop Now</a>
+                        <router-link to="/products" class="btn-link vertical-center">Shop Now</router-link>
                     </splide-slide>
                 </splide>
             </b-col>
@@ -21,7 +21,7 @@
                         <div class="w-100"  :class="{'position-center-v': $store.state.width>=768, 'my-4': $store.state.width<768}">
                             <h1 class="display-5">Trim the tree</h1>
                             <p>Get into the spirit with new Santa with new Reindeer mini-build ornaments</p>
-                            <a href="#" class="btn btn-dark">Continue shopping <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24"><path stroke="currentColor" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg></a>
+                            <router-link to="/products" class="btn btn-dark">Continue shopping <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24"><path stroke="currentColor" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg></router-link>
                         </div>
                     </div>
                 </b-row>
@@ -112,7 +112,6 @@ export default {
                 type   : 'loop',
                 perPage: 4,
                 rewind : true,
-                focus  : 'center',
                 width  : "100%",
                 gap    : '1rem',
                 lazyLoad: 'nearby',

@@ -20,7 +20,7 @@ import checkout from './components/views/checkout'
 import dashboard from './components/views/dashboard'
 import verify from './components/views/auth/verify'
 import contactUs from './components/views/contact-us'
-import notFound from './components/views/not-found'
+import profile from './components/views/profile'
 
 const routes = [
 	{
@@ -35,17 +35,14 @@ const routes = [
     {
         path:'/password/reset', name:'password-email', component: passwordEmail, meta: { middleware: [ guest ] }
     },
+	{
+		path:'/product/:id', name:'product', component: product,
+	},
     {
-        path:'/dashboard', name:'dashboard', component: dashboard, meta: { middleware: [ verified, auth] }
+        path:'/products', name:'products', component: products,
     },
-	{
-		path:'/offers', component: products,
-	},
-	{
-		path:'/product', component: product,
-	},
     {
-        path:'/products', component: products,
+        path:'/search/:query?', name:'search', component: products,
     },
     {
         path:'/cart', component: cart,
@@ -53,9 +50,6 @@ const routes = [
     {
         path:'/checkout', component: checkout,
     },
-	{
-		path:'/search', component: products,
-	},
 	{
 		path:'/about-us', component: products,
 	},
@@ -68,8 +62,14 @@ const routes = [
     {
         path:'/contact-us', component: contactUs,
     },
+    {
+        path:'/dashboard', name:'dashboard', component: dashboard, meta: { middleware: [ verified, auth] }
+    },
+    {
+        path:'/profile', name:'profile', component: profile, meta: { middleware: [ verified, auth] }
+    },
 	{
-		path:'*', component: notFound,
+		path:'*', component: products,
 	}
 ];
 const router = new Router({
