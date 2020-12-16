@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 class SpaController extends Controller
@@ -19,6 +20,7 @@ class SpaController extends Controller
      */
     public function index()
     {
-        return view('spa');
+        $products = Product::select('id', 'name', 'image1', 'note', 'msrp')->get();
+        return view('spa', compact('products'));
     }
 }

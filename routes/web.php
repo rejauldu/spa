@@ -56,7 +56,8 @@ Route::prefix('admin')->group(function () {
         Route::put('permissions-update', 'Backend\PermissionController@updateList')->name('permissions.update.list')->middleware('moderator:Permission');
         Route::get('manage-products', 'Backend\ProductController@manageIndex')->name('manage-products.index')->middleware('moderator:Product');
         Route::resource('manage-products', 'Backend\ProductController')->except(['index', 'show'])->middleware('moderator:Product');
-        Route::resource('regions', 'Locations\RegionController')->middleware('moderator:Location');
+        Route::resource('regions', 'Locations\RegionController');
+        Route::get('get-regions-by-division/{division}', 'Locations\RegionController@getRegionsByDivision');
         Route::resource('shippers', 'Backend\ShipperController')->middleware('moderator:Shipper');
         Route::resource('sizes', 'Backend\SizeController')->middleware('moderator:Size');
         Route::resource('suppliers', 'Backend\SupplierController')->middleware('moderator:Supplier');

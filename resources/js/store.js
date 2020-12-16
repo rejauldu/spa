@@ -8,6 +8,7 @@ export default new Vuex.Store({
 		isLoggedin: JSON.parse(sessionStorage.isLoggedin || "false"),
         isEmailVerified: JSON.parse(sessionStorage.isEmailVerified || "false"),
 		user: {},
+        cart: JSON.parse(localStorage.cart || '[]'),
         isError: false,
         errorMessage: '',
         isSuccess: false,
@@ -25,6 +26,20 @@ export default new Vuex.Store({
         },
         user: (state) => {
             return state.user;
+        },
+        cart: (state) => {
+            return state.cart;
+        },
+        quantity: (state) => {
+            var quantity_obj = {quantity: 0};
+            if (state.cart.length > 0) {
+                quantity_obj = state.cart.reduce(function (previousValue, currentValue) {
+                    return {
+                        "quantity": parseInt(previousValue.quantity) + parseInt(currentValue.quantity)
+                    };
+                });
+            }
+            return quantity_obj.quantity;
         },
         isLoading: (state) => {
             return state.loading;
@@ -48,6 +63,9 @@ export default new Vuex.Store({
         },
         changeLoading(context, data) {
             context.commit("changeLoading", data);
+        },
+        changeCart(context) {
+            context.commit("changeCart");
         }
 	},
 	mutations: {
@@ -85,6 +103,9 @@ export default new Vuex.Store({
         },
         changeLoading(state, data) {
             state.loading = data;
+        },
+        changeCart(state) {
+            localStorage.cart = JSON.stringify(state.cart);
         }
 	}
 });

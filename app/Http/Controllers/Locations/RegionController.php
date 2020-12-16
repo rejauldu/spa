@@ -13,7 +13,7 @@ class RegionController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('moderatorOrOwner:User');
+        $this->middleware('moderator:User', ['except' => ['getRegionsByDivision']]);
 	}
     /**
      * Display a listing of the resource.
@@ -24,6 +24,16 @@ class RegionController extends Controller
     {
 		$regions = Region::all();
 		return view('backend.locations.regions.index', compact('regions'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getRegionsByDivision($division)
+    {
+        $regions = Region::where('division_id', $division)->get();
+        return $regions;
     }
 
     /**
@@ -89,7 +99,7 @@ class RegionController extends Controller
         $data = $request->except('_token', '_method');
 		$region = Region::find($id);
 		$region->update($data);
-		
+
 		return redirect(route('regions.index'))->with('message', 'Region updated successfully');
     }
 

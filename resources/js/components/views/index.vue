@@ -69,15 +69,15 @@
 		</b-row>
         <b-row class="py-5">
             <splide :options="splideOptions">
-                <splide-slide v-for="slide in slides" :key="slide.src">
+                <splide-slide v-for="product in products" :key="product.src">
                     <div class="card w-100">
                         <div class="card-img-top size-11">
-                            <img :src="slide.src" alt="Card image">
+                            <img :src="'/assets/products/'+product.id+'/'+product.image1" alt="Card image">
                         </div>
                         <div class="card-body text-center">
-                            <h4 class="card-title">John Doe</h4>
-                            <p class="card-text">Some example text.</p>
-                            <router-link to="/product" class="btn btn-theme">View detail</router-link>
+                            <h4 class="card-title excerpt nowrap">{{ product.name }}</h4>
+                            <p class="card-text excerpt w-100" v-html="product.note"></p>
+                            <router-link :to="'/product/'+product.id" class="btn btn-theme">View detail</router-link>
                         </div>
                     </div>
                 </splide-slide>
@@ -89,6 +89,7 @@
 
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+import products from "./products";
 
 export default {
     name: 'carrousel',
@@ -137,10 +138,10 @@ export default {
                         gap    : '1rem',
                     },
                 }
-            },
-            slides: [{src:'/assets/products/image1.webp'}, {src:'/assets/products/image2.webp'}, {src:'/assets/products/image3.webp'}, {src:'/assets/products/image4.webp'}],
+            }
         }
-    }
+    },
+    props: ['products']
 }
 </script>
 <style>

@@ -11,11 +11,11 @@
             <b-col cols="12" sm="6" md="4" lg="3" xl="2" v-for="product in products" :key="product.id">
                 <div class="card mb-3">
                     <div class="size-32">
-                        <img class="size-child" src="/assets/products/image1.webp" alt="Card image">
+                        <img class="size-child" :src="'/assets/products/'+product.id+'/'+product.image1" :alt="product.name">
                     </div>
                     <div class="card-body text-center">
                         <h4 class="card-title excerpt nowrap">{{ product.name }}</h4>
-                        <p class="card-text">{{ product.description || 'No description' }}</p>
+                        <p class="card-text excerpt nowrap" v-html="product.note"></p>
                         <router-link :to="'/product/'+product.id" class="btn btn-primary">View Product</router-link>
                     </div>
                 </div>

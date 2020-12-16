@@ -20,7 +20,7 @@
                 <div class="border border-deep-light w-100 my-3 rounded">
                     <div class="alert alert-secondary display-6">Order Summary</div>
                     <div class="alert alert-light border border-light">
-                        <a href="#" v-b-toggle.coupon class="text-decoration-none alert-light">
+                        <a href="#" @click.prevent="" v-b-toggle.coupon class="text-decoration-none alert-light">
                             Enter Promo Code
                             <span class="when-opened"></span>
                             <span class="when-closed"></span>
@@ -39,25 +39,45 @@
                         </b-collapse>
                     </div>
                     <div class="alert alert-light border border-light">
-                        <a href="#" v-b-toggle.collapse-1 class="text-decoration-none alert-light">
-                            Select Shipping
+                        <a href="#" @click.prevent="" v-b-toggle.payment class="text-decoration-none alert-light">
+                            Select Payment
                             <span class="when-opened"></span>
                             <span class="when-closed"></span>
                         </a>
-                        <b-collapse id="collapse-1" class="mt-2">
+                        <b-collapse id="payment" class="mt-2">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" id="cod" name="example1" value="customEx">
-                                <label class="custom-control-label" for="cod">Cash-on delivery</label>
+                                <input type="radio" v-model="payment_method" name="payment_method" value="cod" class="custom-control-input" id="cod">
+                                <label class="custom-control-label" for="cod">
+                                    Cash on Delivery
+                                    <i class="fa fa-info-circle cursor-pointer" id="cod-tooltip"></i>
+                                    <b-tooltip target="code-tooltip">
+                                        <div class="alert alert-info">
+                                            Payment will be received when delivered.
+                                        </div>
+                                    </b-tooltip>
+                                </label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" id="bKash" name="example1" value="customEx">
-                                <label class="custom-control-label" for="bKash">bKash</label>
+                                <input type="radio" v-model="payment_method" name="payment_method" value="bkash" class="custom-control-input" id="bkash">
+                                <label class="custom-control-label" for="bkash">
+                                    bKash
+                                    <i class="fa fa-info-circle cursor-pointer" id="bkash-tooltip"></i>
+                                    <b-tooltip target="bkash-tooltip">
+                                        <div class="alert alert-info">
+                                            <ul>
+                                                <li>Send Money To: 01924974960</li>
+                                                <li>Send SMS the TrxID to 01924974960</li>
+                                                <li>Done!</li>
+                                            </ul>
+                                        </div>
+                                    </b-tooltip>
+                                </label>
                             </div>
                         </b-collapse>
                     </div>
-                    <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Subtotal (7) items</div><div>$182.94</div></div>
-                    <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Shipping Charge</div><div>$0</div></div>
-                    <div class="d-flex flex-nowrap display-6 alert alert-light border border-light"><div class="mr-auto">Order Total</div><div>$182.94</div></div>
+                    <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Subtotal ({{ $store.getters.quantity }}) items</div><div>BDT {{ subTotal }}</div></div>
+                    <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Shipping Charge</div><div>BDT {{ shipping }}</div></div>
+                    <div class="d-flex flex-nowrap display-6 alert alert-light border border-light"><div class="mr-auto">Order Total</div><div>BDT {{ total }}</div></div>
                     <div class="mb-3"><router-link to="/checkout" class="w-100 btn btn-theme">Order Now</router-link></div>
                     <div><router-link to="/products" class="w-100 btn alert-warning">Continue Shopping</router-link></div>
                 </div>
@@ -68,7 +88,28 @@
 
 <script>
 export default {
-    name: "checkout"
+    name: "checkout",
+    data() {
+        return {
+            products: this.$store.getters.cart,
+            payment_method: 'bkash'
+        }
+    },
+    computed: {
+        subTotal: function () {
+            var price = 0;
+            for (let i = 0; i < this.products.length; i++) {
+                price += this.products[i].msrp * this.products[i].quantity;
+            }
+            return price;
+        },
+        shipping: function () {
+            return 0;
+        },
+        total: function () {
+            return parseInt(this.shipping)+parseInt(this.subTotal);
+        }
+    }
 }
 </script>
 

@@ -205,7 +205,7 @@
             </div>
             <b-container fluid class="content-wrapper">
                 <b-row>
-                    <router-view></router-view>
+                    <router-view :products="products"></router-view>
                 </b-row>
                 <b-row class="text-center border bg-theme p-5 border-0 text-white text-justify">
                     <b-col cols="6" md="4" lg="2">
@@ -295,7 +295,7 @@
                 <img src="/assets/layout/cart.png" class="width-40" />
             </div>
             <div class="text-center py-2 alert-light">
-                3 items
+                {{ $store.getters.quantity }} items
             </div>
         </router-link>
         <b-toast id="added-to-bag" variant="warning" solid>
@@ -364,7 +364,8 @@ export default {
     mounted() {
         document.getElementById("page-loading").remove();
         this.getUser();
-    }
+    },
+    props: ['products']
 }
 </script>
 <style>

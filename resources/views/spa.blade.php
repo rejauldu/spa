@@ -28,7 +28,7 @@
         </div>
 
         <div id="app">
-            <layout></layout>
+            <layout :products='@json($products)'></layout>
         </div>
 
         <script src="{{ asset('js/app.js') }}?{{ time() }}" crossorigin="anonymous" defer></script>
