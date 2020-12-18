@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/user', function (Request $request) {
     if(auth()->check()) {
-        $user = auth()->user();
+        $user = User::with('division', 'region')->find(Auth::id());
         if($user->email_verified_at) {
             $user->status_code = 200;
             return $user;
@@ -43,7 +43,7 @@ Route::post('/login', function (Request $request) {
     ]);
     if ($request->wantsJson()) {
         auth()->attempt($request->only('email', 'password'));
-        $user = auth()->user();
+        $user = User::with('division', 'region')->find(Auth::id());
         if($user) {
             if($user->email_verified_at) {
                 $user->status_code = 200;

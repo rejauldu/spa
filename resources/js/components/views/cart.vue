@@ -8,12 +8,13 @@
                         <th class="py-3">Detail</th>
                         <th class="py-3">Quantity</th>
                         <th class="py-3">Total</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td colspan="3">
-                        <div class="d-flex alert alert-theme align-content-center">
+                    <td colspan="4">
+                        <div class="d-flex alert alert-theme align-content-center border-0">
                             <div class="d-flex align-content-center"><img src="/assets/products/image1.webp" class="img-thumbnail width-100" /></div>
                             <div class="d-flex align-items-center pl-3">Congratulations! You are qualified for free shipping</div>
                         </div>
@@ -45,6 +46,7 @@
                         </div>
                     </td>
                     <td class="p-2">BDT {{ product.msrp*product.quantity }}</td>
+                    <td><a href="#" @click.prevent="remove(product.id)" class="btn btn-sm alert-danger">x</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -80,6 +82,12 @@ export default {
             product.quantity = parseInt(product.quantity) + parseInt(i);
             if(product.quantity<1)
                 product.quantity = 1;
+        },
+        remove: function (product) {
+            this.products = this.products.filter(function( obj ) {
+                return obj.id !== product;
+            });
+            this.$store.dispatch("changeCart", this.products);
         }
     },
     computed: {

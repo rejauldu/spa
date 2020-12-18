@@ -290,7 +290,7 @@
                 </svg>
             </i>
         </b-row>
-        <router-link to="/cart" class="d-flex flex-column align-content-stretch position-center-v position-fixed right-0 z-index-999 width-60 bg-white shadow-all rounded overflow-hidden cursor-pointer hover-opacity-8 text-decoration-none">
+        <router-link v-if="$store.getters.quantity>0" to="/cart" class="d-flex flex-column align-content-stretch position-center-v position-fixed right-0 z-index-999 width-60 bg-white shadow-all rounded overflow-hidden cursor-pointer hover-opacity-8 text-decoration-none">
             <div class="bg-dark text-center py-1">
                 <img src="/assets/layout/cart.png" class="width-40" />
             </div>

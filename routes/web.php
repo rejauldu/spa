@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
     Route::get('checkout', 'Backend\OrderController@checkout')->name('checkout');
     Route::get('order-complete', 'Backend\OrderController@orderComplete')->name('order-complete');
     Route::get('card-payment/{id}', 'Frontend\StripePaymentController@stripe')->name('card-payment');
+    Route::get('get-regions-by-division/{division}', 'Locations\RegionController@getRegionsByDivision');
     Route::post('stripe', 'Frontend\StripePaymentController@stripePost')->name('stripe.post');
 
     Route::get('login/{social}', 'Backend\SocialLoginController@redirectToProvider')->name('social.callback');
@@ -57,7 +58,6 @@ Route::prefix('admin')->group(function () {
         Route::get('manage-products', 'Backend\ProductController@manageIndex')->name('manage-products.index')->middleware('moderator:Product');
         Route::resource('manage-products', 'Backend\ProductController')->except(['index', 'show'])->middleware('moderator:Product');
         Route::resource('regions', 'Locations\RegionController');
-        Route::get('get-regions-by-division/{division}', 'Locations\RegionController@getRegionsByDivision');
         Route::resource('shippers', 'Backend\ShipperController')->middleware('moderator:Shipper');
         Route::resource('sizes', 'Backend\SizeController')->middleware('moderator:Size');
         Route::resource('suppliers', 'Backend\SupplierController')->middleware('moderator:Supplier');

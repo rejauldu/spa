@@ -2,7 +2,7 @@
     <b-container fluid>
         <b-row class="py-5">
             <b-col cols="12" md="5" xl="6">
-                <splide :options="primaryOptions" ref="primary">
+                <splide :options="primaryOptions" ref="primary" v-if="product.id">
                     <splide-slide>
                         <img :src="'/assets/products/'+product.id+'/'+product.image1" :alt="product.name" class="w-100">
                     </splide-slide>
@@ -16,7 +16,7 @@
                         <img :src="'/assets/products/'+product.id+'/'+product.image4" :alt="product.name" class="w-100">
                     </splide-slide>
                 </splide>
-                <splide :options="secondaryOptions" ref="secondary">
+                <splide :options="secondaryOptions" ref="secondary" v-if="product.id">
                     <splide-slide>
                         <div class="card w-100">
                             <div class="card-img-top size-11">

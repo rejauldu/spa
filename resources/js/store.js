@@ -64,8 +64,8 @@ export default new Vuex.Store({
         changeLoading(context, data) {
             context.commit("changeLoading", data);
         },
-        changeCart(context) {
-            context.commit("changeCart");
+        changeCart(context, data = null) {
+            context.commit("changeCart", data);
         }
 	},
 	mutations: {
@@ -104,7 +104,9 @@ export default new Vuex.Store({
         changeLoading(state, data) {
             state.loading = data;
         },
-        changeCart(state) {
+        changeCart(state, data=null) {
+	        if(data)
+	            state.cart = data;
             localStorage.cart = JSON.stringify(state.cart);
         }
 	}
