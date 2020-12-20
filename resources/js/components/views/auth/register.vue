@@ -35,10 +35,10 @@
                                             <div class="form-check">
                                                 <input class="form-check-input focus-theme" type="checkbox" name="remember" id="remember" checked="checked">
                                                 <label class="form-check-label" for="remember">
-                                                    <router-link to="/terms-services">I agree to the Terms of Services</router-link>
+                                                    <router-link to="/terms-conditions">I agree to the Terms of Services</router-link>
                                                 </label>
                                             </div>
-                                            <div class="font-10 text-secondary text-justify">When you agree to the <router-link to="/terms-services">Terms and Conditions</router-link> you also consent to our use of your personal information to process and operate your OnBiponi® Account. To see how to control your personal data, please see our privacy policy.</div>
+                                            <div class="font-10 text-secondary text-justify">When you agree to the <router-link to="/terms-conditions">Terms and Conditions</router-link> you also consent to our use of your personal information to process and operate your OnBiponi® Account. To see how to control your personal data, please see our privacy policy.</div>
                                         </div>
                                     </div>
                                     <div class="form-group mb-0">

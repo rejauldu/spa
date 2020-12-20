@@ -21,6 +21,7 @@ import dashboard from './components/views/dashboard'
 import verify from './components/views/auth/verify'
 import contactUs from './components/views/contact-us'
 import profile from './components/views/profile'
+import privacyPolicy from './components/views/privacy-policy'
 
 const routes = [
 	{
@@ -67,6 +68,12 @@ const routes = [
     },
     {
         path:'/profile', name:'profile', component: profile, meta: { middleware: [ verified, auth] }
+    },
+    {
+        path:'/privacy-policy', name:'privacy-policy', component: privacyPolicy,
+    },
+    {
+        path:'/terms-conditions', name:'terms-conditions', component: privacyPolicy,
     },
 	{
 		path:'*', component: products,

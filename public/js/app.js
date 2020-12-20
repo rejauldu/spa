@@ -16435,6 +16435,50 @@ props:['products']};
 
 /***/},
 
+/***/"./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/views/privacy-policy.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/views/privacy-policy.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/function node_modulesBabelLoaderLibIndexJsNode_modulesVueLoaderLibIndexJsResourcesJsComponentsViewsPrivacyPolicyVueVueTypeScriptLangJs(module,__webpack_exports__,__webpack_require__){
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */__webpack_exports__["default"]={
+name:"privacy-policy",
+data:function data(){
+return {
+content:'',
+error:''};
+
+},
+methods:{
+getContent:function getContent(){
+var _this=this;
+
+axios.get('/api/pages/privacy-policy').then(function(response){
+_this.content=response.data;
+}).catch(function(error){
+_this.error="An error occurred. Check your internet connection.";
+});
+}},
+
+mounted:function mounted(){
+this.getContent();
+}};
+
+
+/***/},
+
 /***/"./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/views/product.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/views/product.vue?vue&type=script&lang=js& ***!
@@ -16579,6 +16623,10 @@ var _this=this;
 axios.get('/api'+this.$router.currentRoute.path).then(function(response){
 if(response.data){
 _this.product=response.data;
+
+_this.$nextTick(function(){
+_this.$refs.primary.sync(_this.$refs.secondary.splide);
+});
 }
 }).catch(function(error){
 if(error.response&&error.response.status==400){
@@ -16625,7 +16673,6 @@ this.quantity=parseInt(this.quantity)+parseInt(i);
 
 mounted:function mounted(){
 this.updateProduct();
-this.$refs.primary.sync(this.$refs.secondary.splide);
 }};
 
 
@@ -54514,7 +54561,7 @@ attrs:{for:"remember"}},
 [
 _c(
 "router-link",
-{attrs:{to:"/terms-services"}},
+{attrs:{to:"/terms-conditions"}},
 [
 _vm._v(
 "I agree to the Terms of Services")])],
@@ -54536,7 +54583,7 @@ staticClass:
 _vm._v("When you agree to the "),
 _c(
 "router-link",
-{attrs:{to:"/terms-services"}},
+{attrs:{to:"/terms-conditions"}},
 [_vm._v("Terms and Conditions")]),
 
 _vm._v(
@@ -56939,6 +56986,51 @@ attrs:{to:"/product/"+product.id}},
 
 }),
 1)],
+
+
+1)],
+
+
+1);
+
+};
+var staticRenderFns=[];
+render._withStripped=true;
+
+
+
+/***/},
+
+/***/"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/views/privacy-policy.vue?vue&type=template&id=290e01a3&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/views/privacy-policy.vue?vue&type=template&id=290e01a3&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/function node_modulesVueLoaderLibLoadersTemplateLoaderJsNode_modulesVueLoaderLibIndexJsResourcesJsComponentsViewsPrivacyPolicyVueVueTypeTemplateId290e01a3ScopedTrue(module,__webpack_exports__,__webpack_require__){
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */__webpack_require__.d(__webpack_exports__,"render",function(){return render;});
+/* harmony export (binding) */__webpack_require__.d(__webpack_exports__,"staticRenderFns",function(){return staticRenderFns;});
+var render=function render(){
+var _vm=this;
+var _h=_vm.$createElement;
+var _c=_vm._self._c||_h;
+return _c(
+"b-container",
+{attrs:{fluid:""}},
+[
+_c(
+"b-row",
+[
+_c("b-col",{attrs:{cols:"12"}},[
+_c("h4",{staticClass:"text-center"},[
+_vm._v("Privacy and Security")])]),
+
+
+_vm._v(" "),
+_c("b-col",{
+staticClass:"text-justify",
+attrs:{cols:"12"},
+domProps:{innerHTML:_vm._s(_vm.content)}})],
 
 
 1)],
@@ -75632,6 +75724,64 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/},
 
+/***/"./resources/js/components/views/privacy-policy.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/views/privacy-policy.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/function resourcesJsComponentsViewsPrivacyPolicyVue(module,__webpack_exports__,__webpack_require__){
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */var _privacy_policy_vue_vue_type_template_id_290e01a3_scoped_true___WEBPACK_IMPORTED_MODULE_0__=__webpack_require__(/*! ./privacy-policy.vue?vue&type=template&id=290e01a3&scoped=true& */"./resources/js/components/views/privacy-policy.vue?vue&type=template&id=290e01a3&scoped=true&");
+/* harmony import */var _privacy_policy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__=__webpack_require__(/*! ./privacy-policy.vue?vue&type=script&lang=js& */"./resources/js/components/views/privacy-policy.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony import */var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__=__webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */"./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component=Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+_privacy_policy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+_privacy_policy_vue_vue_type_template_id_290e01a3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+_privacy_policy_vue_vue_type_template_id_290e01a3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+false,
+null,
+"290e01a3",
+null);
+component.options.__file="resources/js/components/views/privacy-policy.vue";
+/* harmony default export */__webpack_exports__["default"]=component.exports;
+
+/***/},
+
+/***/"./resources/js/components/views/privacy-policy.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/views/privacy-policy.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/function resourcesJsComponentsViewsPrivacyPolicyVueVueTypeScriptLangJs(module,__webpack_exports__,__webpack_require__){
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_privacy_policy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__=__webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./privacy-policy.vue?vue&type=script&lang=js& */"./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/views/privacy-policy.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */__webpack_exports__["default"]=_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_privacy_policy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"];
+
+/***/},
+
+/***/"./resources/js/components/views/privacy-policy.vue?vue&type=template&id=290e01a3&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/views/privacy-policy.vue?vue&type=template&id=290e01a3&scoped=true& ***!
+  \*****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/function resourcesJsComponentsViewsPrivacyPolicyVueVueTypeTemplateId290e01a3ScopedTrue(module,__webpack_exports__,__webpack_require__){
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_privacy_policy_vue_vue_type_template_id_290e01a3_scoped_true___WEBPACK_IMPORTED_MODULE_0__=__webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./privacy-policy.vue?vue&type=template&id=290e01a3&scoped=true& */"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/views/privacy-policy.vue?vue&type=template&id=290e01a3&scoped=true&");
+/* harmony reexport (safe) */__webpack_require__.d(__webpack_exports__,"render",function(){return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_privacy_policy_vue_vue_type_template_id_290e01a3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"];});
+
+/* harmony reexport (safe) */__webpack_require__.d(__webpack_exports__,"staticRenderFns",function(){return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_privacy_policy_vue_vue_type_template_id_290e01a3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"];});
+
+
+
+/***/},
+
 /***/"./resources/js/components/views/product.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/views/product.vue ***!
@@ -75980,6 +76130,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */var _components_views_auth_verify__WEBPACK_IMPORTED_MODULE_24__=__webpack_require__(/*! ./components/views/auth/verify */"./resources/js/components/views/auth/verify.vue");
 /* harmony import */var _components_views_contact_us__WEBPACK_IMPORTED_MODULE_25__=__webpack_require__(/*! ./components/views/contact-us */"./resources/js/components/views/contact-us.vue");
 /* harmony import */var _components_views_profile__WEBPACK_IMPORTED_MODULE_26__=__webpack_require__(/*! ./components/views/profile */"./resources/js/components/views/profile.vue");
+/* harmony import */var _components_views_privacy_policy__WEBPACK_IMPORTED_MODULE_27__=__webpack_require__(/*! ./components/views/privacy-policy */"./resources/js/components/views/privacy-policy.vue");
 
 
 
@@ -76003,6 +76154,7 @@ function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj
 
 
 vue__WEBPACK_IMPORTED_MODULE_7___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]);
+
 
 
 
@@ -76088,6 +76240,14 @@ component:_components_views_profile__WEBPACK_IMPORTED_MODULE_26__["default"],
 meta:{
 middleware:[_middleware_verified__WEBPACK_IMPORTED_MODULE_11__["default"],_middleware_auth__WEBPACK_IMPORTED_MODULE_10__["default"]]}},
 
+{
+path:'/privacy-policy',
+name:'privacy-policy',
+component:_components_views_privacy_policy__WEBPACK_IMPORTED_MODULE_27__["default"]},
+{
+path:'/terms-conditions',
+name:'terms-conditions',
+component:_components_views_privacy_policy__WEBPACK_IMPORTED_MODULE_27__["default"]},
 {
 path:'*',
 component:_components_views_products__WEBPACK_IMPORTED_MODULE_19__["default"]}];

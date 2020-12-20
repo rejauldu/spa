@@ -125,6 +125,6 @@ Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail
 Route::post('/logout', function (Request $request) {
     Auth::logout();
 });
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-
+Route::get('pages/{page}', function ($page) {
+    return App\Pages::where('name', $page)->first()->content;
 });

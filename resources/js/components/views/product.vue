@@ -135,6 +135,9 @@ export default {
                 .then(function (response) {
                     if(response.data) {
                         _this.product = response.data;
+                        _this.$nextTick(() => {
+                            _this.$refs.primary.sync( _this.$refs.secondary.splide );
+                        });
                     }
                 })
                 .catch(function (error) {
@@ -178,7 +181,6 @@ export default {
     },
     mounted() {
         this.updateProduct();
-        this.$refs.primary.sync( this.$refs.secondary.splide );
     }
 }
 </script>
