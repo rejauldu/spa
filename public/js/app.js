@@ -15832,6 +15832,7 @@ deep:true}}};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */var core_js_modules_es_array_reduce__WEBPACK_IMPORTED_MODULE_0__=__webpack_require__(/*! core-js/modules/es.array.reduce */"./node_modules/core-js/modules/es.array.reduce.js");
 /* harmony import */var core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_1__=__webpack_require__(/*! core-js/modules/es.function.name */"./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */var _store__WEBPACK_IMPORTED_MODULE_2__=__webpack_require__(/*! ../../store */"./resources/js/store.js");
 
 
 //
@@ -15974,6 +15975,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */__webpack_exports__["default"]={
 name:"checkout",
 data:function data(){
@@ -16018,11 +16020,18 @@ data.products=this.getProducts;
 data.quantities=this.getQuantities;
 this.error=false;
 
+if(!this.products.length){
+this.error='Bag is empty! Please add product to your bag.';
+}
+
 if(this.$store.getters.isLoggedin){
 data.user_id=this.$store.getters.user.id;
 }else {
 if(!this.$refs.name.value){
+if(this.$refs.guest.classList.contains('collapsed')){
 this.$refs.guest.click();
+}
+
 this.$nextTick(function(){
 _this2.$refs.name.focus();
 
@@ -16030,7 +16039,7 @@ _this2.$refs.guest.scrollIntoView({
 behavior:"smooth"});
 
 });
-this.error=true;
+this.error='Enter Name';
 }else if(!this.$refs.phone.value){
 this.$nextTick(function(){
 _this2.$refs.phone.focus();
@@ -16039,7 +16048,7 @@ _this2.$refs.name.scrollIntoView({
 behavior:"smooth"});
 
 });
-this.error=true;
+this.error='Enter Phone';
 }else if(!this.$refs.city.value){
 this.$nextTick(function(){
 _this2.$refs.city.focus();
@@ -16048,7 +16057,7 @@ _this2.$refs.phone.scrollIntoView({
 behavior:"smooth"});
 
 });
-this.error=true;
+this.error='Enter City';
 }else if(!this.$refs.region.value){
 this.$nextTick(function(){
 _this2.$refs.region.focus();
@@ -16057,7 +16066,7 @@ _this2.$refs.city.scrollIntoView({
 behavior:"smooth"});
 
 });
-this.error=true;
+this.error='Enter Region';
 }else if(!this.$refs.address.value){
 this.$nextTick(function(){
 _this2.$refs.address.focus();
@@ -16066,7 +16075,7 @@ _this2.$refs.city.scrollIntoView({
 behavior:"smooth"});
 
 });
-this.error=true;
+this.error='Enter Address';
 }
 
 data.name=this.$refs.name.value;
@@ -16087,14 +16096,31 @@ _this2.$refs.cod.scrollIntoView({
 behavior:"smooth"});
 
 });
-this.error=true;
+this.error='Enter TraxId';
 }
 
 data.payment_method=this.payment_method;
 data.trxid=this.$refs.trxid.value;
 }
 
-if(this.error)return false;//axios here
+if(this.error)return false;
+
+var _this=this;
+
+this.$store.dispatch("changeLoading",true);
+axios.post('/admin/orders',data).then(function(response){
+_this.products=[];
+
+_this.$store.dispatch("clearCart");
+
+_this.error="Thank you! We have received your order. We will contact you shortly.";
+
+_this.$store.dispatch("changeLoading",false);
+}).catch(function(error){
+_this.error="An error occurred. Check your internet connection.";
+
+_this.$store.dispatch("changeLoading",false);
+});
 }},
 
 computed:{
@@ -52651,7 +52677,11 @@ _c(
 [
 _c(
 "router-link",
-{staticClass:"logo",attrs:{to:"/"}},
+{
+staticClass:
+"width-200 pl-2 d-inline-block text-decoration-none bg-white",
+attrs:{to:"/"}},
+
 [_vm._v("Home")])],
 
 
@@ -55921,7 +55951,7 @@ _vm.error?
 _c(
 "div",
 {staticClass:"alert alert-danger text-center"},
-[_vm._v("Please provide all informations")]):
+[_vm._v(_vm._s(_vm.error))]):
 
 _vm._e(),
 _vm._v(" "),
@@ -76360,6 +76390,9 @@ context.commit("changeLoading",data);
 changeCart:function changeCart(context){
 var data=arguments.length>1&&arguments[1]!==undefined?arguments[1]:null;
 context.commit("changeCart",data);
+},
+clearCart:function clearCart(context){
+context.commit("clearCart");
 }},
 
 mutations:{
@@ -76401,6 +76434,10 @@ state.loading=data;
 changeCart:function changeCart(state){
 var data=arguments.length>1&&arguments[1]!==undefined?arguments[1]:null;
 if(data)state.cart=data;
+localStorage.cart=JSON.stringify(state.cart);
+},
+clearCart:function clearCart(state){
+state.cart=[];
 localStorage.cart=JSON.stringify(state.cart);
 }}});
 

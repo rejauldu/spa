@@ -47,7 +47,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        
+
 		return view('backend.orders.create');
     }
 
@@ -59,9 +59,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        
+
 		$inputs = ['name' => $request->name, 'billing_division_id' => $request->division_id, 'billing_region_id' => $request->region_id, 'billing_address' => $request->address, 'phone' => $request->phone, 'email' => $request->email];
-		
+
 		if(Auth::check()) {
 			$user = Auth::user();
 			$data['customer_id'] = $user->id;
@@ -74,12 +74,12 @@ class OrderController extends Controller
 		if($request->payment_id == 1)
 		    $data['trxid'] = $request->trxid;
 		$order = Order::create($data);
-		for($i=0; $i<count($request->product_id); $i++) {
-		    $product = Product::find($request->product_id[$i]);
-			OrderDetail::create(['order_id' => $order->id, 'product_id' => $product->id, 'quantity' => $request->quantity[$i], 'price' => $product->msrp, 'total' => $product->msrp*$request->quantity[$i]]);
+		for($i=0; $i<count($request->products); $i++) {
+		    $product = Product::find($request->products[$i]);
+			OrderDetail::create(['order_id' => $order->id, 'product_id' => $product->id, 'quantity' => $request->quantities[$i], 'price' => $product->msrp, 'total' => $product->msrp*$request->quantities[$i]]);
 		}
 		$order->update(['amount' => $this->totalPrice($order)]);
-		return redirect()->route('order-complete');
+		return 'Order Received';
     }
 
     /**
@@ -128,7 +128,7 @@ class OrderController extends Controller
     {
 		$data = $request->except('_token', '_method');
 		$order = Order::where('id', $id)->with('details.product')->first();
-		
+
 		$credited_ids = [3, 4, 5];
 		$debited_ids = [6, 7];
 		if(in_array($request->order_status_id, $credited_ids) && !in_array($order->order_status_id, $debited_ids)) {
@@ -153,7 +153,7 @@ class OrderController extends Controller
 		$order->delete();
 		return redirect()->back()->with('message', 'Order has been deleted');
     }
-	
+
 	public function incomplete()
     {
 		$user = Auth::user();
@@ -165,7 +165,7 @@ class OrderController extends Controller
 				});
 			});
 		$orders = $orders->orderBy('id', 'desc')->get();
-		
+
 		return view('backend.orders.index', compact('orders'));
     }
 	/**
@@ -279,6 +279,7 @@ class OrderController extends Controller
     }
     private function totalPrice($order)
     {
-        return $order->total + $this->shipping($order) + $this->packaging($order);
+        return $this->total($order);
+//        return $order->total + $this->shipping($order) + $this->packaging($order);
     }
 }

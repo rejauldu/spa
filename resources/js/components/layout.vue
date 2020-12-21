@@ -85,7 +85,7 @@
             <div id="left-menu">
                 <div class="border">
                     <div class="display-6 p-3">
-                        <router-link to="/" class="logo">Home</router-link>
+                        <router-link to="/" class="width-200 pl-2 d-inline-block text-decoration-none bg-white">Home</router-link>
                     </div>
                     <div class="list-group list-group-flush accordion" role="tablist">
                         <router-link to="/templates" class="list-group-item list-group-item-action py-1 border-0" role="tab">

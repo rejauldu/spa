@@ -66,6 +66,9 @@ export default new Vuex.Store({
         },
         changeCart(context, data = null) {
             context.commit("changeCart", data);
+        },
+        clearCart(context) {
+            context.commit("clearCart");
         }
 	},
 	mutations: {
@@ -107,6 +110,10 @@ export default new Vuex.Store({
         changeCart(state, data=null) {
 	        if(data)
 	            state.cart = data;
+            localStorage.cart = JSON.stringify(state.cart);
+        },
+        clearCart(state) {
+            state.cart = [];
             localStorage.cart = JSON.stringify(state.cart);
         }
 	}

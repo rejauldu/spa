@@ -129,7 +129,7 @@
                     <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Subtotal ({{ $store.getters.quantity }}) items</div><div>BDT {{ subTotal }}</div></div>
                     <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Shipping Charge</div><div>BDT {{ shipping }}</div></div>
                     <div class="d-flex flex-nowrap display-6 alert alert-light border border-light"><div class="mr-auto">Order Total</div><div>BDT {{ total }}</div></div>
-                    <div class="alert alert-danger text-center" v-if="error">Please provide all informations</div>
+                    <div class="alert alert-danger text-center" v-if="error">{{ error }}</div>
                     <div class="mb-3"><a href="#" @click.prevent="order()" class="w-100 btn btn-theme">Order Now</a></div>
                     <div><router-link to="/products" class="w-100 btn alert-warning">Continue Shopping</router-link></div>
                 </div>
@@ -139,6 +139,8 @@
 </template>
 
 <script>
+import store from "../../store";
+
 export default {
     name: "checkout",
     data() {
@@ -182,40 +184,45 @@ export default {
             data.products = this.getProducts;
             data.quantities = this.getQuantities;
             this.error = false;
+            if(!this.products.length) {
+                this.error = 'Bag is empty! Please add product to your bag.'
+            }
             if (this.$store.getters.isLoggedin){
                 data.user_id = this.$store.getters.user.id;
             } else {
                 if(!this.$refs.name.value) {
-                    this.$refs.guest.click();
+                    if (this.$refs.guest.classList.contains('collapsed')) {
+                        this.$refs.guest.click();
+                    }
                     this.$nextTick(() => {
                         this.$refs.name.focus();
                         this.$refs.guest.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = true;
+                    this.error = 'Enter Name';
                 } else if(!this.$refs.phone.value) {
                     this.$nextTick(() => {
                         this.$refs.phone.focus();
                         this.$refs.name.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = true;
+                    this.error = 'Enter Phone';
                 } else if(!this.$refs.city.value) {
                     this.$nextTick(() => {
                         this.$refs.city.focus();
                         this.$refs.phone.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = true;
+                    this.error = 'Enter City';
                 } else if(!this.$refs.region.value) {
                     this.$nextTick(() => {
                         this.$refs.region.focus();
                         this.$refs.city.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = true;
+                    this.error = 'Enter Region';
                 } else if(!this.$refs.address.value) {
                     this.$nextTick(() => {
                         this.$refs.address.focus();
                         this.$refs.city.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = true;
+                    this.error = 'Enter Address';
                 }
                 data.name = this.$refs.name.value;
                 data.phone = this.$refs.phone.value;
@@ -231,14 +238,26 @@ export default {
                         this.$refs.trxid.focus();
                         this.$refs.cod.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = true;
+                    this.error = 'Enter TraxId';
                 }
                 data.payment_method = this.payment_method;
                 data.trxid = this.$refs.trxid.value;
             }
             if(this.error)
                 return false;
-            //axios here
+            var _this = this;
+            this.$store.dispatch("changeLoading", true);
+            axios.post('/admin/orders', data)
+                .then(function (response) {
+                    _this.products = [];
+                    _this.$store.dispatch("clearCart");
+                    _this.error = "Thank you! We have received your order. We will contact you shortly.";
+                    _this.$store.dispatch("changeLoading", false);
+                })
+                .catch(function (error) {
+                    _this.error = "An error occurred. Check your internet connection.";
+                    _this.$store.dispatch("changeLoading", false);
+                });
         }
     },
     computed: {
