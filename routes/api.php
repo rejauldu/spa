@@ -121,6 +121,17 @@ Route::get('/get-locations', function (Request $request) {
     ]);
     return $response;
 });
+Route::get('/get-orders', function (Request $request) {
+    $user = auth()->user();
+    $orders = \App\Order::where('customer_id', $user->id)->with('status')->latest()->paginate(5);
+    return $orders;
+});
+Route::get('/orders/{id}', function ($id) {
+    $order = [];
+    if(Auth::check())
+        $order = \App\Order::where('id', $id)->with('status', 'details.product', 'payment')->first();
+    return $order;
+});
 Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::post('/logout', function (Request $request) {
     Auth::logout();

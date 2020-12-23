@@ -96,7 +96,7 @@
                         </a>
                         <b-collapse visible id="payment" class="mt-2">
                             <div class="custom-control custom-radio">
-                                <input type="radio" ref="cod" v-model="payment_method" name="payment_method" value="cod" class="custom-control-input" id="cod">
+                                <input type="radio" ref="cod" v-model="payment_id" name="payment_id" value="2" class="custom-control-input" id="cod">
                                 <label class="custom-control-label" for="cod">
                                     Cash on Delivery
                                     <i class="fa fa-info-circle cursor-pointer" id="cod-tooltip"></i>
@@ -108,7 +108,7 @@
                                 </label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input type="radio" v-model="payment_method" name="payment_method" value="bkash" class="custom-control-input" id="bkash">
+                                <input type="radio" v-model="payment_id" name="payment_id" value="1" class="custom-control-input" id="bkash">
                                 <label class="custom-control-label" for="bkash">
                                     bKash
                                     <i class="fa fa-info-circle cursor-pointer" id="bkash-tooltip"></i>
@@ -122,7 +122,7 @@
                                         </div>
                                     </b-tooltip>
                                 </label>
-                                <input ref="trxid" v-if="payment_method == 'bkash'" type="text" v-model="trxid" name="trxid" class="form-control" id="trxid" placeholder="TrxId" autofocus>
+                                <input ref="trxid" v-if="payment_id == 1" type="text" v-model="trxid" name="trxid" class="form-control" id="trxid" placeholder="TrxId" autofocus>
                             </div>
                         </b-collapse>
                     </div>
@@ -150,7 +150,7 @@ export default {
             division_id: 0,
             region_id: 0,
             products: this.$store.getters.cart,
-            payment_method: 'bkash',
+            payment_id: 1,
             trxid: '',
             error: false
         }
@@ -198,31 +198,31 @@ export default {
                         this.$refs.name.focus();
                         this.$refs.guest.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = 'Enter Name';
+                    this.error = 'Enter Your Name';
                 } else if(!this.$refs.phone.value) {
                     this.$nextTick(() => {
                         this.$refs.phone.focus();
                         this.$refs.name.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = 'Enter Phone';
+                    this.error = 'Enter Your Phone';
                 } else if(!this.$refs.city.value) {
                     this.$nextTick(() => {
                         this.$refs.city.focus();
                         this.$refs.phone.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = 'Enter City';
+                    this.error = 'Enter Your City';
                 } else if(!this.$refs.region.value) {
                     this.$nextTick(() => {
                         this.$refs.region.focus();
                         this.$refs.city.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = 'Enter Region';
+                    this.error = 'Enter Your Region';
                 } else if(!this.$refs.address.value) {
                     this.$nextTick(() => {
                         this.$refs.address.focus();
                         this.$refs.city.scrollIntoView({behavior:"smooth"});
                     });
-                    this.error = 'Enter Address';
+                    this.error = 'Enter Your Address';
                 }
                 data.name = this.$refs.name.value;
                 data.phone = this.$refs.phone.value;
@@ -232,7 +232,7 @@ export default {
             }
             if(this.error)
                 return false;
-            if(this.payment_method == 'bkash') {
+            if(this.payment_id == 1) {
                 if(!this.$refs.trxid.value) {
                     this.$nextTick(() => {
                         this.$refs.trxid.focus();
@@ -240,9 +240,9 @@ export default {
                     });
                     this.error = 'Enter TraxId';
                 }
-                data.payment_method = this.payment_method;
                 data.trxid = this.$refs.trxid.value;
             }
+            data.payment_id = this.payment_id;
             if(this.error)
                 return false;
             var _this = this;

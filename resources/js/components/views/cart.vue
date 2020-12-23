@@ -27,15 +27,15 @@
                                 <b-col cols="6" lg="4" class="d-none d-sm-block size-23 width-50"><img :src="'/assets/products/'+product.id+'/'+product.image1" /></b-col>
                                 <b-col cols="12" sm="6" lg="8" class="d-flex align-items-center justify-content-center">
                                     <div>
-                                        <div class="display-6 nowrap excerpt">{{ products.name }}</div>
-                                        <div>Price: BDT {{ product.msrp }}</div>
+                                        <div class="display-6 nowrap excerpt">{{ product.name }}</div>
+                                        <div>BDT {{ product.msrp }}</div>
                                     </div>
                                 </b-col>
                             </b-row>
                         </b-container>
                     </td>
-                    <td class="p-2">
-                        <div class="input-group d-flex justify-content-center flex-nowrap">
+                    <td class="p-2 vertical-center">
+                        <div class="input-group d-flex align-items-center justify-content-center flex-nowrap">
                             <div class="input-group-prepend cursor-pointer">
                                 <span class="input-group-text bg-light" @click="increase(product, -1)">-</span>
                             </div>
@@ -66,9 +66,6 @@
 </template>
 
 <script>
-
-
-import store from "../../store";
 
 export default {
     name: 'cart',

@@ -33,16 +33,16 @@
 							<div class="col-12 col-sm-6">
 								<div class="img-thumbnail mb-3 p-3 list-group-item-warning">
 									<h3>Address</h3>
-									<div>{{ $order->customer->name ?? $order->guest->name }}</div>
-									<div>{{ $order->customer->address ?? $order->guest->billing_address }}</div>
-									<div><strong>{{ $order->customer->region->name ?? $order->guest->billing_region->name }}</strong>, {{ $order->customer->division->name ?? $order->guest->billing_division->name }}</div>
-								    <div>{{ $order->customer->phone ?? $order->guest->phone }}</div>
+									<div>{{ $order->customer->name ?? $order->guest->name ?? ''}}</div>
+									<div>{{ $order->customer->address ?? $order->guest->billing_address ?? ''}}</div>
+									<div><strong>{{ $order->customer->region->name ?? $order->guest->billing_region->name ?? ''}}</strong>, {{ $order->customer->division->name ?? $order->guest->billing_division->name ?? ''}}</div>
+								    <div>{{ $order->customer->phone ?? $order->guest->phone ?? ''}}</div>
 								</div>
 							</div>
 							<div class="col-12 col-sm-6">
 								<div class="img-thumbnail mb-3 p-3 list-group-item-warning">
 									<h3>Others</h3>
-									<div>Payment: {{ $order->payment->name }}</div>
+									<div>Payment: {{ $order->payment->name ?? 'Unknown'}}</div>
 									<div>TrxID: {{ $order->trxid ?? '(Not available)' }}</div>
 									<div>No. of Crate: {{ $crate ?? 0 }}</div>
 								    <div>No. of Carton: {{ $carton ?? 0 }}</div>
@@ -54,7 +54,7 @@
 										@php($total = 0)
 										@foreach($order->details as $detail)
 										<tr>
-											<td class="size-11"><img src="{{ url('assets/products') }}/{{ $detail->product->image1 ?? 'not-found.jpg'}}" class="myModal-item img-thumbnail" width="100"></td>
+											<td class="size-11 width-100"><img src="{{ url('assets/products') }}/{{ $detail->product->id}}/{{ $detail->product->image1 ?? 'not-found.jpg'}}" class="myModal-item img-thumbnail"></td>
 											<td>{{ $detail->product->name ?? '' }}</td>
 											<td>@if($detail && $detail->product_status_id == 1) Sent to {{ config('app.name') }}
 											@elseif($detail && $detail->product_status_id == 2) Not Available
@@ -150,7 +150,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
     <script>
       $('.editor-tools').summernote({
-        placeholder: 'Enter email body',
+        placeholder: 'Enter comment',
         tabsize: 2,
         height: 100
       });

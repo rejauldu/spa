@@ -29,7 +29,7 @@ class OrderController extends Controller
     public function index()
     {
 		$user = Auth::user();
-		$orders = Order::with('customer', 'status');
+		$orders = Order::with('customer', 'guest', 'status');
 		if($user->role_id == 1)
 			$orders = $orders->whereHas('details', function(Builder $query) use($user) {
 				$query->whereHas('product', function(Builder $q) use($user) {
@@ -59,20 +59,20 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
-		$inputs = ['name' => $request->name, 'billing_division_id' => $request->division_id, 'billing_region_id' => $request->region_id, 'billing_address' => $request->address, 'phone' => $request->phone, 'email' => $request->email];
-
 		if(Auth::check()) {
 			$user = Auth::user();
 			$data['customer_id'] = $user->id;
 		} else {
+            $inputs = ['name' => $request->name, 'division_id' => $request->division_id, 'region_id' => $request->region_id, 'address' => $request->address, 'phone' => $request->phone];
 			$guest = Guest::create($inputs);
 			$data['guest_id'] = $guest->id;
 		}
-		$data['order_status_id'] = 3;
+		$data['order_status_id'] = 1;
 		$data['payment_id'] = $request->payment_id;
-		if($request->payment_id == 1)
-		    $data['trxid'] = $request->trxid;
+		if($request->payment_id == 1) {
+            $data['trxid'] = $request->trxid;
+            $data['order_status_id'] = 3;
+        }
 		$order = Order::create($data);
 		for($i=0; $i<count($request->products); $i++) {
 		    $product = Product::find($request->products[$i]);
@@ -129,15 +129,15 @@ class OrderController extends Controller
 		$data = $request->except('_token', '_method');
 		$order = Order::where('id', $id)->with('details.product')->first();
 
-		$credited_ids = [3, 4, 5];
-		$debited_ids = [6, 7];
+		$credited_ids = [3, 4, 5]; /*Cashed in to cashbook*/
+		$debited_ids = [1, 2, 6, 7, 8]; /*Cashed not in to cashbook*/
 		if(in_array($request->order_status_id, $credited_ids) && !in_array($order->order_status_id, $debited_ids)) {
 			$this->cashbook($order);
 		} elseif(!in_array($request->order_status_id, $debited_ids) && in_array($order->order_status_id, $credited_ids)) {
 			$cashbook_id = Cashbook::where('order_id', $id)->pluck('id');
 			Cashbook::destroy($cashbook_id);
 		}
-		$order->update(['order_status_id' => $order->order_status_id]);
+		$order->update(['order_status_id' => $request->order_status_id]);
 		return redirect(route('orders.index'))->with('message', 'Order updated successfully');
     }
 
@@ -157,7 +157,11 @@ class OrderController extends Controller
 	public function incomplete()
     {
 		$user = Auth::user();
-		$orders = Order::where('order_status_id', 3)->with('customer', 'status');
+		$orders = Order::where(function($q) {
+            $q->where('order_status_id', 1)
+                ->orWhere('order_status_id', 3);
+        })
+        ->with('customer.division', 'customer.region', 'guest.division', 'guest.region', 'status', 'payment');
 		if($user->role_id == 1)
 			$orders = $orders->whereHas('details', function(Builder $query) use($user) {
 				$query->whereHas('product', function(Builder $q) use($user) {

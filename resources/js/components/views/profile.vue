@@ -1,6 +1,9 @@
 <template>
     <div class="bg-light w-100">
         <div class="container">
+            <b-row class="justify-content-center">
+                <router-link to="/dashboard" class="btn btn-dark m-3">Show my orders</router-link>
+            </b-row>
             <div class="row justify-content-center align-items-center vh-55">
                 <div class="col-md-9 col-lg-7 col-xl-5">
                     <div class="w-100">

@@ -43,7 +43,7 @@
 								@foreach($orders as $order)
 								<tr>
 									<td>{{ $order->id }}</td>
-									<td>{{ $order->customer->name ?? ''}}</td>
+									<td>{{ $order->customer->name ?? $order->guest->name}}</td>
 									<td>{{ $order->status->name ?? ''}}</td>
 									<td>{{ $order->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('orders.edit', $order->id) }}" class="text-primary fa fa-eye"></a></td>

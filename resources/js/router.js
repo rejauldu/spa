@@ -18,6 +18,7 @@ import product from './components/views/product'
 import cart from './components/views/cart'
 import checkout from './components/views/checkout'
 import dashboard from './components/views/dashboard'
+import order from './components/views/order'
 import verify from './components/views/auth/verify'
 import contactUs from './components/views/contact-us'
 import profile from './components/views/profile'
@@ -65,6 +66,9 @@ const routes = [
     },
     {
         path:'/dashboard', name:'dashboard', component: dashboard, meta: { middleware: [ verified, auth] }
+    },
+    {
+        path:'/orders/:id', name:'order', component: order, meta: { middleware: [ verified, auth] }
     },
     {
         path:'/profile', name:'profile', component: profile, meta: { middleware: [ verified, auth] }

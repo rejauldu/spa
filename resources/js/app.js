@@ -21,6 +21,7 @@ axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://spa'
 
 Vue.component('layout', require('./components/layout.vue').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 const app = new Vue({
 	el: '#app',
