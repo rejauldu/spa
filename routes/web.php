@@ -31,6 +31,9 @@ Route::prefix('admin')->group(function () {
 
     Route::get('login/{social}', 'Backend\SocialLoginController@redirectToProvider')->name('social.callback');
     Route::get('login/{social}/callback', 'Backend\SocialLoginController@handleProviderCallback')->name('social.redirect');
+    Route::resource('notifications', 'Backend\NotificationController');
+    Route::get('notifications-all', 'Backend\NotificationController@all')->name('notifications.all');
+    Route::post('email', 'Backend\NotificationController@email')->name('email');
     Route::get('privacy-policy', 'Frontend\HomeController@privacyPolicy')->name('privacy-policy');
     Route::get('terms-conditions', 'Frontend\HomeController@privacyPolicy')->name('terms-conditions');
 
@@ -41,18 +44,17 @@ Route::prefix('admin')->group(function () {
         Route::resource('categories', 'Backend\CategoryController')->middleware('moderator:Category');
         Route::get('chats/delete/{id?}', 'Backend\ChatController@destroy')->name('chats.destroy');
         Route::get('chats/block/{id?}', 'Backend\ChatController@block')->name('chats.block');
-        Route::resource('chats', 'Backend\ChatController')->except(['destroy']);
+
         Route::get('checkout-login', 'Backend\OrderController@checkoutLogin')->name('checkout-login');
         Route::resource('colors', 'Backend\ColorController')->middleware('moderator:Color');
         Route::get('/dashboard', 'Backend\DashboardController@dashboard')->name('dashboard');
         Route::resource('home-sliders', 'Backend\ColorController')->middleware('moderator:Color');
-        Route::resource('notifications', 'Backend\NotificationController');
-        Route::get('notifications-all', 'Backend\NotificationController@all')->name('notifications.all');
         Route::resource('order-details', 'Backend\OrderDetailController');
         Route::get('orders-incomplete', 'Backend\OrderController@incomplete')->name('orders.incomplete');
         Route::resource('order-statuses', 'Backend\OrderStatusController')->middleware('moderator:Order Status');
         Route::get('orders-user', 'Backend\OrderController@user')->name('orders.user');
         Route::resource('payments', 'Backend\PaymentController')->middleware('moderator:Payment');
+        Route::resource('promos', 'Backend\PromoController')->middleware('moderator:Payment');
         Route::resource('permissions', 'Backend\PermissionController')->middleware('moderator:Permission');
         Route::put('permissions-update', 'Backend\PermissionController@updateList')->name('permissions.update.list')->middleware('moderator:Permission');
         Route::get('manage-products', 'Backend\ProductController@manageIndex')->name('manage-products.index')->middleware('moderator:Product');
@@ -83,6 +85,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 //Route::get('email/verify/{id}/{hash}', 'VerificationApiController@verify')->name('verification.verify');
 //Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 Route::middleware('cache.headers:public;max_age=3600;etag')->group(function () {
+    Route::resource('chats', 'Backend\ChatController')->except(['destroy'])->middleware('auth');
     Route::any('/{slug}', 'SpaController@index')->where('slug', '.*');
 });
 

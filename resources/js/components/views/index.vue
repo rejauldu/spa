@@ -1,5 +1,5 @@
 <template>
-	<b-container fluid>
+	<b-container fluid class="vh-55-min">
         <b-row id="top-carousel" class="alert-theme">
             <b-col cols="12" xl="2" class="d-none d-xl-block"></b-col>
             <b-col cols="12" xl="8" class="text-center height-30 line-height-30 nowrap">

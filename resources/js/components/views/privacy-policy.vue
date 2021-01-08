@@ -1,10 +1,8 @@
 <template>
-<b-container fluid>
+<b-container fluid class="vh-55-min">
     <b-row>
         <b-col cols="12"><h4 class="text-center">Privacy and Security</h4></b-col>
-        <b-col cols="12" class="text-justify" v-html="content">
-
-        </b-col>
+        <b-col cols="12" class="text-justify" v-html="content"></b-col>
     </b-row>
 </b-container>
 </template>

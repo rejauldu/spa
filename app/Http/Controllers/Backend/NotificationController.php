@@ -16,7 +16,7 @@ use Auth;
 class NotificationController extends Controller
 {
 	public function __construct() {
-		$this->middleware('moderator:Notification', ['except' => ['index']]);
+		$this->middleware('moderator:Notification', ['except' => ['index', 'email']]);
 	}
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class NotificationController extends Controller
      */
     public function create()
     {
-		
+
         return view('backend.notifications.create');
     }
 
@@ -57,7 +57,7 @@ class NotificationController extends Controller
 		} elseif(isset($request->database)) {
 			User::where('email', $request->email)->first()->notify(new DatabaseNotification((object) $request->all()));
 		} else {
-		    User::find(1)->notify(new DatabaseNotification((object) $request->all()))->with('message', 'Thank you. We have received your email. We will contact you shortly.');
+		    User::find(1)->notify(new DatabaseNotification((object) $request->all()));
 		}
         return redirect()->back()->with('message', 'Notification sent');
     }
@@ -119,5 +119,11 @@ class NotificationController extends Controller
     {
 		$notifications = Notification::with('user')->orderBy('id', 'desc')->get();
         return view('backend.notifications.all', compact('notifications'));
+    }
+
+    public function email(NotificationRequest $request)
+    {
+        User::find(1)->notify(new DatabaseNotification((object) $request->all()));
+        return 'Thank you. We have received your email. We will contact you shortly.';
     }
 }

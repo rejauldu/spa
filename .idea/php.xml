@@ -110,6 +110,8 @@
       <path value="$PROJECT_DIR$/vendor/codezero/laravel-localized-routes" />
       <path value="$PROJECT_DIR$/vendor/codezero/browser-locale" />
       <path value="$PROJECT_DIR$/vendor/0.0.0/composer-include-files" />
+      <path value="$PROJECT_DIR$/vendor/pusher/pusher-php-server" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

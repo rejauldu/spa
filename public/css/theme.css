@@ -796,7 +796,16 @@ table.dataTable thead .sorting_desc_disabled:before {
     height:calc(100vh - 54px) !important;
 }
 .vh-55 {
+    height:calc(100vh - 55px) !important;
+}
+.vh-55-min {
     min-height:calc(100vh - 55px) !important;
+}
+.vh-95 {
+    height:calc(100vh - 95px) !important;
+}
+.vh-95-min {
+    min-height:calc(100vh - 95px) !important;
 }
 .vh-100 {
     height:calc(100vh - 100px) !important;

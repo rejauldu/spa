@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#4ebac3">
     <meta http-equiv="Cache-control" content="public">
-    <link href="{{ asset('css/chat.css') }}?{{ time() }}" rel="stylesheet" />
+    <link href="{{ mix('css/chat.css') }}?{{ time() }}" rel="stylesheet" />
     <link href="{{ asset('css/theme.css') }}?{{ time() }}" rel="stylesheet" />
     <link href="{{ asset('css/style.css') }}?{{ time() }}" rel="stylesheet" />
 </head>
@@ -28,7 +28,7 @@
 </div>
 
 <div id="app">
-    <chat :messages='@json($messages)' :message_list='@json($message_list)' :user='@json($user)' :partner='@json($partner)'></chat>
+    <chat></chat>
 </div>
 
 <script src="{{ asset('js/chat.js') }}?{{ time() }}" crossorigin="anonymous"></script>

@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -72,5 +73,57 @@ class RegisterController extends Controller
         $user->sendEmailVerificationNotification();
 
         return $user;
+    }
+    /*
+     * SPA register request
+     */
+    protected function register(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        if ($request->wantsJson()) {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+            $user->sendEmailVerificationNotification();
+            $user->status_code = 201;
+            return $user;
+        } else {
+            $response = Response::json([
+                "message" => "Bad Request",
+                "status_code" => 400
+            ], 400);
+            return $response;
+        }
+    }
+    /*
+     * SPA email resend
+     */
+    protected function resendEmail(Request $request)
+    {
+        if(auth()->check()) {
+            $user = auth()->user();
+            if(!$user->email_verified_at) {
+                //$user->sendEmailVerificationNotification();
+                $user->status_code = 201;
+                return $user;
+            }
+            $response = Response::json([
+                "message" => "The email was verified",
+                "status_code" => 200
+            ]);
+            return $response;
+        } else {
+            $response = Response::json([
+                "message" => "Unauthorized",
+                "status_code" => 401
+            ]);
+            return $response;
+        }
     }
 }

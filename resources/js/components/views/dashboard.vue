@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid class="vh-55">
+    <b-container fluid class="vh-55-min">
         <b-row class="justify-content-center">
             <router-link to="/profile" class="btn btn-dark m-3">My Profile</router-link>
         </b-row>

@@ -14,7 +14,7 @@ use DB;
 class ChatController extends Controller
 {
 	public function __construct() {
-		
+
 	}
     /**
      * Display a listing of the resource.
@@ -50,7 +50,7 @@ class ChatController extends Controller
     public function store(Request $request)
     {
 		$data = $request->all();
-		
+
 		if($data['type'] == 'text' && $data['sender_id'] === Auth::user()->id) {
 			if($this->isBlocked($data)) {
 				return 'Your message is not delivered. This person has blocked your account in chat.';
@@ -67,7 +67,7 @@ class ChatController extends Controller
 			return $data;
 		} elseif($data['type'] == 'viewed_notification') {
 			$now = Carbon::now();
-			if($data['id']) 
+			if($data['id'])
 				Chat::find($data['id'])->update(['viewed_at' => $now]);
 			else
 				Chat::whereNull('viewed_at')->where('receiver_id', Auth::user()->id)->where('sender_id', $data['receiver_id'])->update(['viewed_at' => $now]);

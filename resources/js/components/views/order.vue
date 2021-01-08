@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid v-if="order" class="vh-55">
+    <b-container fluid v-if="order" class="vh-55-min">
         <b-row class="justify-content-center">
             <div class="card alert-warning flex-fill">
                 <div class="card-body">

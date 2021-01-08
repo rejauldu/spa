@@ -69,6 +69,9 @@ class OrderController extends Controller
 		}
 		$data['order_status_id'] = 1;
 		$data['payment_id'] = $request->payment_id;
+        if($request->promo) {
+            $data['promo'] = $request->promo;
+        }
 		if($request->payment_id == 1) {
             $data['trxid'] = $request->trxid;
             $data['order_status_id'] = 3;
@@ -97,6 +100,20 @@ class OrderController extends Controller
 		$shipping = $this->shipping($order);
 		$packaging = $this->packaging($order);
 		return view('backend.orders.show', compact('order', 'shipping', 'packaging'));
+    }
+
+    /**
+     * Display the specified resource in SPA.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showSpa($id)
+    {
+        $order = [];
+        if(Auth::check())
+            $order = Order::where('id', $id)->with('status', 'details.product', 'payment')->first();
+        return $order;
     }
 
     /**
@@ -285,5 +302,17 @@ class OrderController extends Controller
     {
         return $this->total($order);
 //        return $order->total + $this->shipping($order) + $this->packaging($order);
+    }
+
+    /**
+     * Display a listing of the resource in SPA.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getOrders()
+    {
+        $user = auth()->user();
+        $orders = \App\Order::where('customer_id', $user->id)->with('status')->latest()->paginate(5);
+        return $orders;
     }
 }

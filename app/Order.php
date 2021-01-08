@@ -13,7 +13,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'payment_id', 'trxid', 'customer_id', 'guest_id', 'shipper_id', 'order_status_id', 'required_at', 'shipping_date', 'paid_at', 'discount', 'amount', 'updated_at', 'created_at'
+        'payment_id', 'trxid', 'customer_id', 'guest_id', 'shipper_id', 'order_status_id', 'required_at', 'shipping_date', 'paid_at', 'discount', 'promo', 'amount', 'updated_at', 'created_at'
     ];
 
     /**
@@ -22,7 +22,7 @@ class Order extends Model
      * @var array
      */
     protected $hidden = [
-        
+
     ];
 
 	protected $dates = ['required_at', 'paid_at', 'updated_at', 'created_at'];

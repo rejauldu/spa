@@ -14,6 +14,7 @@ use App\Locations\Union;
 use App\Locations\Region;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Response;
 
 class UserController extends Controller
 {
@@ -132,5 +133,29 @@ class UserController extends Controller
 		$user = User::find($id);
 		$user->delete();
 		return redirect()->back()->with('message', 'User has been deleted');
+    }
+    /*
+     * All SPA visitors request user info on page request to backend
+     */
+    public function user(Request $request)
+    {
+        if(auth()->check()) {
+            $user = User::with('division', 'region')->find(Auth::id());
+            if($user->email_verified_at) {
+                $user->status_code = 200;
+                return $user;
+            }
+            $response = Response::json([
+                "message" => "Before proceeding, please check your email for a verification link",
+                "status_code" => 401
+            ]);
+            return $response;
+        } else {
+            $response = Response::json([
+                "message" => "Bad Request",
+                "status_code" => 400
+            ]);
+            return $response;
+        }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid>
+    <b-container fluid class="vh-55-min">
         <b-row class="py-5">
             <b-col cols="12" md="5" xl="6">
                 <splide :options="primaryOptions" ref="primary" v-if="product.id">

@@ -23,4 +23,8 @@ class SpaController extends Controller
         $products = Product::select('id', 'name', 'image1', 'note', 'msrp')->get();
         return view('spa', compact('products'));
     }
+    public function chat()
+    {
+        return view('chat');
+    }
 }

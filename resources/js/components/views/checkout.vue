@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid>
+    <b-container fluid class="vh-55-min">
         <b-row>
             <b-col cols="12" lg="8" v-if="$store.getters.isLoggedin">
                 <div class="card border my-md-3" style="border-width: 5px;">
@@ -77,14 +77,14 @@
                         </a>
                         <b-collapse id="coupon" class="mt-2">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Enter Promo">
+                                <input type="text" class="form-control" placeholder="Enter Promo" v-model="promo" ref="promo">
                                 <div class="input-group-append">
-                                    <a href="#" class="input-group-text text-decoration-none alert-theme">Apply</a>
+                                    <a href="#" @click.prevent="promoSubmit()" class="input-group-text text-decoration-none alert-theme">Apply</a>
                                 </div>
                             </div>
                             <div class="alert alert-primary">
                                 <p class="display-6 text-center">Have a promo code?</p>
-                                <div class="text-justify">Please enter that code in the Promo Code field above! If you have a VIP Discount Code, please enter that in the VIP Discount Code field in the Payment section during Checkout.</div>
+                                <div class="text-justify">Please enter that code in the Promo Code field above! If you have a VIP Discount Code, please enter that VIP Discount Code here.</div>
                             </div>
                         </b-collapse>
                     </div>
@@ -127,7 +127,8 @@
                         </b-collapse>
                     </div>
                     <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Subtotal ({{ $store.getters.quantity }}) items</div><div>BDT {{ subTotal }}</div></div>
-                    <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Shipping Charge</div><div>BDT {{ shipping }}</div></div>
+                    <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Discount ({{ discount_percent }}%)</div><div>BDT {{ discount }}</div></div>
+                    <div class="d-flex flex-nowrap alert alert-light border border-light"><div class="mr-auto">Shipping Charge</div><div>{{ shipping == 0?'Free':'BDT '+shipping }}</div></div>
                     <div class="d-flex flex-nowrap display-6 alert alert-light border border-light"><div class="mr-auto">Order Total</div><div>BDT {{ total }}</div></div>
                     <div class="alert alert-danger text-center" v-if="error">{{ error }}</div>
                     <div class="mb-3"><a href="#" @click.prevent="order()" class="w-100 btn btn-theme">Order Now</a></div>
@@ -152,6 +153,8 @@ export default {
             products: this.$store.getters.cart,
             payment_id: 1,
             trxid: '',
+            promo: '',
+            discount_percent: 0,
             error: false
         }
     },
@@ -183,6 +186,9 @@ export default {
             var data = {};
             data.products = this.getProducts;
             data.quantities = this.getQuantities;
+            if(this.promo) {
+                data.promo = this.promo;
+            }
             this.error = false;
             if(!this.products.length) {
                 this.error = 'Bag is empty! Please add product to your bag.'
@@ -258,6 +264,20 @@ export default {
                     _this.error = "An error occurred. Check your internet connection.";
                     _this.$store.dispatch("changeLoading", false);
                 });
+        },
+        promoSubmit() {
+            this.$store.dispatch("changeLoading", true);
+            var _this = this;
+            axios.post('/api/promo', {promo: this.promo})
+                .then(function (response) {
+                    _this.discount_percent = response.data.percent;
+                    _this.error = "Thank you! Your promo code has been applied";
+                    _this.$store.dispatch("changeLoading", false);
+                })
+                .catch(function (error) {
+                    _this.error = "An error occurred. Check your internet connection.";
+                    _this.$store.dispatch("changeLoading", false);
+                });
         }
     },
     computed: {
@@ -268,11 +288,14 @@ export default {
             }
             return price;
         },
+        discount: function () {
+            return parseInt(this.subTotal)*parseInt(this.discount_percent)/100;
+        },
         shipping: function () {
-            return 0;
+            return 10;
         },
         total: function () {
-            return parseInt(this.shipping)+parseInt(this.subTotal);
+            return parseInt(this.subTotal)-this.discount+parseInt(this.shipping);
         },
         getProducts: function() {
             return this.products.reduce((a, o) => (a.push(o.id), a), []);

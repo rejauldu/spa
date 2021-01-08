@@ -12,7 +12,7 @@
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#4ebac3">
         <meta http-equiv="Cache-control" content="public">
-        <link href="{{ mix('css/app.css') }}?{{ time() }}" rel="stylesheet" />
+        <link href="{{ asset('css/app.css') }}?{{ time() }}" rel="stylesheet" />
         <link href="{{ asset('css/theme.css') }}?{{ time() }}" rel="stylesheet" />
         <link href="{{ asset('css/style.css') }}?{{ time() }}" rel="stylesheet" />
     </head>
@@ -31,6 +31,6 @@
             <layout :products='@json($products)'></layout>
         </div>
 
-        <script src="{{ asset('js/app.js') }}?{{ time() }}" crossorigin="anonymous" defer></script>
+        <script src="{{ asset('js/app.js') }}?{{ time() }}" crossorigin="anonymous"></script>
     </body>
 </html>

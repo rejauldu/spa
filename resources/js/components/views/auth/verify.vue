@@ -2,7 +2,7 @@
     <div class="bg-theme-light w-100">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-9 col-lg-7 col-xl-5 vh-55">
+                <div class="col-md-9 col-lg-7 col-xl-5 vh-55-min">
                     <div class="position-center-v left-0 right-0">
                         <div class="card">
                             <div class="card-body">

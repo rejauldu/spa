@@ -1,5 +1,5 @@
 <template>
-<b-container fluid>
+<b-container fluid class="vh-55-min">
     <b-row class="bg-light p-5">
         <b-container>
             <b-row class="alert alert-secondary text-justify">
@@ -7,7 +7,7 @@
                     <svg class="position-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"></path></svg>
                 </b-col>
                 <b-col cols="12" md="10" xl="11">
-                        As we’re receiving high volumes of orders, parcels are taking up to a week to leave our warehouse. We’ll send you an email once your order has shipped. When checking your order status, it may take a few days after your order ships for the first update to be available online and it’s normal to see “Label created” until then.
+                        As we’re receiving high volumes of orders, parcels are taking up to a week to leave our warehouse. We’ll send you an email once your order has shipped. When checking your order status, it may take a few days after your order ships for the first update to be available online and it’s normal to see "Pending" or "Processing" until then.
                 </b-col>
             </b-row>
         </b-container>
@@ -27,13 +27,25 @@
                         <svg height="50" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 200'><path d='M100 100 l-100 -100 l5 -5 l105 105 l-105 105 l-5 -5 z' /></svg>
                     </div>
                 </b-row>
-                <b-row class="alert alert-secondary d-flex flex-nowrap justify-content-center align-items-center hover-opacity-8 cursor-pointer" v-b-modal.chat>
+                <a href="/chats/1" class="row text-decoration-none alert alert-secondary d-flex flex-nowrap justify-content-center align-items-center hover-opacity-8 cursor-pointer" v-if="$store.getters.isLoggedin">
                     <div class="pr-2 hover-opacity-5">
                         <svg height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z"></path></svg>
                     </div>
                     <div class="flex-grow-1">
                         <h3>Chat with us</h3>
-                        <div>Chat to our friendly OnBiponi experts online.</div>
+                        <div>Chat to our friendly OnBiponi experts online. </div>
+                    </div>
+                    <div class="pl-2">
+                        <svg height="50" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 200'><path d='M100 100 l-100 -100 l5 -5 l105 105 l-105 105 l-5 -5 z' /></svg>
+                    </div>
+                </a>
+                <b-row class="alert alert-secondary d-flex flex-nowrap justify-content-center align-items-center hover-opacity-8 cursor-pointer" v-b-modal.chat v-else>
+                    <div class="pr-2 hover-opacity-5">
+                        <svg height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z"></path></svg>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h3>Chat with us</h3>
+                        <div>Chat to our friendly OnBiponi experts online. </div>
                     </div>
                     <div class="pl-2">
                         <svg height="50" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 200'><path d='M100 100 l-100 -100 l5 -5 l105 105 l-105 105 l-5 -5 z' /></svg>
@@ -77,40 +89,74 @@
                     <circle cx="20" cy="20" r="15" fill="transparent" stroke="red" stroke-width="8" stroke-dasharray="75 25" stroke-dashoffset="25"></circle>
                 </svg>
                 <div>Busy!</div>
-                <div>We’re very busy taking calls and answering emails.</div>
+                <div>We’re very busy taking calls and answering chats. We recommend you to send email instead of call or chatting.</div>
             </div>
         </b-col>
     </b-row>
     <div>
         <!-- The modal -->
-        <b-modal centered id="email">
-            <div class="alert alert-danger">We usually respond within 3 working days</div>
+        <b-modal centered id="email" ok-only @ok="sendMail">
+            <div class="alert alert-danger">We usually respond within 2 working days</div>
+            <div class="form-group">
+                <label for="subject">Name:</label>
+                <input type="text" class="form-control" placeholder="Name" id="name" autofocus v-model="email.name">
+            </div>
+            <div class="form-group">
+                <label for="sender">Email:</label>
+                <input type="email" class="form-control" placeholder="Email" id="sender" autofocus v-model="email.sender">
+            </div>
             <div class="form-group">
                 <label for="subject">Subject:</label>
-                <input type="text" class="form-control" placeholder="Subject" id="subject" autofocus>
+                <input type="text" class="form-control" placeholder="Subject" id="subject" autofocus v-model="email.subject">
             </div>
             <div class="form-group">
                 <label for="body">Message:</label>
-                <textarea class="form-control" rows="5" id="body" placeholder="Write your message in short"></textarea>
+                <textarea class="form-control" rows="5" id="body" placeholder="Write your message in short" v-model="email.body"></textarea>
             </div>
         </b-modal>
-        <b-modal centered id="chat">Hello From chat Modal!</b-modal>
-        <b-modal centered id="call">
+        <b-modal centered id="chat" ok-only>
+            Please ligin to chat to our friendly OnBiponi experts online. <router-link to="/login">Login</router-link>
+        </b-modal>
+        <b-modal centered id="call" ok-only>
             <h3>OnBiponi® Customer Service</h3>
             <a href="tel:8801924974960">+8801924974960</a>
             <div>Monday to Friday 8am - 10pm BST</div>
             <div>Saturday and Sunday 10am - 6pm BST</div>
         </b-modal>
-        <b-modal centered id="mail">
-            Mail address modal
+        <b-modal centered id="mail" ok-only>
+            Flat-7B, 207/3 Azimpur, Lalbag Road, Dhaka-1211, Bangladesh.
+        </b-modal>
+        <b-modal centered id="thank-you-modal" ok-only>
+            <h3>Thank you!</h3>
+            <p>We have received your email. We will contact you as short as possible.</p>
         </b-modal>
     </div>
 </b-container>
 </template>
 
 <script>
+import store from "../../store";
+
 export default {
-name: "contact-us"
+name: "contact-us",
+    data() {
+        return {
+            email: {name:'', sender:'', subject:'', body:''}
+        }
+    },
+    methods: {
+        sendMail: function () {
+            store.dispatch("changeLogin", "1");
+            axios.post('/admin/email', this.email)
+                .then(function (response) {
+                    store.dispatch("changeLogin", "0");
+                    this.$bvModal.show('thank-you-modal');
+                })
+                .catch(function (error) {
+                    store.dispatch("changeLogin", "0");
+                });
+        }
+    }
 }
 </script>
 <style scoped>

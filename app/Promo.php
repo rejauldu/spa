@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pages extends Model
+class Promo extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,16 +12,7 @@ class Pages extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'content', 'updated_at', 'created_at'
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-
+        'promo', 'reusable', 'created_for_user', 'is_active', 'valid_from', 'valid_until', 'updated_at', 'created_at'
     ];
 
     /**
@@ -30,7 +21,13 @@ class Pages extends Model
      * @var array
      */
     protected $casts = [
+        'valid_from' => 'datetime',
+        'valid_until' => 'datetime',
         'updated_at' => 'datetime',
         'created_at' => 'datetime',
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User', 'created_for_user', 'id');
+    }
 }

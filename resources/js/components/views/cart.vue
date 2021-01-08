@@ -1,5 +1,5 @@
 <template>
-<b-container fluid>
+<b-container fluid class="vh-55-min">
     <b-row>
         <b-col cols="12" lg="8">
             <table class="table w-100 text-center">

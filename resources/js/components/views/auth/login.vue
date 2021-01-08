@@ -1,7 +1,7 @@
 <template>
     <div class="bg-light w-100">
         <div class="container">
-            <div class="row justify-content-center align-items-center vh-55">
+            <div class="row justify-content-center align-items-center vh-55-min">
                 <div class="col-md-9 col-lg-7 col-xl-5">
                     <div class="w-100">
                         <div class="card bg-transparent border-white" style="border-width:5px;">

@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid>
+    <b-container fluid class="vh-55-min">
         <b-row class="py-5" v-if="!products || (products.length == 0)">
             <b-col cols="12" sm="6" md="4" lg="3" xl="2" v-for="i in 12" :key="i">
                 <div class="card w-100 bg-skeleton size-23 mb-3">

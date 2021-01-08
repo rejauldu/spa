@@ -253,7 +253,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control height-40" placeholder="Your Email">
                                     <div class="input-group-append">
-                                        <span class="input-group-text bg-white text-black height-40">Subscribe</span>
+                                        <a href="#" @click.prevent="" class="input-group-text bg-white text-black height-40 text-decoration-none">Subscribe</a>
                                     </div>
                                 </div>
                             </b-col>
