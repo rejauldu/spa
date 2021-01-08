@@ -108,10 +108,23 @@ class PromoController extends Controller
      */
     public function promo(Request $request)
     {
-        $response = Response::json([
-            "promo" => $request->promo,
-            "percent" => 10
-        ]);
+        if(Auth::check())
+            $response = Promo::select('promo', 'percent')->where('promo', $request->promo)->where(function($q) {
+                $q->where('created_for_user', auth()->user()->id)
+                    ->orWhere('created_for_user', 0)
+                    ->orWhereNull('created_for_user');
+            })->first();
+        else
+            $response = Promo::select('promo', 'percent')->where('promo', $request->promo)->where(function($q) {
+                $q->where('created_for_user', 0)
+                    ->orWhereNull('created_for_user');
+        })->first();
+        if ($response === null) {
+            $response = Response::json([
+                "promo" => $request->promo,
+                "percent" => 0
+            ]);
+        }
         return $response;
     }
 }

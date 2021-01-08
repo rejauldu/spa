@@ -12,7 +12,7 @@ class Promo extends Model
      * @var array
      */
     protected $fillable = [
-        'promo', 'reusable', 'created_for_user', 'is_active', 'valid_from', 'valid_until', 'updated_at', 'created_at'
+        'promo', 'reusable', 'created_for_user', 'percent', 'is_active', 'valid_from', 'valid_until', 'updated_at', 'created_at'
     ];
 
     /**
