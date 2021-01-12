@@ -169,7 +169,7 @@ export default {
                     }
                 })
                 .catch(function (error) {
-                    _this.error = "An error occurred. Check your internet connection."
+                    _this.error = "An error occurred. Check your internet connection.";
                 });
         },
         updateRegions: function () {
@@ -179,7 +179,7 @@ export default {
                     _this.regions = response.data;
                 })
                 .catch(function (error) {
-                    _this.error = "An error occurred. Check your internet connection."
+                    _this.error = "An error occurred. Check your internet connection.";
                 });
         },
         order: function () {
@@ -292,7 +292,9 @@ export default {
             return parseInt(this.subTotal)*parseInt(this.discount_percent)/100;
         },
         shipping: function () {
-            return 10;
+            if(this.division_id == 6 && this.region_id <= 48)
+                return 80;
+            return 120;
         },
         total: function () {
             return parseInt(this.subTotal)-this.discount+parseInt(this.shipping);

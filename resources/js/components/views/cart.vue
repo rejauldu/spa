@@ -2,54 +2,56 @@
 <b-container fluid class="vh-55-min">
     <b-row>
         <b-col cols="12" lg="8">
-            <table class="table w-100 text-center">
-                <thead>
+            <div class="scroll-x scrollbar">
+                <table class="table w-100 text-center">
+                    <thead>
                     <tr class="alert alert-info">
                         <th class="py-3">Detail</th>
                         <th class="py-3">Quantity</th>
                         <th class="py-3">Total</th>
                         <th></th>
                     </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td colspan="4">
-                        <div class="d-flex alert alert-theme align-content-center border-0">
-                            <div class="d-flex align-content-center"><img src="/assets/products/image1.webp" class="img-thumbnail width-100" /></div>
-                            <div class="d-flex align-items-center pl-3">Congratulations! You are qualified for free shipping</div>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="border-bottom" v-for="product in products">
-                    <td class="p-2">
-                        <b-container fluid>
-                            <b-row>
-                                <b-col cols="6" lg="4" class="d-none d-sm-block size-23 width-50"><img :src="'/assets/products/'+product.id+'/'+product.image1" /></b-col>
-                                <b-col cols="12" sm="6" lg="8" class="d-flex align-items-center justify-content-center">
-                                    <div>
-                                        <div class="display-6 nowrap excerpt">{{ product.name }}</div>
-                                        <div>BDT {{ product.msrp }}</div>
-                                    </div>
-                                </b-col>
-                            </b-row>
-                        </b-container>
-                    </td>
-                    <td class="p-2 vertical-center">
-                        <div class="input-group d-flex align-items-center justify-content-center flex-nowrap">
-                            <div class="input-group-prepend cursor-pointer">
-                                <span class="input-group-text bg-light" @click="increase(product, -1)">-</span>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="4">
+                            <div class="d-flex alert alert-theme align-content-center border-0">
+                                <div class="d-flex align-content-center"><img src="/assets/products/image1.webp" class="img-thumbnail width-100" /></div>
+                                <div class="d-flex align-items-center pl-3">Congratulations! You are qualified for free shipping</div>
                             </div>
-                            <input type="text" v-model="product.quantity" min="1" class="text-center width-30 border-light display-6"/>
-                            <div class="input-group-append cursor-pointer">
-                                <span class="input-group-text bg-light" @click="increase(product, 1)">+</span>
+                        </td>
+                    </tr>
+                    <tr class="border-bottom" v-for="product in products">
+                        <td class="p-2">
+                            <b-container fluid>
+                                <b-row>
+                                    <b-col cols="6" lg="4" class="d-none d-sm-block size-23 width-50"><img :src="'/assets/products/'+product.id+'/'+product.image1" /></b-col>
+                                    <b-col cols="12" sm="6" lg="8" class="d-flex align-items-center justify-content-center">
+                                        <div>
+                                            <div class="display-6 nowrap excerpt">{{ product.name }}</div>
+                                            <div>BDT {{ product.msrp }}</div>
+                                        </div>
+                                    </b-col>
+                                </b-row>
+                            </b-container>
+                        </td>
+                        <td class="p-2 vertical-center">
+                            <div class="input-group d-flex align-items-center justify-content-center flex-nowrap">
+                                <div class="input-group-prepend cursor-pointer">
+                                    <span class="input-group-text bg-light" @click="increase(product, -1)">-</span>
+                                </div>
+                                <input type="text" v-model="product.quantity" min="1" class="text-center width-30 border-light display-6"/>
+                                <div class="input-group-append cursor-pointer">
+                                    <span class="input-group-text bg-light" @click="increase(product, 1)">+</span>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="p-2">BDT {{ product.msrp*product.quantity }}</td>
-                    <td><a href="#" @click.prevent="remove(product.id)" class="btn btn-sm alert-danger">x</a></td>
-                </tr>
-                </tbody>
-            </table>
+                        </td>
+                        <td class="p-2">BDT {{ product.msrp*product.quantity }}</td>
+                        <td><a href="#" @click.prevent="remove(product.id)" class="btn btn-sm alert-danger">x</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </b-col>
         <b-col cols="12" lg="4" class="d-flex align-items-center">
             <div class="border border-deep-light w-100 my-3 rounded">
@@ -114,5 +116,7 @@ export default {
 </script>
 
 <style scoped>
-
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 0;
+}
 </style>
