@@ -1,4 +1,12 @@
 /*!
+ * Pusher JavaScript Library v7.0.2
+ * https://pusher.com/
+ *
+ * Copyright 2020, Pusher
+ * Released under the MIT licence.
+ */
+
+/*!
  * Splide.js
  * Version  : 2.4.14
  * License  : MIT

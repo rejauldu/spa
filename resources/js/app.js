@@ -18,7 +18,7 @@ import store from './store'
 
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://spa'
+axios.defaults.baseURL = 'https://spa.onbiponi.com'
 
 Vue.component('layout', require('./components/layout.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
