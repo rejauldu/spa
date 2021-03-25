@@ -50,7 +50,7 @@
 									<td>{{ $ground_clearance->name }}</td>
 									<td>{{ $ground_clearance->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('ground-clearances.edit', $ground_clearance->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('ground-clearances.destroy', $ground_clearance->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('ground-clearances.destroy', $ground_clearance->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

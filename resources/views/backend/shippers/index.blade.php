@@ -48,7 +48,7 @@
 									<td>@if($shipper->is_active) Active @else Inactive @endif</td>
 									<td>{{ $shipper->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('shippers.edit', $shipper->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('shippers.destroy', $shipper->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('shippers.destroy', $shipper->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

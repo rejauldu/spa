@@ -50,7 +50,7 @@
 									<td><img src="{{ asset('/assets/categories') }}/{{ $category->picture ?? '../not-found.jpg' }}" width="50" height="50" /></td>
 									<td>{{ $category->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('categories.edit', $category->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('categories.destroy', $category->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('categories.destroy', $category->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

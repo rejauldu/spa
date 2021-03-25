@@ -81,14 +81,6 @@
     										<td>Shipping:</td>
     										<td>TK. {{ $shipping }}</td>
 										</tr>
-										<tr>
-										    <td></td>
-    										<td></td>
-    										<td></td>
-    										<td></td>
-    										<td>Packaging:</td>
-    										<td>TK. {{ $packaging }}</td>
-										</tr>
 									</tbody>
 									<tfoot>
 									    <tr class="list-group-item-danger">
@@ -97,7 +89,7 @@
     										<td></td>
     										<td></td>
     										<td>Total:</td>
-    										<td>TK. {{ $order->amount }}</td>
+    										<td>TK. {{ $order->amount+$shipping }}</td>
 										</tr>
 									</tfoot>
 								</table>
@@ -105,7 +97,7 @@
 							<div class="col-12 col-sm-2 col-md-6">
 							</div>
 							<div class="col-12 col-sm-10 col-md-6 text-right">
-							@moderator(Order)
+							@agent
 								<form action="{{ route('orders.update', $order->id) }}" method="post">
 									@method('put')
 									@csrf
@@ -122,7 +114,7 @@
 										<button id="order-submit" class="btn btn-theme mt-5" type="submit">Update</button>
 									</div>
 								</form>
-							@endmoderator
+							@endagent
 							</div>
 						</div><!--/row-->
 					</div>

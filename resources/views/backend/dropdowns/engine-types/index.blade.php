@@ -48,7 +48,7 @@
 									<td>{{ $engine_type->name }}</td>
 									<td>{{ $engine_type->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('engine-types.edit', $engine_type->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('engine-types.destroy', $engine_type->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('engine-types.destroy', $engine_type->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

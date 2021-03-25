@@ -48,7 +48,7 @@
 									<td>{{ $product->name }}</td>
 									<td>{{ $product->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('manage-products.edit', $product->id) }}"><i class="fa fa-edit text-success"></i></a></td>
-									<td><a href="{{ route('manage-products.destroy', $product->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('manage-products.destroy', $product->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

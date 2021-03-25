@@ -54,8 +54,6 @@
 									<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile">Profile</a></li>
 									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password">Password</a></li>
 									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#address">Address</a></li>
-									<!--<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#billing">Billing Address</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#shipping">Shipping Address</a></li>-->
 								</ul>
 								<div class="tab-content mt-3">
 									<div class="tab-pane active" id="profile">
@@ -70,37 +68,6 @@
 												<label for="phone">Phone</label>
 												<input id="phone" type="tel" class="form-control" name="phone" value="{{ $profile->phone ?? '' }}" placeholder="Enter phone number" title="Enter your phone number."/>
 											</div>
-											<!--<div class="form-group">
-												<label for="card-type">Card Type</label>
-												<select id="card-type" name="payment_id" class="custom-select">
-													<option value="0" selected>--Select Card Type--</option>
-													@foreach($payments as $payment)
-													<option value="{{ $payment->id }}" @if($profile->payment && $payment->id == $profile->payment->id) selected @endif>{{ $payment->name }}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="name-on-card">Name on card</label>
-												<input id="name-on-card" type="text" class="form-control" name="name_on_card" value="{{ $profile->name_on_card ?? '' }}" placeholder="Enter you name on card" title="Enter your phone number."/>
-											</div>
-											<div class="form-group">
-												<div class="form-group">
-													<div class="row">
-														<div class="col-6 col-md-3">
-															<label for="card-exp-month">Exp. date</label>
-															<input id="card-exp-month" type="number" class="form-control" name="card_exp_month" value="{{ $profile->card_exp_month ?? '' }}" placeholder="Month" title="Exp. Month"/>
-														</div>
-														<div class="col-6 col-md-3">
-															<label for="card-exp-year">Exp. Year</label>
-															<input id="card-exp-year" type="number" class="form-control" name="card_exp_year" value="{{ $profile->card_exp_year ?? '' }}" placeholder="Year" title="Exp. Year"/>
-														</div>
-														<div class="col-12 col-md-6">
-															<label for="cvv">CVV</label>
-															<input id="cvv" type="number" class="form-control" name="cvv" value="{{ $profile->cvv ?? '' }}" placeholder="CVV" title="CVV"/>
-														</div>
-													</div>
-												</div>
-											</div>-->
 											<div class="form-group">
 												<button id="profile-submit" class="btn btn-theme" type="submit">Update</button>
 											</div>
@@ -241,6 +208,27 @@
 								</div><!--/tab-content-->
 							</div><!--/col-9-->
 						</div><!--/row-->
+                        <hr/>
+                        @moderator(User)
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-7 col-xl-8"></div>
+                            <div class="col-12 col-md-6 col-lg-5 col-xl-4">
+                                <form action="{{ route('users.change-role') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ $profile->id }}" />
+                                    <select id="change-role" name="role_id" class="custom-select mb-3">
+                                        <option value="0" selected>--Select role--</option>
+                                        @foreach($roles as $role)
+                                            <option value="{{ $role->id }}" @if($profile->role_id == $role->id) selected @endif>{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="form-group">
+                                        <button id="other-submit" class="btn btn-theme" type="submit">Update Role</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        @endmoderator
 					</div>
 				</div>
 			</div>

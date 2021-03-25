@@ -15,6 +15,7 @@ use App\Locations\Region;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Response;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -87,7 +88,8 @@ class UserController extends Controller
 		$upazilas = Upazila::all();
 		$unions = Union::all();
 		$regions = Region::all();
-        return view('backend.users.edit', compact('profile', 'payments', 'divisions', 'districts', 'upazilas', 'unions', 'regions'));
+		$roles = Role::all();
+        return view('backend.users.edit', compact('profile', 'payments', 'divisions', 'districts', 'upazilas', 'unions', 'regions', 'roles'));
     }
 
     /**
@@ -99,6 +101,10 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+        $user = User::find($id);
+        if(!$user->haveEditPermission($id)) {
+            return redirect()->back()->with('message', 'Permission denied');
+        }
 		$file = $request->file('photo');
 		if($file) {
 			$destination_path = 'assets/profile';
@@ -106,10 +112,9 @@ class UserController extends Controller
 			$file->move($destination_path, $new_name);
 			User::where('id', $id)->update(['photo'=>$new_name]);
 			if($request->data_source && $request->data_source == 'frontend') {
-				User::where('id', $id)->update($request->except('_token', '_method', 'data_source', 'photo'));
+				$user->update($request->except('_token', '_method', 'data_source', 'photo', 'role_id'));
 			}
 		} elseif($request->password_old) {
-			$user = User::find($id);
 			if(Hash::check($request->password_old, $user->password)) {
 				$user->fill([
 					'password' => Hash::make($request->password)
@@ -118,8 +123,9 @@ class UserController extends Controller
 				return 'Password did not match';
 			}
 		} else {
-			User::where('id', $id)->update($request->except('_token', '_method', 'password_old', 'password', 'password_confirmation', 'data_source', 'photo'));
+			User::where('id', $id)->update($request->except('_token', '_method', 'password_old', 'password', 'password_confirmation', 'data_source', 'photo', 'role_id'));
 		}
+		return redirect()->back()->with('message', 'Profile updated successfully');
     }
 
     /**
@@ -157,5 +163,25 @@ class UserController extends Controller
             ]);
             return $response;
         }
+    }
+    public function login($id) {
+        $user = User::find($id);
+        if(Auth::user()->role_id>$user->role_id) {
+            Auth::login($user);
+            return redirect()->route('dashboard')->with('message', 'Your are now logged in as '.$user->name);
+        }
+        return redirect()->back()->with('message', "Sorry! Permission denied");
+    }
+    public function changeRole(Request $request) {
+        $user = Auth::user();
+        if(!$user->haveEditPermission($request->user_id)) {
+            return redirect()->back()->with('message', 'Permission denied');
+        }
+        if($user->role_id <= $request->role_id) {
+            return redirect()->back()->with('message', 'Permission denied');
+        }
+        $u = User::find($request->user_id);
+        $u->update(['role_id' => $request->role_id]);
+        return redirect()->back()->with('message', 'User Role changed');
     }
 }

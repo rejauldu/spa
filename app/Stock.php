@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
+class Stock extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'is_active', 'updated_at', 'created_at'
+        'product_id', 'user_id', 'amount', 'created_by', 'accepted_by', 'note', 'updated_at', 'created_at'
     ];
 
     /**
@@ -33,14 +33,16 @@ class Permission extends Model
         'updated_at' => 'datetime',
 		'created_at' => 'datetime',
     ];
-
-	public function role() {
-		return $this->belongsTo('App\Role');
-	}
-	public static function activate($id) {
-		self::where('id', $id)->first()->update(['is_active' => 1]);
-	}
-	public static function deActivateAll() {
-		self::where('is_active', 1)->update(['is_active' => 0]);
-	}
+    public function product() {
+        return $this->belongsTo('App\Product');
+    }
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+    public function creator() {
+        return $this->belongsTo('App\User', 'created_by', 'id');
+    }
+    public function acceptor() {
+        return $this->belongsTo('App\User', 'accepted_by', 'id');
+    }
 }

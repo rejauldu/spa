@@ -62,9 +62,14 @@ Route::prefix('admin')->group(function () {
         Route::resource('regions', 'Locations\RegionController');
         Route::resource('shippers', 'Backend\ShipperController')->middleware('moderator:Shipper');
         Route::resource('sizes', 'Backend\SizeController')->middleware('moderator:Size');
+        Route::resource('stocks', 'Backend\StockController');
+        Route::get('stocks-accept/{stock_id}', 'Backend\StockController@accept')->name('stocks-accept');
+        Route::get('stocks-sent', 'Backend\StockController@sent')->name('stocks-sent');
         Route::resource('suppliers', 'Backend\SupplierController')->middleware('moderator:Supplier');
         Route::resource('units', 'Backend\UnitController')->middleware('moderator:Unit');
         Route::resource('users', 'Backend\UserController');
+        Route::get('users/login/{user}', 'Backend\UserController@login')->name('users.login');
+        Route::post('change-role', 'Backend\UserController@changeRole')->name('users.change-role');
     });
     Route::resource('products', 'Backend\ProductController')->only(['index', 'show']);
     Route::post('subscriptions', 'Backend\ContactUsController@subscribe')->name('subscriptions.store');
@@ -73,17 +78,7 @@ Route::prefix('admin')->group(function () {
 Route::get('clear-cache', 'Backend\AccessoriesController@clearCache');
 Route::get('cache', 'Backend\AccessoriesController@cache');
 
-/*SPA routes */
-/* User Password Reset Routes */
-//Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-//Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-//Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-
-/* User Verification Routes */
-//Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-//Route::get('email/verify/{id}/{hash}', 'VerificationApiController@verify')->name('verification.verify');
-//Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 Route::middleware('cache.headers:public;max_age=3600;etag')->group(function () {
     Route::resource('chats', 'Backend\ChatController')->except(['destroy'])->middleware('auth');
     Route::any('/{slug}', 'SpaController@index')->where('slug', '.*');

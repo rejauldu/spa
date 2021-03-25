@@ -18,11 +18,11 @@ class Moderator
     public function handle($request, Closure $next, $name)
     {
 		$user = Auth::user();
-		if($user && $user->role_id == 3) {
+		if($user && $user->role_id == config('auth.admin')['super']) {
 			return $next($request);
-		} elseif($user && $user->role_id == 2) {
+		} elseif($user && $user->role_id == config('auth.admin')['moderator']) {
 			if($name) {
-				$permission = Permission::where('role_id', 2)->where('name', $name)->where('is_active', 1)->first();
+				$permission = Permission::where('name', $name)->where('is_active', 1)->first();
 				if($permission != null) {
 					return $next($request);
 				}

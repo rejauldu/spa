@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use App\Permission;
 
-class Admin
+class Agent
 {
     /**
      * Handle an incoming request.
@@ -16,10 +17,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->role_id == config('auth.admin')['super']) {
-            return $next($request);
-		 }
-
-		return redirect('/')->with('message', 'You don not have this permission');
-	}
+        $user = Auth::user();
+        if($user && $user->role_id == config('auth.admin')['agent']) {
+                return $next($request);
+        }
+        return redirect('/')->with('message', 'You don not have this permission');
+    }
 }

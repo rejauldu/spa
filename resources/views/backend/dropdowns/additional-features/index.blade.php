@@ -46,7 +46,7 @@
 									<td>{{ $additional_feature->name }}</td>
 									<td>{{ $additional_feature->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('additional-features.edit', $additional_feature->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('additional-features.destroy', $additional_feature->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('additional-features.destroy', $additional_feature->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

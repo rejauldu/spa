@@ -48,7 +48,7 @@
 									<td>{{ $what_a_new->name }}</td>
 									<td>{{ $what_a_new->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('what-a-news.edit', $what_a_new->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('what-a-news.destroy', $what_a_new->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('what-a-news.destroy', $what_a_new->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

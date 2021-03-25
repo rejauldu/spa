@@ -48,7 +48,7 @@
 									<td>{{ $pros_cons->name }}</td>
 									<td>{{ $pros_cons->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('pros-conses.edit', $pros_cons->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('pros-conses.destroy', $pros_cons->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('pros-conses.destroy', $pros_cons->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

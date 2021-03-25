@@ -15,11 +15,12 @@ use App\User;
 use App\Guest;
 use App\Locations\Division;
 use App\Locations\Region;
+use App\Stock;
 
 class OrderController extends Controller
 {
 	public function __construct() {
-        $this->middleware('moderator:Order', ['except' => ['store', 'cart', 'checkout', 'orderComplete', 'checkoutLogin']]);
+        $this->middleware('agent', ['except' => ['store', 'cart', 'checkout', 'orderComplete', 'checkoutLogin', 'getOrders']]);
     }
     /**
      * Display a listing of the resource.
@@ -145,14 +146,16 @@ class OrderController extends Controller
     {
 		$data = $request->except('_token', '_method');
 		$order = Order::where('id', $id)->with('details.product')->first();
-
+		$user = Auth::user();
 		$credited_ids = [3, 4, 5]; /*Cashed in to cashbook*/
 		$debited_ids = [1, 2, 6, 7, 8]; /*Cashed not in to cashbook*/
-		if(in_array($request->order_status_id, $credited_ids) && !in_array($order->order_status_id, $debited_ids)) {
+		if(in_array($request->order_status_id, $credited_ids) && in_array($order->order_status_id, $debited_ids)) {
 			$this->cashbook($order);
-		} elseif(!in_array($request->order_status_id, $debited_ids) && in_array($order->order_status_id, $credited_ids)) {
+			$this->stock($order, $user);
+		} elseif(in_array($request->order_status_id, $debited_ids) && in_array($order->order_status_id, $credited_ids)) {
 			$cashbook_id = Cashbook::where('order_id', $id)->pluck('id');
 			Cashbook::destroy($cashbook_id);
+            $this->stock($order, $user, false);
 		}
 		$order->update(['order_status_id' => $request->order_status_id]);
 		return redirect(route('orders.index'))->with('message', 'Order updated successfully');
@@ -209,6 +212,7 @@ class OrderController extends Controller
 				});
 			});
 		})->first();
+		$user = Auth::user();
 		$cumulative_amount = Cashbook::latest()->pluck('cumulative_amount')->first();
 		$cashbook = [];
 		$amount = $this->total($order);
@@ -216,7 +220,7 @@ class OrderController extends Controller
 		$cashbook['amount'] = $amount;
 		$cashbook['cumulative_amount'] = $amount+$cumulative_amount;
 		$cashbook['order_id'] = $order->id;
-		$cashbook['user_id'] = Auth::user()->id;
+		$cashbook['user_id'] = $user->id;
 		$cashbook['owned_by'] = $user->id;
 		Cashbook::create($cashbook);
 	}
@@ -301,7 +305,6 @@ class OrderController extends Controller
     private function totalPrice($order)
     {
         return $this->total($order);
-//        return $order->total + $this->shipping($order) + $this->packaging($order);
     }
 
     /**
@@ -312,7 +315,21 @@ class OrderController extends Controller
     public function getOrders()
     {
         $user = auth()->user();
-        $orders = \App\Order::where('customer_id', $user->id)->with('status')->latest()->paginate(5);
-        return $orders;
+        if($user) {
+            $orders = Order::where('customer_id', $user->id)->with('status')->latest()->paginate(5);
+            return $orders;
+        }
+        return '';
+    }
+    public function stock($order, $user, $credit = true) {
+        $created_by = $user->id;
+        $accepted_by = $order->customer_id;
+        if(!$credit) {
+            $created_by = $order->customer_id;
+            $accepted_by = $user->id;
+        }
+        foreach($order->details as $detail) {
+            Stock::create(['product_id'=>$detail->product_id, 'user_id' => $accepted_by, 'amount' => $detail->quantity, 'created_by' => $created_by, 'accepted_by' => $accepted_by]);
+        }
     }
 }

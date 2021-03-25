@@ -50,7 +50,7 @@
 									<td>{{ $package->name }}</td>
 									<td>{{ $package->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('packages.edit', $package->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('packages.destroy', $package->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('packages.destroy', $package->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

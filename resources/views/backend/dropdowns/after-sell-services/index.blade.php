@@ -48,7 +48,7 @@
 									<td>{{ $after_sell_service->name }}</td>
 									<td>{{ $after_sell_service->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('after-sell-services.edit', $after_sell_service->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('after-sell-services.destroy', $after_sell_service->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('after-sell-services.destroy', $after_sell_service->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

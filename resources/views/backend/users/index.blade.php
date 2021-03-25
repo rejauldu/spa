@@ -36,11 +36,11 @@
 									<th>Name</th>
 									<th>Photo</th>
 									<th>Phone</th>
-									<th>District</th>
 									<th>Role</th>
 									<th>Joined At</th>
 									<th>Notify</th>
-									<th>Edit</th>
+									<th>View</th>
+                                    <th>Login As</th>
 									<th>Delete</th>
 								</tr>
 							</thead>
@@ -51,12 +51,12 @@
 									<td>{{ $single->name ?? ''}}</td>
 									<td><img onerror="this.onerror=null; this.src='{{ asset("/assets/profile/avatar.png") }}'" src="{{ asset("/assets/profile/") }}/{{ $single->photo }}" alt="User photo" width="50" height="50"  class="img-thumbnail" /></td>
 									<td>{{ $single->phone  ?? ''}}</td>
-									<td>{{ $single->district->name  ?? ''}}</td>
-									<td>{{ $single->role->name  ?? ''}}</td>
+									<td class="text-center @if($single->role_id == config("auth.admin")["super"]) alert-primary @elseif($single->role_id == config("auth.admin")["moderator"]) alert-danger @elseif($single->role_id == config("auth.admin")["agent"]) alert-warning @elseif($single->role_id == config("auth.admin")["user"]) alert-success @endif">{{ $single->role->name  ?? ''}}</td>
 									<td>{{ $single->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('notifications.edit', $single->id) }}" class="text-primary fa fa-bell"></a></td>
 									<td><a href="{{ route('users.show', $single->id) }}" class="text-success fa fa-eye"></a></td>
-									<td><a href="{{ route('users.destroy', $single->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+                                    <td>@if($user->role_id > $single->role_id) <a href="{{ route('users.login', $single->id) }}" class="text-success fa fa-sign-in"></a> @endif</td>
+									<td><a href="{{ route('users.destroy', $single->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -66,11 +66,11 @@
 									<th>Name</th>
 									<th>Photo</th>
 									<th>Phone</th>
-									<th>District</th>
 									<th>Role</th>
 									<th>Joined At</th>
 									<th>Notify</th>
-									<th>Edit</th>
+									<th>View</th>
+                                    <th>Login As</th>
 									<th>Delete</th>
 								</tr>
 							</tfoot>

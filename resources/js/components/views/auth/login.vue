@@ -86,7 +86,11 @@ export default {
                         if(response.data && response.data.status_code == 200) {
                             store.dispatch("login", response.data);
                             store.dispatch("changeEmailVerified", "1");
-                            router.push({name: 'dashboard'});
+                            if(_this.$store.getters.user.role_id > 1) {
+                                window.location = '/admin'
+                            } else {
+                                router.push({name: 'dashboard'});
+                            }
                         } else if (response.data && response.data.status_code == 401) {
                             store.dispatch("login", "1");
                             router.push({name: 'verify'});

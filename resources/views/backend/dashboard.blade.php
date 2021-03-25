@@ -43,9 +43,9 @@
 							</div>
 							<!-- /.col -->
 							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-success">
+								<div class="small-box bg-info">
 									<div class="inner">
-										<h3>{{ $status->total }}</h3>
+										<h3>{{ $status->t }}</h3>
 										<h4>Total Orders</h4>
 									</div>
 									<div class="icon">
@@ -55,6 +55,7 @@
 								</div>
 								<!-- /.info-box -->
 							</div>
+                            @moderator
 							<div class="col-md-3 col-sm-6 col-12">
 								<div class="small-box bg-warning">
 									<div class="inner">
@@ -126,8 +127,9 @@
 								<!-- /.info-box -->
 							</div>
 							<!-- /.col -->
+                            @endmoderator
 							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-info">
+								<div class="small-box bg-danger">
 									<div class="inner">
 										<h3>{{ $user->unreadNotifications()->groupBy('notifiable_type')->count() }}</h3>
 										<h4>Unseen notifications</h4>
@@ -139,6 +141,78 @@
 								</div>
 								<!-- /.info-box -->
 							</div>
+                            <!-- /.col -->
+                            @agent
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>{{ $stock->style }}</h3>
+                                        <h4>Total Style</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a href="{{ route('stocks.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                <!-- /.info-box -->
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="small-box bg-primary">
+                                    <div class="inner">
+                                        <h3>{{ $stock->quantity }}</h3>
+                                        <h4>Stock</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a href="{{ route('stocks.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                <!-- /.info-box -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="small-box bg-secondary">
+                                    <div class="inner">
+                                        <h3>{{ $stock->received }}</h3>
+                                        <h4>Received</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a href="{{ route('stocks.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                <!-- /.info-box -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>{{ $stock->sent }}</h3>
+                                        <h4>Sent</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a href="{{ route('stocks-sent') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                <!-- /.info-box -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3>{{ $stock->incomplete }}</h3>
+                                        <h4>Incomplete Stock</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a href="{{ route('stocks.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                <!-- /.info-box -->
+                            </div>
+                            <!-- /.col -->
+                            @endagent
 						</div>
 					</div>
 				</div>

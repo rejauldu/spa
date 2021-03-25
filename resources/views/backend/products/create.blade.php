@@ -59,17 +59,6 @@
 												<div class="valid-feedback">Valid.</div>
 												<div class="invalid-feedback">Please fill out this field.</div>
 											</div>
-											<!--<div class="form-group">
-												<label for="color">Color</label>
-												<select id="color" name="color_id" class="custom-select" required>
-													<option value="0" selected>--Select Color--</option>
-													@foreach($colors as $color)
-													<option value="{{ $color->id }}" @if(isset($product) && $product->color_id == $color->id) selected @endif>{{ $color->name }}</option>
-													@endforeach
-												</select>
-												<div class="valid-feedback">Valid.</div>
-												<div class="invalid-feedback">Please fill out this field.</div>
-											</div>-->
 											<div class="row">
 												<div class="col-6 form-group">
 													<input type="file" id="image1" name="image1" class="form-control bg-theme text-white" onchange="displayPhotoOnSelect(this, 'picture-view1')" accept="image/*" value="Upload image" @if(!isset($product->image1)) required @endif/>
@@ -112,35 +101,12 @@
 											</div>
 										</div>
 										<div class="col-12 col-md-6">
-											<!--<div class="form-group">
-												<label for="size">Size</label>
-												<select id="size" name="size_id" class="custom-select" required>
-													<option value="0" selected>--Select Size--</option>
-													@foreach($sizes as $size)
-													<option value="{{ $size->id }}" @if(isset($product) && $product->size_id == $size->id) selected @endif>{{ $size->name }}</option>
-													@endforeach
-												</select>
-												<div class="valid-feedback">Valid.</div>
-												<div class="invalid-feedback">Please fill out this field.</div>
-											</div>-->
 											<div class="form-group">
 												<label for="msrp">Price</label>
 												<input id="msrp" type="number" class="form-control" name="msrp" value="{{ $product->msrp ?? '' }}" placeholder="Enter Price" title="Enter Price" required/>
 												<div class="valid-feedback">Valid.</div>
 												<div class="invalid-feedback">Please fill out this field.</div>
 											</div>
-											<!--<div class="form-group">
-												<label for="discount">Discount</label>
-												<input id="discount" type="number" class="form-control" name="discount" value="{{ $product->discount ?? '' }}" placeholder="Enter Discount percentage" title="Enter Discount %" required/>
-												<div class="valid-feedback">Valid.</div>
-												<div class="invalid-feedback">Please fill out this field.</div>
-											</div>
-											<div class="form-group">
-												<label for="stock">Stock</label>
-												<input id="stock" type="number" class="form-control" name="stock" value="{{ $product->stock ?? '' }}" placeholder="Enter Stock" title="Enter Stock" required/>
-												<div class="valid-feedback">Valid.</div>
-												<div class="invalid-feedback">Please fill out this field.</div>
-											</div>-->
 											<div class="form-group">
 												<label for="note">Note:</label>
 												<textarea name="note" class="form-control editor-tools" rows="5" id="note" required>{!! $product->note ?? '' !!}</textarea>

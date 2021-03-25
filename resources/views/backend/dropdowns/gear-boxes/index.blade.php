@@ -48,7 +48,7 @@
 									<td>{{ $gear_box->name }}</td>
 									<td>{{ $gear_box->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('gear-boxes.edit', $gear_box->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('gear-boxes.destroy', $gear_box->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('gear-boxes.destroy', $gear_box->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

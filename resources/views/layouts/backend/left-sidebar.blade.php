@@ -64,7 +64,7 @@
 				</ul>
 			</li>
 			@endmoderator
-			@dealeroradmin
+			@moderator(Notification)
 			<li class="treeview {{ Request::is('admin/notifications*') ? 'active' : '' }}" data-toggle="collapse" href="#lm-email">
 				<a href="#">
 					<i class="fa fa-bell"></i><span>{{ __('Notification') }}</span>
@@ -82,7 +82,7 @@
 			<li class="{{ Request::is('admin/notifications') ? 'active' : '' }}">
 				<a href="{{ route('notifications.index') }}"><i class="fa fa-bell"></i><span>{{ __('My Notifications') }}</span></a>
 			</li>
-			@enddealeroradmin
+			@endmoderator
 			<li class="treeview {{ Request::is('admin/users*') ? 'active' : '' }}">
 				<a href="#">
 					@moderator(User)
@@ -115,18 +115,17 @@
 				</ul>
 			</li>
 			@endmoderator
-			@moderator(Dropdown)
-			<li class="treeview {{ Request::is('admin/home-sliders*') ? 'active' : '' }}">
-				<a href="#">
-					<i class="fa fa-paint-brush" aria-hidden="true"></i> <span>Home Slider</span>
-					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-				</a>
-				<ul class="treeview-menu">
-					<li class="{{ Request::route()->getName() == 'home-sliders.index' ? 'active' : '' }}"><a href="{{ route('home-sliders.index') }}"><i class="fa fa-circle-o"></i> Manage Home Sliders</a></li>
-					<li class="{{ Request::route()->getName() == 'home-sliders.create' ? 'active' : '' }}"><a href="{{ route('home-sliders.create') }}"><i class="fa fa-circle-o"></i> Add New Slider</a></li>
-				</ul>
-			</li>
-			@endmoderator
+            <li class="treeview {{ Request::is('admin/stocks*') ? 'active' : '' }}">
+                <a href="#">
+                    <i class="fa fa-houzz" aria-hidden="true"></i> <span>Stock</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Request::is('admin/stocks') ? 'active' : '' }}"><a href="{{ route('stocks.index') }}"><i class="fa fa-circle-o"></i> Manage Stock</a></li>
+                    <li class="{{ Request::is('admin/stocks-sent') ? 'active' : '' }}"><a href="{{ route('stocks-sent') }}"><i class="fa fa-circle-o"></i> Stock Sent</a></li>
+                    <li class="{{ Request::is('admin/stocks/create') ? 'active' : '' }}"><a href="{{ route('stocks.create') }}"><i class="fa fa-circle-o"></i> Add New Stock</a></li>
+                </ul>
+            </li>
 			@moderator(Supplier)
 			<li class="treeview {{ Request::is('admin/suppliers*') ? 'active' : '' }}">
 				<a href="#">

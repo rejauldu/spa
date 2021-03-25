@@ -48,7 +48,7 @@
 									<td>@if($payment->is_active) Active @else Inactive @endif</td>
 									<td>{{ $payment->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('payments.edit', $payment->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('payments.destroy', $payment->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('payments.destroy', $payment->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

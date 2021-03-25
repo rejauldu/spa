@@ -113,5 +113,21 @@ return [
     */
 
     'password_timeout' => 10800,
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Authentication
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the admin authentication and controls
+    | the access of users and different admins in different resource.
+    | Through permission settings these access can be controlled from admin panel.
+    |
+    */
 
+    'admin' => [
+        'super' => env('SUPER_ADMIN', 4),
+        'moderator' => env('MODERATOR', 3),
+        'agent' => env('AGENT', 2),
+        'user' => env('GENERAL_USER', 1),
+    ],
 ];

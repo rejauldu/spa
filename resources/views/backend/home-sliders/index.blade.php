@@ -52,7 +52,7 @@
 									<td>{{ $home_slider->description }}</td>
 									<td>{{ $home_slider->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('home-sliders.edit', $home_slider->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('home-sliders.destroy', $home_slider->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('home-sliders.destroy', $home_slider->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

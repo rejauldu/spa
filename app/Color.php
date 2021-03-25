@@ -12,7 +12,7 @@ class Color extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'updated_at', 'created_at'
+        'name', 'code', 'updated_at', 'created_at'
     ];
 
     /**
@@ -21,7 +21,7 @@ class Color extends Model
      * @var array
      */
     protected $hidden = [
-        
+
     ];
 
     /**

@@ -6,6 +6,7 @@ use App\Notifications\VerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Permission;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -28,11 +29,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
-	
+
 	protected $dates = ['updated_at', 'created_at'];
-	
-    
-	
+
+
+
 	/**
 	 * Send the email verification notification.
 	 *
@@ -42,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	{
 		$this->notify(new VerifyEmail); // my notification
 	}
-	
+
 	public function getDateAttribute() {
 		return $this->created_at->format('M Y');
 	}
@@ -107,14 +108,31 @@ class User extends Authenticatable implements MustVerifyEmail
 		return $this->hasMany('App\Order', 'customer_id', 'id');
 	}
 	public static function ifAdmin() {
-		if(\Auth::user()->role->id != 3)
+		if(\Auth::user()->role->id != config('auth.admin')['super'])
 			return redirect()->back();
 	}
 	public static function ifAdminOrUserBy($id) {
 		$user = \Auth::user();
-		if($user->role->id != 3 && $user->id != $id)
+		if($user->role->id < config('auth.admin')['moderator'] && $user->id != $id)
 			return redirect()->back();
 	}
+    public function haveEditPermission($user_id = 1) {
+        if ($this->id == $user_id) {
+            return true;
+        }
+        $user = User::find($user_id);
+        if($this->role_id <= $user->role_id)
+            return false;
+        if ($this->role_id == config("auth.admin")["super"]) {
+            return true;
+        } elseif ($this->role_id == config("auth.admin")["moderator"]) {
+            $permission = Permission::where("name", 'User')->where("is_active", 1)->first();
+            if ($permission != null) {
+                return true;
+            }
+        }
+        return false;
+    }
 	public static function isUserBy($id) {
 		return \Auth::user()->id == $id;
 	}

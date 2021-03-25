@@ -48,7 +48,7 @@
 									<td>{{ $starting_system->name }}</td>
 									<td>{{ $starting_system->created_at->format('jS M Y') }}</td>
 									<td><a href="{{ route('starting-systems.edit', $starting_system->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('starting-systems.destroy', $starting_system->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('starting-systems.destroy', $starting_system->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></a></td>
 								</tr>
 								@endforeach
 							</tbody>

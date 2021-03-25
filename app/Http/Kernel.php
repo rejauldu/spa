@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
 		'admin' => \App\Http\Middleware\Admin::class,
 		'moderator' => \App\Http\Middleware\Moderator::class,
 		'moderatorOrOwner' => \App\Http\Middleware\ModeratorOrOwner::class,
+        'agent' => \App\Http\Middleware\Agent::class,
 		'user' => \App\Http\Middleware\User::class,
         'cacheable'=>\App\Http\Middleware\CacheResponse::class,
     ];

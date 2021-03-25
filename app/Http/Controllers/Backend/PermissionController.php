@@ -17,7 +17,6 @@ class PermissionController extends Controller
      */
     public function index()
     {
-		
 		$permissions = Permission::with('role')->orderBy('id', 'desc')->get();
 		return view('backend.permissions.index', compact('permissions'));
     }
@@ -29,7 +28,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        
+
 		return view('backend.permissions.create');
     }
 
@@ -54,7 +53,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-		
+
         $permission = Permission::find($id);
 		return view('backend.permissions.show', compact('permission'));
     }
@@ -67,7 +66,7 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-		
+
         $permission = Permission::find($id);
 		return view('backend.permissions.create', compact('permission'));
     }
@@ -87,7 +86,7 @@ class PermissionController extends Controller
 		}
 		$permission = Permission::find($id);
 		$permission->update($data);
-		
+
 		return redirect(route('permissions.index'))->with('message', 'Permission updated successfully');
     }
 

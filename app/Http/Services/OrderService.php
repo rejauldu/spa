@@ -10,10 +10,8 @@ use Carbon\Carbon;
 class OrderService
 {
 	public static function getStatus() {
-		
 		$user = Auth::user();
-		
-		$report = Order::selectRaw('count(*)as total')
+		$report = Order::selectRaw('count(*)as t')
 			->selectRaw('count(case when order_status_id = 2 then 1 end) as failed')
 			->selectRaw('count(case when order_status_id = 3 then 1 end) as incomplete')
 			->selectRaw('count(case when order_status_id = 4 then 1 end) as sale')
@@ -28,9 +26,9 @@ class OrderService
 		return $report;
 	}
 	public static function getOrder() {
-		
+
 		$user = Auth::user();
-		
+
 		$this_year = Order::selectRaw('count(*) as total, MONTH(created_at) as month');
 		if($user->role_id == 1)
 			$this_year = $this_year->whereHas('details', function(Builder $query) use($user) {
