@@ -23,6 +23,7 @@ import verify from './components/views/auth/verify'
 import contactUs from './components/views/contact-us'
 import profile from './components/views/profile'
 import privacyPolicy from './components/views/privacy-policy'
+import shoesSizeGuide from './components/views/shoes-size-guide'
 import chat from './components/views/chats/layout'
 
 const routes = [
@@ -79,6 +80,9 @@ const routes = [
     },
     {
         path:'/terms-conditions', name:'terms-conditions', component: privacyPolicy,
+    },
+    {
+        path:'/shoes-size-guide', name:'shoes-size-guide', component: shoesSizeGuide,
     },
     {
         path:'/chat', name:'chat', component: chat,

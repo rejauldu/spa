@@ -85,7 +85,7 @@
             <div id="left-menu">
                 <div class="border">
                     <div class="display-6 p-3">
-                        <router-link to="/" class="width-200 pl-2 d-inline-block text-decoration-none bg-white">Home</router-link>
+                        <router-link to="/" class="width-200 pl-2 d-inline-block text-decoration-none bg-white left-menu-close">Home</router-link>
                     </div>
                     <div class="list-group list-group-flush accordion" role="tablist">
                         <router-link to="/templates" class="list-group-item list-group-item-action py-1 border-0" role="tab">
@@ -207,38 +207,12 @@
                 <b-row>
                     <router-view :products="products"></router-view>
                 </b-row>
-                <b-row class="text-center border bg-theme p-5 border-0 text-white text-justify">
-                    <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="/assets/layout/footer1.webp" /></div>
-                        <div class="text-justify excerpt">FREE delivery with orders over $35! All year round</div>
-                    </b-col>
-                    <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="/assets/layout/footer2.webp" /></div>
-                        <div class="text-justify excerpt">Earn points on every purchase and benefit from members-only promotions</div>
-                    </b-col>
-                    <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="/assets/layout/footer3.webp" /></div>
-                        <div class="text-justify excerpt">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
-                    </b-col>
-                    <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="/assets/layout/footer1.webp" /></div>
-                        <div class="text-justify excerpt">FREE delivery with orders over $35! All year round</div>
-                    </b-col>
-                    <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="/assets/layout/footer2.webp" /></div>
-                        <div class="text-justify excerpt">Earn points on every purchase and benefit from members-only promotions</div>
-                    </b-col>
-                    <b-col cols="6" md="4" lg="2">
-                        <div class="text-center"><img src="/assets/layout/footer3.webp" /></div>
-                        <div class="text-justify excerpt">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
-                    </b-col>
-                </b-row>
                 <b-row class="bg-dark text-white py-4">
                     <b-col cols="12" lg="9">
                         <b-row>
                             <b-col cols="12" lg="6" class="py-3">
                                 <b-row>
-                                    <b-col cols="4" sm="2" md="1" lg="3" xl="2" class="pr-0"><img src="/assets/layout/support.webp"  class="w-100"></b-col>
+                                    <b-col cols="4" sm="2" md="1" lg="3" xl="2" class="pr-0"><img src="/assets/layout/support.png"  class="w-100"></b-col>
                                     <b-col cols="8" sm="10" md="11" lg="9" xl="10">
                                         <h5>NEED SUPPORT? CONTACT US</h5>
                                         <div>Our dedicated ONBIPONI<sup><small>®</small></sup> experts are here to help</div>
@@ -248,7 +222,7 @@
                                     </b-col>
                                 </b-row>
                             </b-col>
-                            <b-col cols="12" lg="6" class="py-3">
+                            <b-col cols="12" lg="6" class="py-3 d-none d-md-block">
                                 <h5>SUBSCRIBE TO ONBIPONI<sup><small>®</small></sup> SHOP EMAILS</h5>
                                 <div class="input-group">
                                     <input type="text" class="form-control height-40" placeholder="Your Email">

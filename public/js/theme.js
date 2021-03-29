@@ -317,6 +317,15 @@ function fadeOut() {
 function leftMenu() {
     var left_menu_toggle = document.getElementById("left-menu-toggle");
     var left_menu = document.getElementById("left-menu");
+	var closes = document.getElementsByClassName("left-menu-close");
+	for(let i=0; i<closes.length; i++) {
+		if (left_menu && window.innerWidth<768) {
+            closes[i].addEventListener("click", function () {
+                left_menu.classList.remove("left-menu-collapse");
+            });
+        }
+
+	}
     if (left_menu_toggle && left_menu)
         left_menu_toggle.addEventListener("click", function () {
             left_menu.classList.toggle("left-menu-collapse");

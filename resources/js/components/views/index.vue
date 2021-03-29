@@ -19,8 +19,8 @@
                     <div class="d-none d-lg-block col-12 col-lg-1"></div>
                     <div class="col-12 col-md-6 col-lg-5 col-xl-4">
                         <div class="w-100"  :class="{'position-center-v': $store.state.width>=768, 'my-4': $store.state.width<768}">
-                            <h1 class="display-5">Trim the tree</h1>
-                            <p>Get into the spirit with new Santa with new Reindeer mini-build ornaments</p>
+                            <h1 class="display-5">Walk The Line</h1>
+                            <p>Give your feet the beauty treatment that only brand new shoes can give</p>
                             <router-link to="/products" class="btn btn-dark">Continue shopping <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24"><path stroke="currentColor" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg></router-link>
                         </div>
                     </div>
@@ -29,41 +29,41 @@
         </b-row>
 		<b-row>
             <div class="mx-auto mt-4 text-center">
-                <router-link to="/new" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/new.webp" alt="Card image"><br/>
+                <router-link to="/mens-shoes" class="width-80 d-inline-block mx-2 mx-sm-3">
+                    <img class="" src="assets/home/men.jpg" alt="Card image"><br/>
+                    <p class="text-center font-11 mt-2 text-black">Men</p>
+                </router-link>
+                <router-link to="/womens-shoes" class="width-80 d-inline-block mx-2 mx-sm-3">
+                    <img class="" src="assets/home/women.jpg" alt="Card image">
+                    <p class="text-center font-11 mt-2 text-black">Women</p>
+                </router-link>
+                <router-link to="/kids-shoes" class="width-80 d-inline-block mx-2 mx-sm-3">
+                    <img class="" src="assets/home/kid.jpg" alt="Card image">
+                    <p class="text-center font-11 mt-2 text-black">Kids</p>
+                </router-link>
+                <router-link to="/vip-shoes" class="width-80 d-inline-block mx-2 mx-sm-3">
+                    <img class="" src="assets/home/vip.jpg" alt="Card image">
+                    <p class="text-center font-11 mt-2 text-black">VIP<sup><small>TM</small></sup></p>
+                </router-link>
+                <router-link to="/new-shoes" class="width-80 d-inline-block mx-2 mx-sm-3">
+                    <img class="" src="assets/home/new.jpg" alt="Card image">
                     <p class="text-center font-11 mt-2 text-black">New</p>
                 </router-link>
-                <router-link to="/exclusives" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/exclusives.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">Exclusives</p>
+                <router-link to="/popular-shoes" class="width-80 d-inline-block mx-2 mx-sm-3">
+                    <img class="" src="assets/home/popular.jpg" alt="Card image">
+                    <p class="text-center font-11 mt-2 text-black">Popular</p>
                 </router-link>
-                <router-link to="/offers" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/offers.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">Offers</p>
+                <router-link to="/discount-products" class="width-80 d-inline-block mx-2 mx-sm-3">
+                    <img class="" src="assets/home/discount.jpg" alt="Card image">
+                    <p class="text-center font-11 mt-2 text-black">Discount</p>
                 </router-link>
-                <router-link to="/harry-potter" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/harry-potter.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">Harry Potter<sup><small>TM</small></sup></p>
+                <router-link to="/belts" class="width-80 d-inline-block mx-2 mx-sm-3">
+                    <img class="" src="assets/home/belt.jpg" alt="Card image">
+                    <p class="text-center font-11 mt-2 text-black">Belt</p>
                 </router-link>
-                <router-link to="/technique" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/technique.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">Technique<sup><small>TM</small></sup></p>
-                </router-link>
-                <router-link to="/learn-more" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/learn-more.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">Learn more</p>
-                </router-link>
-                <router-link to="/pick-a-brick" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/promotion.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">Promotion</p>
-                </router-link>
-                <router-link to="/vip" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/vip.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">VIP</p>
-                </router-link>
-                <router-link to="/technique" class="width-80 d-inline-block mx-2 mx-sm-3">
-                    <img class="" src="assets/home/holiday.webp" alt="Card image">
-                    <p class="text-center font-11 mt-2 text-black">Holiday</p>
+                <router-link to="/wallet" class="width-80 d-inline-block mx-2 mx-sm-3">
+                    <img class="" src="assets/home/wallet.jpg" alt="Card image">
+                    <p class="text-center font-11 mt-2 text-black">Wallet</p>
                 </router-link>
             </div>
 		</b-row>
@@ -82,6 +82,32 @@
                     </div>
                 </splide-slide>
             </splide>
+        </b-row>
+        <b-row class="text-center border bg-theme p-5 border-0 text-white text-justify">
+            <b-col cols="6" md="4" lg="2">
+                <div class="text-center"><img src="/assets/layout/footer1.webp" /></div>
+                <div class="text-justify excerpt">FREE delivery with orders over $35! All year round</div>
+            </b-col>
+            <b-col cols="6" md="4" lg="2">
+                <div class="text-center"><img src="/assets/layout/footer2.webp" /></div>
+                <div class="text-justify excerpt">Earn points on every purchase and benefit from members-only promotions</div>
+            </b-col>
+            <b-col cols="6" md="4" lg="2">
+                <div class="text-center"><img src="/assets/layout/footer3.webp" /></div>
+                <div class="text-justify excerpt">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
+            </b-col>
+            <b-col cols="6" md="4" lg="2">
+                <div class="text-center"><img src="/assets/layout/footer1.webp" /></div>
+                <div class="text-justify excerpt">FREE delivery with orders over $35! All year round</div>
+            </b-col>
+            <b-col cols="6" md="4" lg="2">
+                <div class="text-center"><img src="/assets/layout/footer2.webp" /></div>
+                <div class="text-justify excerpt">Earn points on every purchase and benefit from members-only promotions</div>
+            </b-col>
+            <b-col cols="6" md="4" lg="2">
+                <div class="text-center"><img src="/assets/layout/footer3.webp" /></div>
+                <div class="text-justify excerpt">Missing any pieces or instructions? Let us know and we’ll deliver it to you.</div>
+            </b-col>
         </b-row>
 	</b-container>
 </template>
@@ -154,7 +180,7 @@ export default {
     background: #c8d7e6;
 }
 .bg-home-img {
-    background: #c8d7e6 url('/assets/home/cover.webp') no-repeat right top;
+    background: #c8d7e6 url('/assets/home/cover.jpg') no-repeat right top;
     background-size: 100% 100%;
 }
 .size-31 {
